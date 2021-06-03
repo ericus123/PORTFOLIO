@@ -7,7 +7,9 @@ const middlewares = [thunk];
 
 middlewares.push(logger);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = process.browser
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  : compose;
 
 const store = createStore(
   allReducers,
