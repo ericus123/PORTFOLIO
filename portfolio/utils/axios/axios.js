@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const token = process.browser ? localStorage.getItem("auth-token") : null;
-const baseURL = "https://amanieric.herokuapp.com/";
-console.log("BASE URL IS " + baseURL);
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const http = axios.create({
   baseURL,

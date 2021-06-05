@@ -31,10 +31,6 @@ const Login = () => {
       history.push(`/account/verify/${email}`);
     }, 2000);
   }
-  console.log(
-    "HERE IS THE PUBLIC BACKEND URL " + process.env.NEXT_PUBLIC_BACKEND_URL
-  );
-
   return (
     <div className="login">
       <h2 className="section-title login_title">Login</h2>

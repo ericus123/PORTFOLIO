@@ -4,6 +4,7 @@ import { Github, Twitter, Linkedin } from "react-bootstrap-icons";
 import ScrolButton from "../reusables/ScrollUp";
 import About from "../comps/home/About";
 import Skills from "../comps/home/Skills";
+import Contact from "../comps/home/Contact";
 
 const Home = () => {
   const scrolToSection = (id) => {
@@ -213,6 +214,7 @@ const Home = () => {
       </div>
       <About />
       <Skills />
+      <Contact />
     </>
   );
 };
