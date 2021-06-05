@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Github, Twitter, Linkedin } from "react-bootstrap-icons";
 import ScrolButton from "../reusables/ScrollUp";
 import About from "../comps/home/About";
+import Skills from "../comps/home/Skills";
 
 const Home = () => {
   const scrolToSection = (id) => {
@@ -211,6 +212,7 @@ const Home = () => {
         </div>
       </div>
       <About />
+      <Skills />
     </>
   );
 };
