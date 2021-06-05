@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Provider store={store}>
-        <Navigation />
+        {/* <Navigation /> */}
         {children}
       </Provider>{" "}
     </div>

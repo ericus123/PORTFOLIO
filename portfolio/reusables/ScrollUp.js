@@ -29,10 +29,10 @@ const ScrollButton = () => {
   return (
     <div
       className="scroll-to-top rounded"
-      style={{ display: visible ? "inline" : "none" }}
+      style={{ display: visible ? "inline" : "none", fontWeight: "bolder" }}
       onClick={scrollToTop}
     >
-      <ArrowUpShort />
+      <ArrowUpShort size={24} style={{ fontWeight: "bolder" }} />
     </div>
   );
 };
