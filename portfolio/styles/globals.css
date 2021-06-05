@@ -176,7 +176,7 @@ img {
   color: var(--first-color);
 }
 
-/*PROFILE*/
+/* PROFILE */
 
 .profile {
   display: grid;
@@ -265,7 +265,7 @@ img {
   border: none;
 }
 
-/* News Letter*/
+/* News Letter */
 
 .news-letter-wrapper {
   display: grid;
@@ -384,17 +384,6 @@ img {
     grid-template-rows: auto auto;
     margin-bottom: 5%;
   }
-
-  .login {
-    margin-top: 25%;
-    margin-bottom: 25%;
-    min-height: 50vh;
-  }
-  .signup {
-    margin-top: 25%;
-    margin-bottom: 25%;
-    min-height: 50vh;
-  }
 }
 .nav__item {
   margin-bottom: var(--mb-4);
@@ -451,6 +440,7 @@ img {
 .home__title {
   font-size: var(--big-font-size);
   margin-bottom: var(--mb-5);
+  font-weight: bold;
 }
 .home__title-color {
   color: var(--first-color);
@@ -646,42 +636,6 @@ img {
   margin: 0 var(--mb-2);
 }
 
-/*LOGIN*/
-
-.login {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-.signup {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.login-container Form {
-  display: inline-block;
-  box-shadow: 2px 2px 2px 2px black;
-  padding: 2.5%;
-  width: 40%;
-}
-.login-container Form .group .label {
-  float: left;
-}
-.login-container Form Button {
-  float: right;
-}
-.login-container Form .login-labels {
-  display: flex;
-  flex-direction: column;
-}
-.login-container Form .login-labels .forgot-psw {
-  font-size: small;
-  text-align: left;
-}
-.login-container Form .login-labels .no-account {
-  font-size: small;
-  text-align: left;
-}
-
 /* ===== MEDIA QUERIES=====*/
 @media screen and (min-width: 768px) {
   body {
@@ -845,28 +799,8 @@ img {
   .news-letter-wrapper {
     grid-template-columns: 1fr;
   }
-  .login {
-    margin-top: 20%;
-    margin-bottom: 20%;
-  }
-  .signup {
-    margin-top: 20%;
-    margin-bottom: 20%;
-  }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .login {
-    margin-top: 35%;
-    margin-bottom: 35%;
-    min-height: 50vh;
-  }
-  .signup {
-    margin-top: 35%;
-    margin-bottom: 35%;
-    min-height: 50vh;
-  }
-}
 .del_acc {
   margin: 20%;
 }
