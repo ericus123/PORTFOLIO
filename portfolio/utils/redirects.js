@@ -1,8 +1,5 @@
-
 export const authRedirect = () => {
-
-    if(localStorage.getItem("auth-token")){
-       window.location.assign("/");
-    }
-}
-
+  if (process.browser ? localStorage.getItem("auth-token") : null) {
+    process.browser ? window.location.assign("/") : null;
+  }
+};
