@@ -27,13 +27,13 @@ export const subscribeNewsletter = (
     case types.REMOVE_SUBSCRIBE_NEWSLETTER_MESSAGE:
       return {
         ...state,
-        msg: action.payload.null,
+        msg: null,
         isLoading: false,
       };
     case types.SUBSCRIBE_NEWSLETTER_ERROR:
       return {
         ...state,
-        error: action.payload.error,
+        error: action.payload,
         isLoading: false,
         msg: null,
       };
