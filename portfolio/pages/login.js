@@ -55,19 +55,16 @@ const Login = () => {
                 <Row style={{ width: "100%" }}>
                   <span style={{ textAlign: "center" }}>
                     Don't have account ?
-                    <Link style={{ textDecoration: "none" }} href="/signup">
-                      <a>Signup</a>
+                    <Link href="/signup" shallow={true}>
+                      <a style={{ textDecoration: "none" }}>Signup</a>
                     </Link>
                   </span>
                 </Row>
                 <Row style={{ width: "100%" }}>
                   <span style={{ textAlign: "center" }}>
                     Forgot password? click{" "}
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      href="/password/reset"
-                    >
-                      <a>here</a>
+                    <Link href="/password/reset" shallow={true}>
+                      <a style={{ textDecoration: "none" }}>here</a>
                     </Link>
                   </span>
                 </Row>
