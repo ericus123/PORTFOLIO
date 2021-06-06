@@ -13,8 +13,16 @@ import {
   postComment,
   postCommentReply,
   postReaction,
-  postReactions
+  postReactions,
 } from "./blog/posts";
+import {
+  getProfile,
+  changeAvatar,
+  completeProfile,
+  updateProfile,
+  deleteAccountToken,
+  deleteAccount,
+} from "./profile/profile";
 import { sendMessage } from "./contact/index";
 import { subscribeNewsletter } from "./subscriptions/newsLetter";
 // function that contains all reducer objects.
@@ -36,7 +44,13 @@ const allReducers = combineReducers({
   changePassword,
   sendConfirmation,
   checkAuth,
-  postReactions
+  postReactions,
+  getProfile,
+  changeAvatar,
+  completeProfile,
+  updateProfile,
+  deleteAccountToken,
+  deleteAccount,
 });
 
 export default allReducers;

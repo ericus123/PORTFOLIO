@@ -1,5 +1,4 @@
 import { types } from "../types";
-import jwt_decode from "jwt-decode";
 import http from "../../../utils/axios/axios";
 
 export const passResetRequest = (Email) => async (dispatch) => {
