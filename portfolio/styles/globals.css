@@ -46,7 +46,7 @@
   }
 }
 
-/*===== Margenes =====*/
+/*===== Margins =====*/
 :root {
   --mb-1: 0.5rem;
   --mb-2: 1rem;
@@ -264,53 +264,6 @@ img {
   border-radius: 5%;
   border: none;
 }
-
-/*News Letter*/
-
-.news-letter-wrapper {
-  display: grid;
-  grid-template-columns: 65% 20%;
-  background: white;
-  border-radius: 1%;
-  box-shadow: 12px solid red;
-  color: black;
-  margin: 2.5%;
-}
-
-.news-letter-wrapper .news-left {
-  font-family: "Poppins", sans-serif;
-  text-align: left;
-  margin: 5%;
-}
-.news-letter-wrapper .news-left form input {
-  border-color: #6c63ff;
-  border-top-left-radius: 0.3em;
-  border-bottom-left-radius: 0.3em;
-}
-.news-letter-wrapper .news-left form button {
-  color: white;
-  border-color: #6c63ff;
-  outline: none;
-  background: #6c63ff;
-}
-.news-letter-wrapper .news-left form button::focus {
-  outline: none;
-}
-.news-letter-wrapper .news-left form input:focus {
-  outline: none;
-}
-
-.news-letter-wrapper .news-left p {
-  color: rgb(155, 155, 155);
-  font-size: 1em;
-}
-
-.news-letter-wrapper .news-right {
-  margin: 5%;
-  width: 90%;
-  height: 90%;
-}
-
 /*Profile about*/
 
 .profile_about {
@@ -788,15 +741,6 @@ img {
   .profile {
     display: flex;
     flex-direction: column;
-  }
-  .news-letter-wrapper .news-right {
-    display: none;
-  }
-  .news-letter-wrapper .news-left form {
-    margin-top: 1rem;
-  }
-  .news-letter-wrapper {
-    grid-template-columns: 1fr;
   }
 }
 
