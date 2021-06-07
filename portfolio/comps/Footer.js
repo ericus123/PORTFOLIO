@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
         <NewsLetter />
       </div>
-      <div className="copyright">
+      <div className={styles.copyright}>
         <p>&#169; 2021 amanieric all rights reserved</p>
       </div>
     </div>
