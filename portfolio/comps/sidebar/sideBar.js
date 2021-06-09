@@ -33,10 +33,9 @@ const SideBar = () => {
             <div>
               <Link
                 href={`/blog/post/${post._id}/${post.slug}`}
-                style={{ textDecoration: "none" }}
                 onClick={scrollTop}
               >
-                <a>
+                <a style={{ textDecoration: "none" }}>
                   <h6
                     className="recent-post-title"
                     style={{
