@@ -794,6 +794,7 @@ img {
 }
 .cat-item {
   border: none;
+  text-decoration:none;
 }
 .cat-item:hover {
   margin-left: 10px;

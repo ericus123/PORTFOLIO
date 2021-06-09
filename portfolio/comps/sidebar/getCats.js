@@ -19,15 +19,18 @@ const GetCats = () => {
           <ListGroup style={{ border: "none" }}>
             <Link
               style={{ textDecoration: "none" }}
+              className="text-decoration-none cat-item"
               href={"/blog/category/" + cat.name}
             >
-              <a>
+              <a style={{ textDecoration: "none" }}>
                 <ListGroup.Item
                   className="text-decoration-none cat-item"
                   style={{
                     color: "#007bff",
                     cursor: "pointer",
                     fontSize: "medium",
+                    border: "none",
+                    textDecoration: "none",
                   }}
                   onClick={scrollTop}
                 >
