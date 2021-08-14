@@ -14,10 +14,7 @@ export const messageRequest = (Name, Email, Message) => async (dispatch) => {
       dispatch({ type: types.REMOVE_CONTACT_MESSAGE });
     }, 5000);
   } catch (error) {
-    dispatch({
-      type: types.CONTACT_ERROR,
-      payload: error.response.data || "Error occured",
-    });
+    dispatch({ type: types.CONTACT_ERROR, payload: error.response.data });
 
     setTimeout(() => {
       dispatch({ type: types.REMOVE_CONTACT_ERROR });

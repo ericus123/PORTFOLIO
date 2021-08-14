@@ -6,6 +6,7 @@ import About from "../comps/home/About";
 import Skills from "../comps/home/Skills";
 import Contact from "../comps/home/Contact";
 import Services from "../comps/home/Services";
+import "../styles/Home.module.css";
 
 const Home = () => {
   const scrolToSection = (id) => {
@@ -66,7 +67,6 @@ const Home = () => {
             </i>
           </a>
         </div>
-
         <div className="home__img">
           <svg
             width="210"

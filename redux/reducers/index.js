@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 import login from "./auth/loginReducer";
-import { passResetRequest, changePassword } from "./auth/passwordReducer";
+import { resetPassword, changePassword } from "./auth/passwordReducer";
 import { signup, confirmEmail } from "./auth/signupReducer";
 import { sendConfirmation } from "./auth/emailReducer";
 import checkAuth from "./auth/checkAuth";
+import { getWorks } from "./home/work";
 import {
   posts,
   postsByCat,
@@ -14,7 +15,15 @@ import {
   postCommentReply,
   postReaction,
   postReactions,
+  getComments,
+  editComment,
+  deleteComment,
+  editCommentReply,
+  deleteCommentReply,
+  commentReaction,
+  replyReaction,
 } from "./blog/posts";
+import { sendMessage } from "./contact/index";
 import {
   getProfile,
   changeAvatar,
@@ -23,7 +32,6 @@ import {
   deleteAccountToken,
   deleteAccount,
 } from "./profile/profile";
-import { sendMessage } from "./contact/index";
 import { subscribeNewsletter } from "./subscriptions/newsLetter";
 // function that contains all reducer objects.
 const allReducers = combineReducers({
@@ -40,7 +48,7 @@ const allReducers = combineReducers({
   postReaction,
   confirmEmail,
   subscribeNewsletter,
-  passResetRequest,
+  resetPassword,
   changePassword,
   sendConfirmation,
   checkAuth,
@@ -51,6 +59,14 @@ const allReducers = combineReducers({
   updateProfile,
   deleteAccountToken,
   deleteAccount,
+  getComments,
+  editComment,
+  deleteComment,
+  editCommentReply,
+  deleteCommentReply,
+  commentReaction,
+  replyReaction,
+  getWorks,
 });
 
 export default allReducers;

@@ -1,42 +1,45 @@
 import { types } from "../../actions/types";
 
-const initialState = {
+const worksInitialState = {
   message: null,
   error: null,
   isLoading: false,
-  isLoggedIn: false,
-  user: null,
+  works: [],
 };
 
-export default (state = initialState, action) => {
+export const getWorks = (state = worksInitialState, action) => {
   switch (action.type) {
-    case types.CHECK_AUTH_LOADING:
+    case types.GET_WORKS_ISLOADING:
       return {
         ...state,
         isLoading: true,
+        error: null,
       };
-    case types.CHECK_AUTH_SUCCESS:
+    case types.GET_WORKS_SUCCESS:
       return {
         ...state,
         message: action.payload.msg,
         isLoading: false,
-        isLoggedIn: true,
-        user: action.payload.user,
+        works: action.payload.works,
+        error: null,
       };
-
-    case types.CHECK_AUTH_ERROR:
+    case types.REMOVE_GET_WORKS_SUCCESS:
+      return {
+        ...state,
+        message: null,
+        error: null,
+      };
+    case types.GET_WORKS_ERROR:
       return {
         ...state,
         error: action.payload,
         isLoading: false,
-        isLoggedIn: false,
       };
-    case types.REMOVE_CHECK_AUTH_ERROR:
+    case types.REMOVE_GET_WORKS_ERROR:
       return {
         ...state,
         error: null,
         isLoading: false,
-        isLoggedIn: false,
       };
     default:
       return state;
