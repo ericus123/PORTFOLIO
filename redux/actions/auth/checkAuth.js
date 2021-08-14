@@ -11,6 +11,10 @@ export const authRequest = (token) => async (dispatch) => {
         type: types.CHECK_AUTH_ERROR,
         payload: error.response.data.error || "Error occured",
       });
+      setTimeout(() => { dispatch({
+        type: types.REMOVE_CHECK_AUTH_ERROR,
+        payload: error.response.data.error || "Error occured",
+      })}, 5000)
     }
   };
   

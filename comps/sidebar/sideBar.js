@@ -31,10 +31,7 @@ const SideBar = () => {
             <img className="recent-image" src={post.imageUrl} />
 
             <div>
-              <Link
-                href={`/blog/post/${post._id}/${post.slug}`}
-                onClick={scrollTop}
-              >
+              <Link href={`/blog/${post.slug}_${post._id}`} onClick={scrollTop}>
                 <a style={{ textDecoration: "none" }}>
                   <h6
                     className="recent-post-title"

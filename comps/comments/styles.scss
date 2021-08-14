@@ -1,0 +1,162 @@
+.comments {
+  width: 80%;
+  margin-bottom: 10%;
+}
+.comments .com_title {
+  font-size: 1.2em;
+}
+.comments .comment-wrapper .comment {
+  display: grid;
+  grid-template-columns: 10% auto;
+  gap: 2.5%;
+  font-size: 0.8em;
+  margin-bottom: 2.5%;
+}
+.comments .comment-wrapper .comment .desc .replies .reply {
+  display: grid;
+  grid-template-columns: 10% auto;
+  gap: 2.5%;
+  font-size: 0.8em;
+  margin-top: 3%;
+}
+.reply_avatar img {
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.comments .comment-wrapper .comment .avatar img {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+//Rections on comments
+.com-like .icon {
+  cursor: pointer;
+}
+.com-reply {
+  color: gray;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+//Comment Form
+
+.comments .com-form {
+  margin-top: 2.5%;
+  font-weight: light;
+}
+.comments .com-form textarea {
+  width: 100%;
+  height: 15vh;
+}
+.comments .com-form button {
+  color: white;
+  background: #007bff;
+  border: #007bff;
+  padding: 1%;
+  border-radius: 5%;
+  float: right;
+  font-weight: 300;
+}
+
+//Reply form
+
+.comments .comment-wrapper .comment .desc .replies .form-on {
+  margin-top: 2.5%;
+}
+.comments .comment-wrapper .comment .desc .replies .form-off {
+  display: none;
+}
+.comments .comment-wrapper .comment .desc .replies form textarea {
+  width: 100%;
+  height: 10vh;
+}
+.comments .comment-wrapper .comment .desc .replies form button {
+  color: white;
+  background: #007bff;
+  border: #007bff;
+  padding: 1%;
+  border-radius: 5%;
+  float: right;
+}
+
+.comments .com-sort {
+  display: flex;
+  justify-content: center;
+}
+.comments .com-sort div .sort-on {
+  background: gray;
+  color: white;
+  border: 1px solid gray;
+  font-size: 0.8em;
+  width: 8rem;
+  font-weight: 500;
+  padding: 1%;
+}
+.comments .com-sort div .sort-off {
+  color: rgb(31, 30, 30);
+  font-size: 0.8em;
+  background: white;
+  padding: 1%;
+  font-weight: 500;
+  width: 8rem;
+  border: 1px solid gray;
+}
+
+//Author
+
+.author-badge {
+  color: white;
+  background: rgb(148, 148, 148);
+  width: fit-content;
+  font-weight: 500;
+  border-radius: 5%;
+  padding: 0.5%;
+  font-size: 0.775em;
+}
+
+// Models
+
+.mod-footer {
+  margin: 2.5%;
+}
+.mod-footer button {
+  float: right;
+  margin-right: 1%;
+}
+
+// Likes
+
+.com-like {
+  margin-right: 2em;
+}
+.com-like .likes .n {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.likes .com-liked {
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.com-like .likes .com-unliked {
+  font-size: 1em;
+  color: gray;
+  cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .comments {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .comments .comment-wrapper .comment .desc .replies .reply {
+    gap: 5.5%;
+  }
+  .comments .comment-wrapper .comment {
+    gap: 5.5%;
+  }
+}

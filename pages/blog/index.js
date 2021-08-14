@@ -47,7 +47,7 @@ const Blog = () => {
             <Media as="li" key={post._id} className="media">
               <div className="image_wrapper">
                 <Link
-                  href={`/blog/post/${post._id}/${post.slug}`}
+                  href={`/blog/${post.slug}-${post._id}`}
                   className="text-decoration-none"
                   onClick={scrollTop}
                 >
