@@ -8,7 +8,7 @@ import backend from "../../assets/images/backend.svg";
 
 const Services = () => {
   return (
-    <div className="container-fluid mb-5">
+    <div className=" section container-fluid mb-5" id="services">
       <br />
       <h2 className="section-title">Services</h2>
 

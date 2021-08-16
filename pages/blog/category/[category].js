@@ -33,25 +33,26 @@ const PostsByCategory = () => {
     txt.innerHTML = html;
     return txt.value;
   };
-  const breadCrumb = catPosts ? (
-    <>
-      <br />
-      <div>
-        <Link href={"/blog"} style={{ textDecoration: "none" }}>
-          Blog
-        </Link>
-        &nbsp;&gt;&nbsp;
-        <a style={{ textDecoration: "none" }} className="">
-          Category
-        </a>
-        &nbsp;&gt;&nbsp;
-        <a style={{ textDecoration: "none" }} className="">
-          {router.query.category}
-        </a>
-      </div>
-      <br />
-    </>
-  ) : null;
+  const breadCrumb =
+    catPosts && !isLoading ? (
+      <>
+        <br />
+        <div>
+          <Link href={"/blog"}>
+            <a style={{ textDecoration: "none" }}>Blog</a>
+          </Link>
+          &nbsp;&gt;&nbsp;
+          <a style={{ textDecoration: "none" }} className="">
+            Category
+          </a>
+          &nbsp;&gt;&nbsp;
+          <a style={{ textDecoration: "none" }} className="">
+            {router.query.category}
+          </a>
+        </div>
+        <br />
+      </>
+    ) : null;
 
   const categorizedPosts =
     catPosts && catPosts.length
