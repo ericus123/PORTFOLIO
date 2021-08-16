@@ -51,8 +51,8 @@ const SearchPosts = () => {
           <Carousel.Item style={{ maxHeight: "400px" }} interval={3000}>
             <img className="d-block w-100" src={post.imageUrl} />
             <Carousel.Caption>
-              <Link
-                href={"/blog/post/" + post._id}
+              <a
+                href={"/blog/" + post._id}
                 style={{
                   color: "rgb(0, 123, 255)",
                   background: "white",
@@ -62,7 +62,7 @@ const SearchPosts = () => {
                 }}
               >
                 {post.title}
-              </Link>
+              </a>
             </Carousel.Caption>
           </Carousel.Item>
         );
@@ -82,7 +82,7 @@ const SearchPosts = () => {
             <>
               <Media as="li" key={post._id} className="media">
                 <div className="image_wrapper">
-                  <Link
+                  <a
                     href={`/blog/${post._id}`}
                     className="text-decoration-none"
                     onClick={scrollTop}
@@ -94,20 +94,19 @@ const SearchPosts = () => {
                       src={post.imageUrl}
                       dpr="auto"
                     />
-                  </Link>
+                  </a>
                 </div>
                 <br />
                 &nbsp;&nbsp;&nbsp;
                 <Media.Body className="media-body">
                   <h4 className="title">
-                    <Link
-                      href={`/blog/post/${post._id}/${post.slug}`}
-                      className="text-decoration-none "
-                      style={{ color: "#000" }}
+                    <a
+                      href={`/blog/${post._id}`}
+                      className="text-decoration-none title"
                       onClick={scrollTop}
                     >
                       {post.title}
-                    </Link>
+                    </a>
                   </h4>
                   <p className="description">
                     {post.description
@@ -115,13 +114,13 @@ const SearchPosts = () => {
                       .substr(0, 250) + "..."}
                   </p>
                   <h6 style={{ marginTop: "10px" }}>
-                    <Link
-                      href={`/blog/post/${post._id}/${post.slug}`}
-                      className="text-decoration-none link"
+                    <a
+                      href={`/blog/${post._id}`}
+                      className="text-decoration-none"
                       onClick={scrollTop}
                     >
                       Read More
-                    </Link>
+                    </a>
                   </h6>
                 </Media.Body>
               </Media>

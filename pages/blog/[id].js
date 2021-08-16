@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Comments from "../../comps/comments/Comments";
 import { BigLike } from "../../comps/Likes/likes";
-import { Media, Row, Alert } from "react-bootstrap";
+import { Media, Row,Col, Alert } from "react-bootstrap";
 import readingTime from "reading-time";
 import http from "../../utils/axios/axios";
 import unknown_avatar from "../../assets/images/avatar.png";
 import SideBar from "../../comps/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
 import { PostShares } from "../../comps/shares/Shares";
+
 
 export const getStaticPaths = async () => {
   const res = await http.get("/api/posts/all");
@@ -36,11 +37,6 @@ export const getStaticProps = async (context) => {
 };
 const SinglePost = ({ post, id }) => {
   const dispatch = useDispatch();
-  // const { id, slug } = useParams();
-  // useEffect(() => {
-  //   dispatch(getPostReactions(id));
-  // }, [id]);
-
   const message = useSelector((state) => state.post.message);
   const error = useSelector((state) => state.post.error);
   const user = useSelector((state) => state.checkAuth.user);
@@ -74,15 +70,19 @@ const SinglePost = ({ post, id }) => {
           >
             {post.title}
           </h3>
-          <div className="author">
-            <img
-              className="author_image"
-              src={post.author ? post.author.avatar : unknown_avatar}
-            />
-            <p className="more_details">
+          <Row>
+            <Col xs="1" sm="1" className="mb-1 mr-1 ">
+        <div className="profile-picture-sm">
+                                    <img src={post.author ? post.author.avatar : unknown_avatar} width="60" height="60"/>
+                                </div>
+          
+         
+         
+          </Col>
+          <Col sm="5" md="5">  <p className="more_details">
               {post.user ? (
                 <span classname="authors_name">
-                  {" "}
+                
                   {post.author ? (
                     <b>{`${post.author.firstName} ${post.author.lastName}`}</b>
                   ) : (
@@ -90,20 +90,24 @@ const SinglePost = ({ post, id }) => {
                   )}
                 </span>
               ) : (
-                <span className="authors_name">AMANI Eric</span>
-              )}
+            <span className="authors_name">AMANI Eric</span>
+         
+              )
+              }
+               
               <span className="post_det">
                 Created at {new Date(post.createdAt).toLocaleString()}
                 {post.updatedAt ? post.updatedAt : null} |&nbsp;
                 {readingTime(post.description).text}
               </span>
-            </p>
-          </div>
+              </p>
+              </Col>
+          <Col>
+<PostShares id={id}/>
+</Col>
+</Row>
           <img className="mr-3" src={post.imageUrl} alt={post.title} />
           <br />
-          <Row className="post-contribution">
-            <PostShares id={id} />
-          </Row>
           <br />
           <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
           <br />
@@ -125,9 +129,9 @@ const SinglePost = ({ post, id }) => {
         <ScrolButton />
         {singlePost}
       </>
-      <>
+      <div style={{marginTop:"1rem"}}>
         <SideBar id={id} />
-      </>
+      </div>
     </div>
   );
 };

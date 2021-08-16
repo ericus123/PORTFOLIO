@@ -10,6 +10,7 @@ import Paginate from "../../comps/Pagination";
 import { simpleAlert } from "../../comps/Alerts";
 import { scrollTop } from "../../utils/functions";
 import PostsSlider from "../../comps/PostsSlider";
+import UserPage from "../../comps/layouts/UserPage";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Blog = () => {
             <Media as="li" key={post._id} className="media">
               <div className="image_wrapper">
                 <Link
-                  href={`/blog/${post.slug}-${post._id}`}
+                  href={`/blog/${post._id}`}
                   className="text-decoration-none"
                   onClick={scrollTop}
                 >
@@ -66,13 +67,9 @@ const Blog = () => {
               &nbsp; &nbsp;&nbsp;
               <Media.Body className="media-body">
                 <h4 className="title">
-                  <Link
-                    href={`/blog/post/${post._id}/${post.slug}`}
-                    onClick={scrollTop}
-                  >
+                  <Link href={`/blog/${post._id}`} onClick={scrollTop}>
                     <a
-                      className="text-decoration-none "
-                      style={{ color: "#000" }}
+                      className="text-decoration-none title "
                     >
                       {post.title}
                     </a>
@@ -86,11 +83,8 @@ const Blog = () => {
                   )}
                 </p>
                 <h6 style={{ marginTop: "10px" }}>
-                  <Link
-                    href={`/blog/post/${post._id}/${post.slug}`}
-                    onClick={scrollTop}
-                  >
-                    <a className="text-decoration-none link">Read More</a>
+                  <Link href={`/blog/${post._id}`} onClick={scrollTop}>
+                    <a className="text-decoration-none read-more">Read More</a>
                   </Link>
                 </h6>
               </Media.Body>

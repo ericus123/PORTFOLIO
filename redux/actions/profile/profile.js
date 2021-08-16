@@ -1,5 +1,7 @@
 import { types } from "../types";
 import http from "../../../utils/axios/axios";
+import { NotificationManager } from "react-notifications";
+import { authRequest } from "../auth/checkAuth";
 
 export const getProfileRequest = () => async (dispatch) => {
   try {
@@ -7,7 +9,6 @@ export const getProfileRequest = () => async (dispatch) => {
     const res = await http.get("/api/profile");
     dispatch({ type: types.GET_PROFILE_SUCCESS, payload: res.data });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.GET_PROFILE_ERROR,
       payload: error.response.data.error || "Error occured",
@@ -22,16 +23,15 @@ export const changePassword = () => async (dispatch) => {
     dispatch({ type: types.CHANGE_PASSWORD_SUCCESS, payload: res.data });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_CHANGE_PASSWORD_SUCCESS });
-    }, 5000);
+    }, 3000);
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.CHANGE_PASSWORD_ERROR,
       payload: error.response.data.error || "Error occured",
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_CHANGE_PASSWORD_ERROR });
-    }, 5000);
+    }, 3000);
   }
 };
 
@@ -40,78 +40,79 @@ export const changeAvatar = (image) => async (dispatch) => {
     dispatch({ type: types.CHANGE_AVATAR_ISLOADING });
     const res = await http.patch("/api/profile/change", { image: image });
     dispatch({ type: types.CHANGE_AVATAR_SUCCESS, payload: res.data });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_CHANGE_AVATAR_SUCCESS });
-    }, 5000);
+    dispatch(getProfileRequest());
+    NotificationManager.success("Updated Successfully", "SUCCESS");
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.CHANGE_AVATAR_ERROR,
       payload: error.response.data.error || "Error occured",
     });
+    NotificationManager.error("Something Went Wrong", "ERROR");
     setTimeout(() => {
       dispatch({ type: types.REMOVE_CHANGE_AVATAR_ERROR });
-    }, 5000);
+    }, 3000);
   }
 };
 
-export const completeProfile = (Occupation, Gender, Image, Bio) => async (
-  dispatch
-) => {
-  try {
-    dispatch({ type: types.COMPLETE_PROFILE_ISLOADING });
-    const res = await http.patch("/api/profile/", {
-      occupation: Occupation,
-      gender: Gender,
-      img: Image,
-      bio: Bio,
-    });
-    dispatch({ type: types.COMPLETE_PROFILE_SUCCESS, payload: res.data });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_COMPLETE_PROFILE_SUCCESS });
-    }, 5000);
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: types.COMPLETE_PROFILE_ERROR,
-      payload: error.response.data.error || "Error occured",
-    });
-  }
-};
+export const completeProfile =
+  (Occupation, Gender, Image, Bio) => async (dispatch) => {
+    try {
+      dispatch({ type: types.COMPLETE_PROFILE_ISLOADING });
+      const res = await http.patch("/api/profile/", {
+        occupation: Occupation,
+        gender: Gender,
+        img: Image,
+        bio: Bio,
+      });
+      dispatch({ type: types.COMPLETE_PROFILE_SUCCESS, payload: res.data });
+      NotificationManager.success("Profile Completed Successfuly", "SUCCESS");
+      dispatch(getProfileRequest());
+      dispatch(authRequest());
+      setTimeout(() => {
+        dispatch({ type: types.REMOVE_COMPLETE_PROFILE_SUCCESS });
+      }, 3000);
+    } catch (error) {
+      NotificationManager.error("Something Went Wrong", "ERROR");
+      dispatch({
+        type: types.COMPLETE_PROFILE_ERROR,
+        payload: error.response.data.error || "Error occured",
+      });
+      setTimeout(() => {
+        dispatch({
+          type: types.REMOVE_COMPLETE_PROFILE_ERROR,
+        });
+      }, 3000);
+    }
+  };
 
-export const updateProfile = (
-  FirstName,
-  LastName,
-  Username,
-  Occupation,
-  Gender,
-  Bio
-) => async (dispatch) => {
-  try {
-    dispatch({ type: types.UPDATE_PROFILE_ISLOADING });
-    const res = await http.put("/api/profile/", {
-      firstName: FirstName,
-      lastName: LastName,
-      username: Username,
-      occupation: Occupation,
-      gender: Gender,
-      bio: Bio,
-    });
-    dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: res.data });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_UPDATE_PROFILE_SUCCESS });
-    }, 5000);
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: types.UPDATE_PROFILE_ERROR,
-      payload: error.response.data.error || "Error occured",
-    });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_UPDATE_PROFILE_ERROR });
-    }, 5000);
-  }
-};
+export const updateProfile =
+  (FirstName, LastName, Username, Occupation, Gender, Bio) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: types.UPDATE_PROFILE_ISLOADING });
+      const res = await http.put("/api/profile/", {
+        firstName: FirstName,
+        lastName: LastName,
+        username: Username,
+        occupation: Occupation,
+        gender: Gender,
+        bio: Bio,
+      });
+      dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: res.data });
+      NotificationManager.success("Updated Successfully", "SUCCESS");
+      dispatch(getProfileRequest());
+      dispatch(authRequest());
+    } catch (error) {
+      dispatch({
+        type: types.UPDATE_PROFILE_ERROR,
+        payload: error.response.data.error || "Error occured",
+      });
+      NotificationManager.error("Something Went Wrong", "ERROR");
+      setTimeout(() => {
+        dispatch({ type: types.REMOVE_UPDATE_PROFILE_ERROR });
+      }, 3000);
+    }
+  };
 
 export const deleteAccountToken = (token) => async (dispatch) => {
   try {
@@ -124,35 +125,36 @@ export const deleteAccountToken = (token) => async (dispatch) => {
     dispatch({ type: types.DELETE_ACCOUNT_TOKEN_SUCCESS, payload: res.data });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_DELETE_ACCOUNT_TOKEN_SUCCESS });
-    }, 5000);
+    },30000);
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.DELETE_ACCOUNT_TOKEN_ERROR,
       payload: error.response.data.error || "Error occured",
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_DELETE_ACCOUNT_TOKEN_ERROR });
-    }, 5000);
+    }, 3000);
   }
 };
 
-export const deleteAccount = () => async (dispatch) => {
+export const deleteAccount = (token) => async (dispatch) => {
   try {
+    console.log(token);
     dispatch({ type: types.DELETE_ACCOUNT_ISLOADING });
-    const res = await http.delete("/api/profile");
-    dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: res.data });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_DELETE_ACCOUNT_SUCCESS });
-    }, 5000);
+    const res = await http.delete(`/api/profile/${token}`);
+        dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: res.data });
+
+        const msg = res.data.message || "Account Deleted Successfully";
+        NotificationManager.success(`${msg}`,"SUCCESS")
+        setTimeout(() => {
+       process.browser ? localStorage.clear() : null;
+       process.browser ? window.location.assign("/login") : null;
+        }, 5000);
+         
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.DELETE_ACCOUNT_ERROR,
       payload: error.response.data.error || "Error occured",
     });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_DELETE_ACCOUNT_ERROR });
-    }, 5000);
   }
 };

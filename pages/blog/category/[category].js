@@ -81,13 +81,12 @@ const PostsByCategory = () => {
                   &nbsp; &nbsp;&nbsp;
                   <Media.Body className="media-body">
                     <h4 className="title">
-                      <Link
-                        href={`/blog/post/${post._id}/${post.slug}`}
-                        className="text-decoration-none "
-                        style={{ color: "#000" }}
+                      <a
+                        href={`/blog/${post._id}`}
+                        className="text-decoration-none title "
                       >
                         {post.title}
-                      </Link>
+                      </a>
                     </h4>
                     <p className="description">
                       {decodeHtml(
@@ -97,12 +96,12 @@ const PostsByCategory = () => {
                       )}
                     </p>
                     <h6 style={{ marginTop: "10px" }}>
-                      <Link
-                        href={`/blog/post/${post._id}/${post.slug}`}
-                        className="text-decoration-none link"
+                      <a
+                        href={`/blog/${post._id}`}
+                        className="text-decoration-none"
                       >
                         Read More
-                      </Link>
+                      </a>
                     </h6>
                   </Media.Body>
                 </Media>

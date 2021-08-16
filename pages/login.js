@@ -6,6 +6,7 @@ import { loginRequest } from "../redux/actions/auth/login";
 import { authRedirect } from "../utils/redirects";
 import { simpleAlert } from "../comps/Alerts";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
@@ -25,10 +26,10 @@ const Login = () => {
     const Password = e.target.password.value;
     dispatch(loginRequest(Email, Password));
   };
-  let history = useHistory();
+  let router = useRouter();
   if (error === "Your account has not been verified") {
     setTimeout(() => {
-      history.push(`/account/verify/${email}`);
+      router.push(`/account/verify/${email}`);
     }, 2000);
   }
   return (

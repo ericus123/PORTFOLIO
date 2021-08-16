@@ -32,9 +32,8 @@ const SideBar = () => {
 
             <div>
               <Link href={`/blog/${post._id}`} onClick={scrollTop}>
-                <a style={{ textDecoration: "none" }}>
                   <h6
-                    className="recent-post-title"
+                    className="recent-post-title title"
                     style={{
                       color: "#007bff",
                       cursor: "pointer",
@@ -43,7 +42,6 @@ const SideBar = () => {
                   >
                     {post.title}
                   </h6>
-                </a>
               </Link>
               <i className="text-muted " style={{ fontSize: "small" }}>
                 {new Date(post.createdAt).toLocaleDateString("en-US", {

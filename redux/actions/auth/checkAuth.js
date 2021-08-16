@@ -6,14 +6,12 @@ export const authRequest = (token) => async (dispatch) => {
       const res = await http.get("/api/auth/check-login/");
       dispatch({ type: types.CHECK_AUTH_SUCCESS, payload: res.data });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: types.CHECK_AUTH_ERROR,
-        payload: error.response.data.error || "Error occured",
+        payload: error.response?.data.error || "Error occured",
       });
       setTimeout(() => { dispatch({
         type: types.REMOVE_CHECK_AUTH_ERROR,
-        payload: error.response.data.error || "Error occured",
       })}, 5000)
     }
   };

@@ -42,16 +42,10 @@ const Profile = () => {
   const completeProfileError = useSelector(
     (state) => state.completeProfile.error
   );
-  const completeProfileMessage = useSelector(
-    (state) => state.completeProfile.message
-  );
   const completeProfileIsLoading = useSelector(
     (state) => state.completeProfile.isLoading
   );
   const updateProfileError = useSelector((state) => state.updateProfile.error);
-  const updateProfileMessage = useSelector(
-    (state) => state.updateProfile.message
-  );
   const updateProfileIsLoading = useSelector(
     (state) => state.updateProfile.isLoading
   );
@@ -70,7 +64,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfileRequest());
-  }, [updateProfileMessage, completeProfileMessage, changeAvatarMessage]);
+  }, []);
 
   const errors_arr = [
     changeAvatarError,
@@ -160,7 +154,6 @@ const Profile = () => {
         {...props}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
       >
         <Modal.Body>
           <h4>Delete account</h4>
@@ -172,12 +165,16 @@ const Profile = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+          disabled={deleteTokenIsLoading}
             onClick={() => {
-              props.onHide();
               dispatch(deleteAccountToken());
             }}
           >
-            Yes
+          {deleteTokenIsLoading? (
+            <Spinner size="sm" animation="border"></Spinner>
+          ) : (
+            "Yes"
+          )}
           </Button>
           <Button variant="danger" onClick={props.onHide}>
             No
@@ -210,6 +207,11 @@ const Profile = () => {
         </Alert>
       </>
     );
+  }
+  if(deleteTokenMessage){
+    setTimeout(() => {
+      setModalShow(false);
+    }, 1000);
   }
   const showUpdateForm = () => {
     return (
@@ -248,7 +250,7 @@ const Profile = () => {
               defaultValue={profile.username}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Group as={Col} >
             <Form.Label>Occupation</Form.Label>
             <Form.Control
               type="text"
@@ -266,9 +268,9 @@ const Profile = () => {
               name="gender"
               defaultValue={profile.gender}
             >
-              <option>Male</option>
-              <option>Female</option>
-              <option>Prefer Not To Answer</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Prefer Not To Say">Prefer Not To Say</option>
             </Form.Control>
           </Form.Group>
         </Form.Row>
@@ -278,36 +280,25 @@ const Profile = () => {
             <Form.Control
               as="textarea"
               rows={3}
-              controlId="exampleForm.ControlTextarea1"
               name="bio"
               defaultValue={profile.bio}
             />
           </Form.Group>
         </Form.Row>
         {updateProfileError ? simpleAlert("danger", updateProfileError) : null}
-        {updateProfileMessage
-          ? simpleAlert("success", updateProfileMessage)
-          : null}
-        {updateProfileIsLoading &&
-        !updateProfileMessage &&
-        !updateProfileError ? (
-          <div style={{ textAlign: "center" }}>
-            <Spinner animation="border" size="md" role="status"></Spinner>
-          </div>
-        ) : !updateProfileIsLoading &&
-          !updateProfileMessage &&
-          !updateProfileError ? (
-          <>
-            <br />
-            <Button
-              style={{ float: "right", color: "white" }}
-              variant="primary"
-              type="submit"
-            >
-              Update
-            </Button>
-          </>
-        ) : null}
+        <br />
+        <Button
+          style={{ float: "right", color: "white" }}
+          variant="primary"
+          type="submit"
+          disabled={updateProfileIsLoading}
+        >
+          {updateProfileIsLoading ? (
+            <Spinner size="sm" animation="border"></Spinner>
+          ) : (
+            "Update"
+          )}
+        </Button>
       </Form>
     );
   };
@@ -379,17 +370,17 @@ const Profile = () => {
           <Form.Group as={Col}>
             <Form.Label>Gender</Form.Label>
             <Form.Control as="select" name="gender">
-              <option>Male</option>
-              <option>Female</option>
-              <option>Prefer not to say</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Prefer Not To Say">Prefer Not To Say</option>
             </Form.Control>
           </Form.Group>
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col}>
+            <Form.Label>Profile Image</Form.Label>
             <Form.File
               id="exampleFormControlFile1"
-              label="Profile Image"
               onChange={(e) => {
                 uploadFile(e);
               }}
@@ -404,7 +395,6 @@ const Profile = () => {
             <Form.Control
               as="textarea"
               rows={3}
-              controlId="exampleForm.ControlTextarea1"
               name="bio"
             />
           </Form.Group>
@@ -412,18 +402,19 @@ const Profile = () => {
         {completeProfileError
           ? simpleAlert("danger", completeProfileError)
           : null}
-        {completeProfileMessage
-          ? simpleAlert("success", completeProfileMessage)
-          : null}
-        {completeProfileIsLoading ? (
-          <div style={{ textAlign: "center" }}>
-            <Spinner animation="border" size="md" role="status"></Spinner>
-          </div>
-        ) : (
-          <Button style={{ float: "right" }} variant="primary" type="submit">
-            Save
-          </Button>
-        )}
+        <br />
+        <Button
+          disabled={completeProfileIsLoading}
+          style={{ float: "right" }}
+          variant="primary"
+          type="submit"
+        >
+          {completeProfileIsLoading ? (
+            <Spinner size="sm" animation="border"></Spinner>
+          ) : (
+            "Save"
+          )}
+        </Button>
       </Form>
     );
   };
@@ -431,52 +422,6 @@ const Profile = () => {
   const showSettings = () => {
     return (
       <>
-        <div>
-          <div style={{ marginTop: "10%", marginBottom: "10%" }}>
-            <h2 className="section-title">
-              <LockFill size={24} /> Change Password
-            </h2>
-            <div className="contact__container bd-grid">
-              <form
-                className="contact__form"
-                onSubmit={handlePasswordChangeSubmit}
-              >
-                <input
-                  type="password"
-                  placeholder="New password"
-                  name="password"
-                  className="contact__input"
-                />
-                <input
-                  type="password"
-                  placeholder="Confirm new password"
-                  name="passwordConf"
-                  className="contact__input"
-                />
-
-                {changePasswordError ? (
-                  <>{simpleAlert("danger", changePasswordError)}</>
-                ) : null}
-                {changePasswordMessage ? (
-                  <>{simpleAlert("success", changePasswordMessage)}</>
-                ) : null}
-                {changePasswordIsLoading ? (
-                  <div style={{ textAlign: "center" }}>
-                    <Spinner
-                      animation="border"
-                      size="md"
-                      role="status"
-                    ></Spinner>
-                  </div>
-                ) : changePasswordMessage ? null : (
-                  <button className="passresreq__button">
-                    Change Password
-                  </button>
-                )}
-              </form>
-            </div>
-          </div>
-        </div>
         <Row className="row_6">
           <div>
             <h4 style={{ color: "red" }}>Danger Zone</h4>
@@ -504,22 +449,15 @@ const Profile = () => {
               username to become available to anyone.
             </li>
             <li>
-              {" "}
-              {deleteTokenIsLoading ? (
-                <div style={{ textAlign: "center" }}>
-                  <Spinner animation="border" size="md" role="status"></Spinner>
-                </div>
-              ) : null}
+              {" "} 
             </li>
           </ul>
           {deleteTokenError ? simpleAlert("danger", deleteTokenError) : null}
-          {deleteTokenMessage
-            ? simpleAlert("success", deleteTokenMessage)
-            : null}
+          {deleteTokenMessage ? simpleAlert("success", deleteTokenMessage) : null}
           {!deleteTokenError && !deleteTokenMessage && !deleteTokenIsLoading ? (
-            <div onClick={() => setModalShow(true)} className="delete_acc">
-              Delete Account
-            </div>
+            <Button onClick={() => setModalShow(true)} className="delete_acc">
+              Continue
+            </Button>
           ) : null}
 
           <br />
@@ -556,11 +494,9 @@ const Profile = () => {
                 {changeAvatarError
                   ? simpleAlert("danger", changeAvatarError)
                   : null}
-                {changeAvatarMessage
-                  ? simpleAlert("success", changeAvatarMessage)
-                  : null}
                 <input
                   type="file"
+                  disabled={changeAvatarIsLoading}
                   onChange={async (e) => {
                     setLoadingImg("avatar");
                     uploadAvatar(e);
@@ -583,12 +519,17 @@ const Profile = () => {
                   onClick={() => {
                     setActive("complete");
                   }}
-                  style={{ float: "right", borderRadius: "1em" }}
+                   style={{
+                    float: "right",
+                    borderRadius: "1em",
+                    color: "white",
+                  }}
                   variant="info"
                 >
                   Complete
                 </Button>
               ) : null}
+
               {profile.isComplete ? (
                 <Button
                   onClick={() => {

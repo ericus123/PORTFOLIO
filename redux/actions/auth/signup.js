@@ -27,12 +27,11 @@ export const signupRequest = (formData) => async (dispatch) => {
     }, 5000);
   }
 };
-export const confirmEmail = (id, token) => async (dispatch) => {
+export const confirmEmail = (email, token) => async (dispatch) => {
   try {
     dispatch({ type: types.CONFIRM_EMAIL_CLICKED });
 
-    const res = await http.put(`/api/auth/verify/${id}/${token}`);
-    console.log(res);
+    const res = await http.put(`/api/auth/verify/${email}/${token}`);
     dispatch({ type: types.CONFIRM_EMAIL_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({
@@ -41,8 +40,5 @@ export const confirmEmail = (id, token) => async (dispatch) => {
         ? error.response.data.error
         : "Error occured",
     });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_CONFIRM_EMAIL_ERROR });
-    }, 5000);
   }
 };

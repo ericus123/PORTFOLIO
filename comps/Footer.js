@@ -1,4 +1,5 @@
 import React from "react";
+import { Spinner } from "react-bootstrap";
 import {
   Telegram,
   Whatsapp,
@@ -7,7 +8,18 @@ import {
   Linkedin,
 } from "react-bootstrap-icons";
 
+import { useDispatch, useSelector } from "react-redux";
+import { subscribeNewsletter } from "../redux/actions/subscriptions/newsLetter";
+
 const Footer = () => {
+  const isLoading = useSelector((state) => state.subscribeNewsletter.isLoading);
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  const {email} = e.target;
+     dispatch(subscribeNewsletter(email.value));
+     e.target.reset()
+  }
   return (
     <footer>
       <div className="footer-wrap">
@@ -20,15 +32,17 @@ const Footer = () => {
                 right to your inbox. Sign up for our newsletter today.
               </p>
             </div>
-            <div className="col-md-4 col-sm-6">
-              <form className="newsletter">
-                <input type="text" placeholder="Email Address" />
-                <button
-                  className="newsletter_submit_btn"
-                  type="submit"
-                ></button>
-              </form>
-            </div>
+           	<div className="col-md-4 col-sm-6">
+				<form className="newsletter" onSubmit={handleSubmit}>
+					 <input disabled={isLoading} type="text" name="email" placeholder="Email Address"/> 
+           <button disabled={isLoading} xs="1" sm="1" className="sub-btn"  type="submit">
+             
+               {isLoading ? 
+                  <Spinner animation="border" size="sm" role="status" /> :  <Telegram size={24}/>}
+             </button>	
+				</form>
+				
+				</div>
             <div className="col-md-4 col-sm-6">
               <div className="col-md-12">
                 <div className="standard_social_links">

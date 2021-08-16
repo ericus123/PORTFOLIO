@@ -21,12 +21,12 @@ export const passResetRequest = (Email) => async (dispatch) => {
   }
 };
 
-export const resetPassword = (Id, Token, Password, PasswordConf) => async (
+export const resetPassword = (Token, Password, PasswordConf) => async (
   dispatch
 ) => {
   try {
     dispatch({ type: types.PASSWORD_RESET_CLICKED });
-    const res = await http.put(`/api/auth/password/reset/${Id}/${Token}`, {
+    const res = await http.put(`/api/auth/password/reset/user/${Token}`, {
       password: Password,
       passwordConf: PasswordConf,
     });

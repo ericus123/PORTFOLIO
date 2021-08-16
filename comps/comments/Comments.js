@@ -32,7 +32,7 @@ const Comments = ({ id }) => {
   const [com, setCom] = useState("");
   const [rep, setRep] = useState("");
   const postCommentError = useSelector((state) => state.postComment.error);
-  const postCommentMessage = useSelector((state) => state.postComment.message);
+    const postCommentMessage = useSelector((state) => state.postComment.message);
   const postCommentIsLoading = useSelector(
     (state) => state.postComment.isLoading
   );
@@ -92,19 +92,12 @@ const Comments = ({ id }) => {
   const replyReactionMessage = useSelector(
     (state) => state.replyReaction.message
   );
-  const replyReactionIsLoading = useSelector(
-    (state) => state.replyReaction.isLoading
-  );
-
   const user = useSelector((state) => state.checkAuth.user);
-  const auth_error = useSelector((state) => state.checkAuth.error);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetComments(id));
   }, [
     post,
-    postCommentMessage,
     editCommentMessage,
     deleteCommentMessage,
     deleteCommentError,
@@ -115,17 +108,28 @@ const Comments = ({ id }) => {
     deleteReplyIsLoading,
     commentReactionMessage,
     replyReactionMessage,
+    postCommentMessage
   ]);
 
   useEffect(() => {
     setEdComShow(false);
   }, [editCommentMessage]);
 
+    useEffect(() => {
+    setDelComShow(false);
+  }, [deleteCommentMessage]);
+
   useEffect(() => {
     setTimeout(() => {
       setEdRepShow(false);
     }, 1000);
   }, [editReplyMessage]);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setDelRepShow(false);
+    }, 1000);
+  }, [deleteReplyMessage]);
 
   let errors_arr = [
     editCommentError,
@@ -148,24 +152,14 @@ const Comments = ({ id }) => {
         router.push("/login");
       }
     });
-  }, [
-    editCommentError,
-    postCommentError,
-    postCommentReplyError,
-    deleteCommentError,
-    deleteReplyError,
-    editReplyError,
-    commentReactionError,
-    replyReactionError,
-  ]);
+  }, errors_arr);
 
   const DeleteCommentModal = (props) => {
     return (
       <Modal
         {...props}
         size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+        aria-labelledby="contained-modal-title"
       >
         <Modal.Body>
           <h4>Delete comment</h4>
@@ -176,15 +170,16 @@ const Comments = ({ id }) => {
           </p>
         </Modal.Body>
         <div className="mod-footer">
-          <Button onClick={props.onHide}>No</Button>
+          <Button disabled={deleteCommentIsLoading} onClick={props.onHide}>No</Button>
           <Button
+          disabled={deleteCommentIsLoading}
             variant="danger"
             onClick={() => {
-              props.onHide();
               dispatch(DeletePostComment(comId));
             }}
           >
-            Yes
+                   {deleteCommentIsLoading ? 
+                <Spinner animation="border" size="sm" role="status" /> : "Yes"}
           </Button>
         </div>
       </Modal>
@@ -197,7 +192,6 @@ const Comments = ({ id }) => {
         {...props}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
       >
         <Modal.Body>
           <h4>Delete reply</h4>
@@ -208,15 +202,16 @@ const Comments = ({ id }) => {
           </p>
         </Modal.Body>
         <div className="mod-footer">
-          <Button onClick={props.onHide}>No</Button>
+          <Button disabled={deleteReplyIsLoading} onClick={props.onHide}>No</Button>
           <Button
             variant="danger"
+            diabled={deleteReplyIsLoading}
             onClick={() => {
-              props.onHide();
               dispatch(DeleteCommentReply(repId));
             }}
           >
-            Yes
+              {deleteReplyIsLoading ? 
+                <Spinner animation="border" size="sm" role="status" /> : "Yes"}
           </Button>
         </div>
       </Modal>
@@ -229,7 +224,6 @@ const Comments = ({ id }) => {
         {...props}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
       >
         <Form
           onSubmit={(e) => {
@@ -246,6 +240,7 @@ const Comments = ({ id }) => {
                   rows={3}
                   controlId="exampleForm.ControlTextarea1"
                   name="desc"
+                     disabled={editReplyIsLoading}
                   defaultValue={rep}
                 />
               </Form.Group>
@@ -254,31 +249,25 @@ const Comments = ({ id }) => {
           <div className="mod-footer">
             {editReplyError ? simpleAlert("danger", editReplyError) : null}
           </div>
-          <div className="mod-footer">
-            {editReplyMessage ? simpleAlert("success", editReplyMessage) : null}
-          </div>
-          <div className="mod-footer">
-            {editReplyIsLoading ? (
-              <div style={{ textAlign: "center" }}>
-                <Spinner animation="border" size="lg" role="status" />
-              </div>
-            ) : null}
-          </div>
 
-          {!editReplyError && !editReplyMessage && !editReplyIsLoading ? (
+          {!editReplyError ?
             <div className="mod-footer">
+              <Button    disabled={editReplyIsLoading} style={{ margin: "1% 1% 1% 0%" }} type="submit">
+                {editReplyIsLoading ? 
+                <Spinner animation="border" size="sm" role="status" /> : "Save"}
+              </Button>
               <Button
                 style={{ margin: "1% 1% 1% 0%" }}
                 onClick={props.onHide}
                 variant="danger"
+                disabled={editReplyIsLoading}
               >
-                Cancel
+                Cancel 
               </Button>{" "}
-              <Button style={{ margin: "1% 1% 1% 0%" }} type="submit">
-                Save changes
-              </Button>
+
+              
             </div>
-          ) : null}
+           : null}
         </Form>
       </Modal>
     );
@@ -289,7 +278,6 @@ const Comments = ({ id }) => {
         {...props}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
       >
         <Form
           onSubmit={(e) => {
@@ -306,6 +294,7 @@ const Comments = ({ id }) => {
                   rows={3}
                   controlId="exampleForm.ControlTextarea1"
                   name="desc"
+                  disabled={editCommentIsLoading}
                   defaultValue={com}
                 />
               </Form.Group>
@@ -314,31 +303,23 @@ const Comments = ({ id }) => {
           <div className="mod-footer">
             {editCommentError ? simpleAlert("danger", editCommentError) : null}
           </div>
-          <div className="mod-footer">
-            {editCommentMessage
-              ? simpleAlert("success", editCommentMessage)
-              : null}
-          </div>
-          <div className="mod-footer">
-            {editCommentIsLoading ? (
-              <div style={{ textAlign: "center" }}>
-                <Spinner animation="border" size="lg" role="status" />
-              </div>
-            ) : null}
-          </div>
 
-          {!editCommentError && !editCommentMessage && !editCommentIsLoading ? (
+          {!editCommentError ? (
             <div className="mod-footer">
+               <Button disabled={editCommentIsLoading} style={{ margin: "1% 1% 1% 0%" }} type="submit">
+                {editCommentIsLoading ? 
+                <Spinner animation="border" size="sm" role="status" /> : "Save"}
+              </Button>
               <Button
+              disabled={editCommentIsLoading}
                 style={{ margin: "1% 1% 1% 0%" }}
                 onClick={props.onHide}
                 variant="danger"
               >
                 Cancel
               </Button>{" "}
-              <Button style={{ margin: "1% 1% 1% 0%" }} type="submit">
-                Save changes
-              </Button>
+               
+ 
             </div>
           ) : null}
         </Form>
@@ -348,8 +329,8 @@ const Comments = ({ id }) => {
   const all_comments = comments?.map((comment) => {
     return (
       <div className="comment" key={comment._id}>
-        <div className="avatar">
-          <img src={comment.user ? comment.user.avatar : unknown_avatar} />
+        <div className="profile-picture-sm">
+          <img width="40px" height="40px" src={comment.user ? comment.user.avatar : unknown_avatar} />
         </div>
         <div className="desc">
           <p style={{ marginBottom: "0px" }}>
@@ -369,7 +350,7 @@ const Comments = ({ id }) => {
               </span>
             ) : null}
           </p>
-          {post?.user && post?.user._id == comment?.user._id ? (
+          {post?.user && post?.author._id == comment?.user._id ? (
             <p className="author-badge">
               <FontAwesomeIcon icon={faCrown} />
               &nbsp;Author
@@ -392,6 +373,7 @@ const Comments = ({ id }) => {
                       dispatch(ReactOnPostComment(comment._id));
                     }}
                   />{" "}
+
                   {comment.likes.length ? (
                     <span class="n">{comment.likes.length}</span>
                   ) : null}
@@ -425,7 +407,7 @@ const Comments = ({ id }) => {
               Reply
             </span>
             &nbsp;&nbsp;&nbsp;
-            {user && user.id == comment.user._id ? (
+            {user && user.id == comment.user?._id ? (
               <>
                 {" "}
                 <span
@@ -456,8 +438,9 @@ const Comments = ({ id }) => {
               ? comment.replies.map((reply) => {
                   return (
                     <div className="reply" key={reply._id}>
-                      <div className="reply_avatar">
+                      <div className="profile-picture-sm">
                         <img
+                        className="b-border"
                           src={reply.user ? reply.user.avatar : unknown_avatar}
                         />
                       </div>
@@ -565,21 +548,13 @@ const Comments = ({ id }) => {
               }}
             >
               <textarea name="desc" placeholder="Reply here..." />
-              {postCommentReplyIsLoading ? (
-                <div style={{ textAlign: "center" }}>
-                  <Spinner animation="border" size="sm" role="status" />
-                </div>
-              ) : null}
+              
               {postCommentReplyError
                 ? simpleAlert("danger", postCommentReplyError)
                 : null}
-              {postCommentReplyMessage
-                ? simpleAlert("success", postCommentReplyMessage)
-                : null}
-              {!postCommentReplyError &&
-              !postCommentReplyMessage &&
-              !postCommentReplyIsLoading ? (
-                <button type="submit">Reply</button>
+              {!postCommentReplyError ? (
+                
+                <button type="submit" className="px-2"> {postCommentReplyIsLoading ? <Spinner animation="border" size="sm" role="status" /> : "Reply"}</button>
               ) : null}
             </form>
           </div>
@@ -647,16 +622,13 @@ const Comments = ({ id }) => {
         <textarea name="desc" />
 
         {postCommentError ? simpleAlert("danger", postCommentError) : null}
-        {postCommentMessage ? simpleAlert("success", postCommentMessage) : null}
-        {postCommentIsLoading ? (
-          <div style={{ textAlign: "center" }}>
-            <br />
-            <Spinner animation="border" size="lg" role="status" />
-          </div>
+        {!postCommentError ? (
+          <button stype="submit" className="px-2">
+            {postCommentIsLoading ? 
+                  <Spinner animation="border" size="sm" role="status" /> : "Comment"}
+          </button>
         ) : null}
-        {postCommentError || postCommentIsLoading ? null : (
-          <button stype="submit">Comment</button>
-        )}
+        
       </form>
     </div>
   );

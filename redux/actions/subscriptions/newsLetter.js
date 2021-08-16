@@ -1,5 +1,6 @@
 import { types } from "../types";
 import http from "../../../utils/axios/axios";
+import { NotificationManager } from "react-notifications";
 
 export const subscribeNewsletter = (Email) => async (dispatch) => {
   try {
@@ -9,16 +10,13 @@ export const subscribeNewsletter = (Email) => async (dispatch) => {
       `/api/subscriptions/newsletter/subscribe/${Email}`
     );
     dispatch({ type: types.SUBSCRIBE_NEWSLETTER_SUCCESS, payload: res.data });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_SUBSCRIBE_NEWSLETTER_MESSAGE });
-    }, 5000);
+    NotificationManager.success(`Subscribed to newsletter successfully`, "SUCCESS");
   } catch (error) {
     dispatch({
       type: types.SUBSCRIBE_NEWSLETTER_ERROR,
       payload: error.response.data.error,
     });
-    setTimeout(() => {
-      dispatch({ type: types.REMOVE_SUBSCRIBE_NEWSLETTER_ERROR });
-    }, 5000);
+    let err = error.response.data.error || "Something Went Wrong";
+NotificationManager.error(`${err}`, "ERROR");
   }
 };
