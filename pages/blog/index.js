@@ -10,6 +10,7 @@ import Paginate from "../../comps/Pagination";
 import { simpleAlert } from "../../comps/Alerts";
 import { scrollTop } from "../../utils/functions";
 import PostsSlider from "../../comps/PostsSlider";
+import UserPage from "../../comps/layouts/UserPage";
 
 const Blog = () => {
   const dispatch = useDispatch();
