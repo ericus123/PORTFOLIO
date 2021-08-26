@@ -6,8 +6,10 @@ import About from "../comps/home/About";
 import Skills from "../comps/home/Skills";
 import Contact from "../comps/home/Contact";
 import Services from "../comps/home/Services";
+import Head from "next/head";
 
 const Home = () => {
+  const pro_image = "https://i2.paste.pics/CGCQ7.png";
   const scrolToSection = (id) => {
     const anchor = process.browser ? document.querySelector(id) : null;
     anchor.scrollIntoView({
@@ -18,6 +20,28 @@ const Home = () => {
 
   return (
     <>
+    <Head>
+  
+
+  {/* Primary Meta Tags */}
+    <title>AMANI Eric | Home</title>
+<meta name="description" content="Home for programming tutorials and trends."/>
+
+ {/* Open Graph / Facebook  */}
+<meta property="og:type" content="website"/>
+<meta property="og:url" content={frontendURL}/>
+<meta property="og:title" content="AMANI Eric"/>
+<meta property="og:description" content="Home for programming tutorials and trends."/>
+<meta property="og:image" content={pro_image}/>
+
+{/* Twitter */}
+<meta property="twitter:card" content=""/>
+<meta property="twitter:url" content={frontendURL}/>
+<meta property="twitter:title" content="AMANI Eric"/>
+<meta property="twitter:description" content="Home for programming tutorials and trends."/>
+<meta property="twitter:image" content={pro_image}></meta>
+
+    </Head>
       <div className="home bd-grid" id="home">
         <ScrolButton />
         <div className="home__data">

@@ -5,6 +5,7 @@ import { signupRequest } from "../redux/actions/auth/signup";
 import { authRedirect } from "../utils/redirects";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Signup = () => {
   const error = useSelector((state) => state.signup.error);
@@ -34,6 +35,12 @@ const Signup = () => {
     }, 5000);
   }
   return (
+    <>
+    <Head>
+      <title>AMANI Eric | Signup</title>
+<meta name="description" content="Create account to get tutorials and  trends in programming"/>
+
+    </Head>
     <div className="signup">
       <h2 className="section-title">Signup</h2>
       <div className="contact__container bd-grid ">
@@ -119,6 +126,7 @@ const Signup = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

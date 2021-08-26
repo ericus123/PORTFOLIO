@@ -9,6 +9,7 @@ import unknown_avatar from "../../assets/images/avatar.png";
 import SideBar from "../../comps/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
 import { PostShares } from "../../comps/shares/Shares";
+import Head from "next/head";
 
 
 export const getStaticPaths = async () => {
@@ -36,7 +37,9 @@ export const getStaticProps = async (context) => {
   };
 };
 const SinglePost = ({ post, id }) => {
-  const dispatch = useDispatch();
+
+  const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
+
   const message = useSelector((state) => state.post.message);
   const error = useSelector((state) => state.post.error);
   const user = useSelector((state) => state.checkAuth.user);
@@ -124,6 +127,34 @@ const SinglePost = ({ post, id }) => {
 
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
+    <>
+<Head>
+  
+  {/* Primary Meta Tags */}
+<title>AMANI Eric | Blog</title>
+<meta name="title" content={post.title}/>
+<meta name="description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 250) + "..."} />
+
+ {/* Open Graph / Facebook  */}
+<meta property="og:type" content="website"/>
+<meta property="og:url" content={`${frontendURL}/blog/${post._id}`}/>
+<meta property="og:title" content={post.title}/>
+<meta property="og:description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 150) + "..."}/>
+<meta property="og:image" content={post.imageUrl}/>
+
+{/* Twitter */}
+<meta property="twitter:card" content={post.title}/>
+<meta property="twitter:url" content={`${frontendURL}/blog/${post._id}`}/>
+<meta property="twitter:title" content={post.title}/>
+<meta property="twitter:description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 150) + "..."}/>
+<meta property="twitter:image" content={post.imageUrl}></meta>
+</Head>
     <div className="single-post">
       <>
         <ScrolButton />
@@ -133,6 +164,7 @@ const SinglePost = ({ post, id }) => {
         <SideBar id={id} />
       </div>
     </div>
+  </>
   );
 };
 

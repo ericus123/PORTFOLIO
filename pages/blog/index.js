@@ -97,6 +97,10 @@ const Blog = () => {
   const err = error ? <>{simpleAlert("danger", error)}</> : null;
 
   return (
+    <>
+    <Head>
+      
+    </Head>
     <div className="Blog">
       <br />
       <ScrollButton />
@@ -140,6 +144,7 @@ const Blog = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default Blog;
