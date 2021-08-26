@@ -9,6 +9,7 @@ import unknown_avatar from "../../assets/images/avatar.png";
 import SideBar from "../../comps/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
 import { PostShares } from "../../comps/shares/Shares";
+import Head from "next/head";
 
 
 export const getStaticPaths = async () => {
@@ -36,7 +37,9 @@ export const getStaticProps = async (context) => {
   };
 };
 const SinglePost = ({ post, id }) => {
-  const dispatch = useDispatch();
+
+  const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
+
   const message = useSelector((state) => state.post.message);
   const error = useSelector((state) => state.post.error);
   const user = useSelector((state) => state.checkAuth.user);
@@ -124,6 +127,28 @@ const SinglePost = ({ post, id }) => {
 
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
+    <>
+<Head>
+  
+
+  {/* Primary Meta Tags */}
+    <title>AMANI Eric | Blog</title>
+<meta name="description" content="Home for programming tutorials and trends."/>
+
+ {/* Open Graph / Facebook  */}
+<meta property="og:type" content="website"/>
+<meta property="og:url" content={`${frontendURL}/blog`}/>
+<meta property="og:title" content="AMANI Eric"/>
+<meta property="og:description" content="Home for programming tutorials and trends."/>
+{/* <meta property="og:image" content={pro_image}/> */}
+
+{/* Twitter */}
+<meta property="twitter:card" content=""/>
+<meta property="twitter:url" content={`${frontendURL}/blog`}/>
+<meta property="twitter:title" content="AMANI Eric"/>
+<meta property="twitter:description" content="Home for programming tutorials and trends."/>
+{/* <meta property="twitter:image" content={pro_image}></meta> */}
+</Head>
     <div className="single-post">
       <>
         <ScrolButton />
@@ -133,6 +158,7 @@ const SinglePost = ({ post, id }) => {
         <SideBar id={id} />
       </div>
     </div>
+  </>
   );
 };
 

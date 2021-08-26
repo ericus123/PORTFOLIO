@@ -1,8 +1,19 @@
+import Head from "next/head";
 import React from "react";
 import about from "../../assets/images/about.jpg";
 
 const About = () => {
   return (
+    <>
+    <Head>
+            <title>AMANI Eric | About</title>
+<meta name="description" content="I'm Amani,
+a full stack web developer focused on crafting great web experiences. 
+I'm usually writing a lot of JavaScript 🛠️
+I love working with Node.js,react and Figma 🎨
+Ping me if you need help (or just wanna' chat) 🤖
+"/>
+    </Head>
     <div className="about section " id="about">
       <h2 className="section-title">About</h2>
 
@@ -28,6 +39,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default About;

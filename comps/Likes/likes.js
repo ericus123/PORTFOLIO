@@ -69,7 +69,7 @@ export const BigLike = ({ id }) => {
               dispatch(ReactOnPost(id));
             }}
           />
-          <span class="n">{likesLen}</span>
+          <span className="n">{likesLen}</span>
         </span> : null 
         
       ) : null}

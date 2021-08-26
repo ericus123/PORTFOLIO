@@ -14,7 +14,7 @@ import UserPage from "../../comps/layouts/UserPage";
 
 const Blog = () => {
   const dispatch = useDispatch();
-
+ const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const message = useSelector((state) => state.posts.message);
   const isLoading = useSelector((state) => state.posts.isLoading);
   const error = useSelector((state) => state.posts.error);
@@ -97,6 +97,26 @@ const Blog = () => {
   const err = error ? <>{simpleAlert("danger", error)}</> : null;
 
   return (
+    <>
+    <Head>
+        {/* Primary Meta Tags */}
+    <title>AMANI Eric | Blog</title>
+<meta name="description" content="Home for programming tutorials and trends."/>
+
+ {/* Open Graph / Facebook  */}
+<meta property="og:type" content="website"/>
+<meta property="og:url" content={`${frontendURL}/blog`}/>
+<meta property="og:title" content="AMANI Eric"/>
+<meta property="og:description" content="Home for programming tutorials and trends."/>
+{/* <meta property="og:image" content={pro_image}/> */}
+
+{/* Twitter */}
+<meta property="twitter:card" content=""/>
+<meta property="twitter:url" content={`${frontendURL}/blog`}/>
+<meta property="twitter:title" content="AMANI Eric"/>
+<meta property="twitter:description" content="Home for programming tutorials and trends."/>
+{/* <meta property="twitter:image" content={pro_image}></meta> */}
+    </Head>
     <div className="Blog">
       <br />
       <ScrollButton />
@@ -140,6 +160,7 @@ const Blog = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default Blog;

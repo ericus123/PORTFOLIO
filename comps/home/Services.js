@@ -5,9 +5,18 @@ import frontend from "../../assets/images/frontend.svg";
 import optimization from "../../assets/images/optimization.svg";
 import database from "../../assets/images/database.svg";
 import backend from "../../assets/images/backend.svg";
+import Head from "next/head";
 
 const Services = () => {
   return (
+    <>
+    <Head>
+  <title>AMANI Eric | Services</title>
+<meta name="description" content="
+Here are some of the services we offer. Check them and 
+feel free to contact us in case you any of the services we offer 
+"/>
+    </Head>
     <div className=" section container-fluid mb-5" id="services">
       <br />
       <h2 className="section-title">Services</h2>
@@ -102,6 +111,7 @@ const Services = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

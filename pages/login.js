@@ -7,6 +7,7 @@ import { authRedirect } from "../utils/redirects";
 import { simpleAlert } from "../comps/Alerts";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
@@ -33,6 +34,14 @@ const Login = () => {
     }, 2000);
   }
   return (
+    <>
+    <Head>
+      
+<title>AMANI Eric | Login</title>
+<meta name="description" content="Login to get tutorials and  trends in programming"/>
+
+
+    </Head>
     <div className="login">
       <h2 className="section-title login_title">Login</h2>
       <div className="contact__container login_container bd-grid">
@@ -90,6 +99,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

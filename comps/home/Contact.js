@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner, Alert } from "react-bootstrap";
 import { messageRequest } from "../../redux/actions/contact/index";
+import Head from "next/head";
 
 const Contact = () => {
   const error = useSelector((state) => state.sendMessage.error);
@@ -26,6 +27,13 @@ const Contact = () => {
     }, 2000);
   }
   return (
+    <>
+    <Head>
+            <title>AMANI Eric | Contact</title>
+<meta name="description" content="
+If you have any issues or queries, please let us know. Get in touch with us if you need to.
+"/>
+    </Head>
     <div className="contact section" id="contact">
       <h2 className="section-title">Contact</h2>
 
@@ -72,6 +80,7 @@ const Contact = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
