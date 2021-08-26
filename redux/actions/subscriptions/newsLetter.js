@@ -7,7 +7,8 @@ export const subscribeNewsletter = (Email) => async (dispatch) => {
     console.log("something is really going on");
     dispatch({ type: types.SUBSCRIBE_NEWSLETTER_CLICKED });
     const res = await http.post(
-      `/api/subscriptions/newsletter/subscribe/${Email}`
+      "/api/subscriptions/newsletter/subscribe",
+      {email:Email}
     );
     dispatch({ type: types.SUBSCRIBE_NEWSLETTER_SUCCESS, payload: res.data });
     NotificationManager.success(`Subscribed to newsletter successfully`, "SUCCESS");

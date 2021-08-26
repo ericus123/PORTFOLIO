@@ -198,7 +198,8 @@ img {
   position: relative;
   overflow: hidden;
   margin-top: -15%;
-  width: auto;
+  max-width: 280px;
+  min-width: 280px;
   border: none;
   border-radius: 0;
   font-size: 15px;
@@ -598,6 +599,8 @@ img {
   .contact__container {
     justify-items: center;
   }
+
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -745,6 +748,7 @@ img {
   color: #666;
 }
 @media (min-width: 761px) and (max-width: 900px) {
+
   .Blog .blog-wrapper {
     grid-template-columns: 65% 30%;
   }
@@ -1766,4 +1770,11 @@ footer li:hover {
 
 .title{
   color: var(--second-color);
+}
+
+@media only screen and (max-width: 780px){
+  .profile {
+display: flex;
+flex-direction: column;
+}
 }

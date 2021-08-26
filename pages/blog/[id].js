@@ -70,11 +70,11 @@ const SinglePost = ({ post, id }) => {
           >
             {post.title}
           </h3>
-          <Row>
+          <Row className="mb-2">
             <Col xs="1" sm="1" className="mb-1 mr-1 ">
         <div className="profile-picture-sm">
-                                    <img src={post.author ? post.author.avatar : unknown_avatar} width="60" height="60"/>
-                                </div>
+        <img src={post.author ? post.author.avatar : unknown_avatar} width="60" height="60"/>
+        </div>
           
          
          
