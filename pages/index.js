@@ -9,6 +9,8 @@ import Services from "../comps/home/Services";
 import Head from "next/head";
 
 const Home = () => {
+
+  const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const pro_image = "https://i2.paste.pics/CGCQ7.png";
   const scrolToSection = (id) => {
     const anchor = process.browser ? document.querySelector(id) : null;
@@ -35,7 +37,7 @@ const Home = () => {
 <meta property="og:image" content={pro_image}/>
 
 {/* Twitter */}
-<meta property="twitter:card" content=""/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:url" content={frontendURL}/>
 <meta property="twitter:title" content="AMANI Eric"/>
 <meta property="twitter:description" content="Home for programming tutorials and trends."/>

@@ -79,6 +79,7 @@ html {
 }
 * {
   font-family: "Poppins", sans-serif;
+  max-width: 100%;
 }
 body {
   margin: var(--header-height) 0 0 0;

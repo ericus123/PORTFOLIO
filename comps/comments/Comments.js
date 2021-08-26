@@ -589,7 +589,7 @@ const Comments = ({ id }) => {
           onHide={() => setDelRepShow(false)}
         />
       </div>
-      {comments?.length > 1 ? (
+      {/* {comments?.length > 1 ? (
         <div className="com-sort">
           <div>
             <button
@@ -610,7 +610,7 @@ const Comments = ({ id }) => {
             </button>
           </div>
         </div>
-      ) : null}
+      ) : null} */}
       <form
         className="com-form"
         onSubmit={(e) => {

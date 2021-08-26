@@ -48,7 +48,7 @@ const Footer = () => {
                 <div className="standard_social_links">
                   <div>
                     <li className="round-btn">
-                      <a href="#">
+                      <a href="https://www.linkedin.com/in/amani-eric/" target="_blank">
                         <Linkedin
                           style={{ textAlign: "center" }}
                           color="#0e76a8"
@@ -56,7 +56,7 @@ const Footer = () => {
                       </a>
                     </li>
                     <li className="round-btn">
-                      <a href="#">
+                      <a href="https://twitter.com/amaniericus" target="_blank">
                         <Twitter
                           style={{ textAlign: "center" }}
                           color="#00acee"
@@ -64,7 +64,7 @@ const Footer = () => {
                       </a>
                     </li>
                     <li className="round-btn btn-whatsapp">
-                      <a href="#">
+                      <a href="https://wa.me/250783343195" target="_blank">
                         <Whatsapp
                           style={{ textAlign: "center" }}
                           color="#4FCE5D"
@@ -72,7 +72,7 @@ const Footer = () => {
                       </a>
                     </li>
                     <li className="round-btn btn-envelop">
-                      <a href="#">
+                      <a href="https://github.com/ericus123" target="_blank">
                         <Github style={{ textAlign: "center" }} color="#000" />
                       </a>
                     </li>
@@ -109,16 +109,16 @@ const Footer = () => {
                     <a href="/">Home</a>
                   </li>
                   <li>
-                    <a href="#about">About us</a>
+                    <a href="/#about">About us</a>
                   </li>
                   <li>
-                    <a href="#services">Services</a>
+                    <a href="/#services">Services</a>
                   </li>
                   <li>
-                    <a href="#contact">Contact Us</a>
+                    <a href="/#contact">Contact Us</a>
                   </li>
                   <li>
-                    <a href="#skills">Skills</a>
+                    <a href="/#skills">Skills</a>
                   </li>
                   <li>
                     <a href="/login">Login</a>
@@ -164,7 +164,7 @@ const Footer = () => {
           <div className="container-fluid">
             <div className="copyright">
               {" "}
-              Copyright 2021 | All Rights Reserved by AMANI Eric. Ltd.
+              Copyright 2021 | All Rights Reserved by AMANI Eric.
             </div>
           </div>
         </div>

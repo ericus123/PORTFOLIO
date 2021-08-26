@@ -130,24 +130,30 @@ const SinglePost = ({ post, id }) => {
     <>
 <Head>
   
-
   {/* Primary Meta Tags */}
-    <title>AMANI Eric | Blog</title>
-<meta name="description" content="Home for programming tutorials and trends."/>
+<title>AMANI Eric | Blog</title>
+<meta name="title" content={post.title}/>
+<meta name="description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 250) + "..."} />
 
  {/* Open Graph / Facebook  */}
 <meta property="og:type" content="website"/>
-<meta property="og:url" content={`${frontendURL}/blog`}/>
-<meta property="og:title" content="AMANI Eric"/>
-<meta property="og:description" content="Home for programming tutorials and trends."/>
-{/* <meta property="og:image" content={pro_image}/> */}
+<meta property="og:url" content={`${frontendURL}/blog/${post._id}`}/>
+<meta property="og:title" content={post.title}/>
+<meta property="og:description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 250) + "..."}/>
+<meta property="og:image" content={post.imageUrl}/>
 
 {/* Twitter */}
-<meta property="twitter:card" content=""/>
-<meta property="twitter:url" content={`${frontendURL}/blog`}/>
-<meta property="twitter:title" content="AMANI Eric"/>
-<meta property="twitter:description" content="Home for programming tutorials and trends."/>
-{/* <meta property="twitter:image" content={pro_image}></meta> */}
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:url" content={`${frontendURL}/blog/${post._id}`}/>
+<meta property="twitter:title" content={post.title}/>
+<meta property="twitter:description" content={post.description
+                      .replace(/(<([^>]+)>)/gi, "")
+                      .substr(0, 250) + "..."}/>
+<meta property="twitter:image" content={post.imageUrl}></meta>
 </Head>
     <div className="single-post">
       <>

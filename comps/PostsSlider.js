@@ -19,7 +19,7 @@ const PostsSlider = () => {
               src={post.imageUrl}
             />
             <Carousel.Caption>
-              <Link href={`/blog/post/ ${post._id}`}>
+              <Link href={`/blog/${post._id}`}>
                 <a
                   style={{
                     color: "rgb(0, 123, 255)",

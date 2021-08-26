@@ -11,6 +11,7 @@ import { simpleAlert } from "../../comps/Alerts";
 import { scrollTop } from "../../utils/functions";
 import PostsSlider from "../../comps/PostsSlider";
 import UserPage from "../../comps/layouts/UserPage";
+import Head from "next/head";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -111,7 +112,7 @@ const Blog = () => {
 {/* <meta property="og:image" content={pro_image}/> */}
 
 {/* Twitter */}
-<meta property="twitter:card" content=""/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:url" content={`${frontendURL}/blog`}/>
 <meta property="twitter:title" content="AMANI Eric"/>
 <meta property="twitter:description" content="Home for programming tutorials and trends."/>
