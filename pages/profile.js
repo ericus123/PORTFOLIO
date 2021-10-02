@@ -15,6 +15,8 @@ import { changePassword } from "../redux/actions/auth/password";
 import { LockFill } from "react-bootstrap-icons";
 import { simpleAlert } from "../comps/Alerts";
 import { authRequest } from "../redux/actions/auth/checkAuth";
+import ImgCrop from "antd-img-crop";
+import { Upload } from "antd";
 
 const Profile = () => {
   const [active, setActive] = useState("about");
@@ -60,7 +62,7 @@ const Profile = () => {
   );
 
   const [loadingImg, setLoadingImg] = useState(null);
-
+  const token = process.browser ? localStorage.getItem("auth-token") : null;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfileRequest());
@@ -84,6 +86,7 @@ const Profile = () => {
         router.push("/login");
       }
     });
+
   }, [
     changeAvatarError,
     changePasswordError,
@@ -93,8 +96,11 @@ const Profile = () => {
     error,
   ]);
 
-  const uploadAvatar = async (e) => {
-    const file = e.target.files[0];
+  useEffect(() => {
+      dispatch(authRequest(token));
+  },[changeAvatarMessage])
+  const uploadAvatar = async (file) => {
+    setLoadingImg("avatar");
     const base64 = await convertBase64(file);
     dispatch(changeAvatar(base64));
     setLoadingImg(null);
@@ -148,6 +154,11 @@ const Profile = () => {
       updateProfile(first_name, last_name, user_name, occupation, gender, bio)
     );
   };
+
+
+  const beforeUpload = (file) => {
+    
+  }
   function DeleteAccountModal(props) {
     return (
       <Modal
@@ -477,6 +488,8 @@ const Profile = () => {
           <div className="profile_picture">
             <img src={profile.avatar || avatar} />
             <div className="file">
+                  <ImgCrop>
+   <Upload  beforeUpload={uploadAvatar}>
               <form>
                 {" "}
                 {loadingImg == "avatar" ||
@@ -488,21 +501,15 @@ const Profile = () => {
                       role="status"
                     ></Spinner>
                   </div>
-                ) : !changeAvatarError && !changeAvatarMessage ? (
-                  <>Change photo</>
-                ) : null}
+                ) :
+                  <span style={{color: "white"}}>Change photo</span>
+               }
                 {changeAvatarError
                   ? simpleAlert("danger", changeAvatarError)
                   : null}
-                <input
-                  type="file"
-                  disabled={changeAvatarIsLoading}
-                  onChange={async (e) => {
-                    setLoadingImg("avatar");
-                    uploadAvatar(e);
-                  }}
-                />
               </form>
+              </Upload>
+              </ImgCrop>
             </div>
           </div>
           <div className="profile_details">

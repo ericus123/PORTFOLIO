@@ -1,5 +1,6 @@
 import { types } from "../types";
 import http from "../../../utils/axios/axios";
+import { errorMessage } from "../../../comps/popups/popupMessages";
 
 export const getPosts = (page, limit) => async (dispatch) => {
   try {
@@ -110,7 +111,7 @@ export const PostComment = (postId, desc) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.POST_COMMENT_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -135,7 +136,7 @@ export const EditPostComment = (commentId, desc) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.EDIT_POST_COMMENT_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -155,7 +156,7 @@ export const ReactOnPostComment = (commentId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.POST_COMMENT_REACTION_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -173,7 +174,7 @@ export const ReactOnCommentReply = (replyId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.COMMENT_REPLY_REACTION_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -191,7 +192,7 @@ export const DeletePostComment = (commentId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.DELETE_POST_COMMENT_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -209,7 +210,7 @@ export const GetComments = (postId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.GET_POST_COMMENTS_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
   }
 };
@@ -254,7 +255,7 @@ export const EditCommentReply = (replyId, desc) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.EDIT_COMMENT_REPLY_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
       dispatch({
@@ -272,12 +273,12 @@ export const DeleteCommentReply = (replyId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.DELETE_COMMENT_REPLY_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     setTimeout(() => {
         dispatch({
       type: types.REMOVE_DELETE_COMMENT_REPLY_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
     }, 5000);
   }
@@ -291,7 +292,7 @@ export const PostReaction = (postId, action) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.POST_REACTION_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error.response.data.error || errorMessage("Something went wrong"),
     });
   }
 };
