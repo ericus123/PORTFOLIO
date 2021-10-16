@@ -48,7 +48,9 @@ const PostsSlider = () => {
     <span>
       {err}
 
-      <Carousel prevLabel={null} nextLabel={null}>{postsSlider}</Carousel>
+      <Carousel prevLabel={null} nextLabel={null}>
+        {postsSlider}
+      </Carousel>
       <br />
     </span>
   );

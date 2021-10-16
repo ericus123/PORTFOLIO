@@ -1559,12 +1559,13 @@ body {
 
 .copyright {
   border-top: 1px solid #111;
-  font-size: 14px;
+  font-size: 0.9em;
   color: #ccc;
   padding-top: 15px;
   text-align: center;
   padding-bottom: 15px;
   background: #222;
+  width: auto !important;
 }
 footer .second_class {
   border-bottom: 1px solid #444;
@@ -1581,23 +1582,24 @@ footer .first_class h3 {
 footer {
   background: #333;
 }
-
-footer .newsletter input[type="text"] {
-  width: 80%;
+footer .newsletter input[type="email"] {
+  width: 79.5%;
   background: #fff;
   color: #333;
-  border: 1px solid #222;
+  border: none;
   padding: 14px 20px;
-  border-radius: 50px 0px 0px 50px;
-  margin-top: 12px;
+  border-radius: 50px 0px 0px 50px !important;
+  margin-right: 0.5%;
 }
 
 footer .newsletter .sub-btn {
   width: 20%;
-  padding: 14px 20px;
+  height: 3.18rem !important;
   border: none;
   color: var(--first-color);
   background-color: white;
+  border-radius: 0px 2px 2px 0px;
+  outline: none;
 }
 
 .newsletter .newsletter_submit_btn {
@@ -1656,6 +1658,13 @@ footer li:hover {
 
   footer .round-btn {
     margin: 15px 4px;
+  }
+  .newsletter input[type="email"] {
+    height: 4vh;
+  }
+  footer .newsletter .sub-btn {
+    height: 4vh !important;
+    top: 0% !important;
   }
 }
 @media (max-width: 320px) {
@@ -1784,4 +1793,8 @@ footer li:hover {
     display: flex;
     flex-direction: column;
   }
+}
+
+.copyright-section {
+  width: 100% !important;
 }

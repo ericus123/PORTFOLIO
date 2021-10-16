@@ -15,11 +15,11 @@ const Footer = () => {
   const isLoading = useSelector((state) => state.subscribeNewsletter.isLoading);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
-  e.preventDefault();
-  const {email} = e.target;
-     dispatch(subscribeNewsletter(email.value));
-     e.target.reset()
-  }
+    e.preventDefault();
+    const { email } = e.target;
+    dispatch(subscribeNewsletter(email.value));
+    e.target.reset();
+  };
   return (
     <footer>
       <div className="footer-wrap">
@@ -32,23 +32,39 @@ const Footer = () => {
                 right to your inbox. Sign up for our newsletter today.
               </p>
             </div>
-           	<div className="col-md-4 col-sm-6">
-				<form className="newsletter" onSubmit={handleSubmit}>
-					 <input disabled={isLoading} type="text" name="email" placeholder="Email Address"/> 
-           <button disabled={isLoading} xs="1" sm="1" className="sub-btn"  type="submit">
-             
-               {isLoading ? 
-                  <Spinner animation="border" size="sm" role="status" /> :  <Telegram size={24}/>}
-             </button>	
-				</form>
-				
-				</div>
+            <div className="col-md-4 col-sm-4">
+              <form className="newsletter" onSubmit={handleSubmit}>
+                <input
+                  disabled={isLoading}
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+                <button
+                  disabled={isLoading}
+                  xs="1"
+                  sm="1"
+                  className="sub-btn"
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <Spinner animation="border" size="sm" role="status" />
+                  ) : (
+                    <Telegram size={25} />
+                  )}
+                </button>
+              </form>
+            </div>
             <div className="col-md-4 col-sm-6">
               <div className="col-md-12">
                 <div className="standard_social_links">
                   <div>
                     <li className="round-btn">
-                      <a href="https://www.linkedin.com/in/amani-eric/" target="_blank">
+                      <a
+                        href="https://www.linkedin.com/in/amani-eric/"
+                        target="_blank"
+                      >
                         <Linkedin
                           style={{ textAlign: "center" }}
                           color="#0e76a8"
@@ -160,10 +176,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="row">
-          <div className="container-fluid">
+        <div className="">
+          <div className="">
             <div className="copyright">
-              {" "}
               Copyright 2021 | All Rights Reserved by AMANI Eric.
             </div>
           </div>
