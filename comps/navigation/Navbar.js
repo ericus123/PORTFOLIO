@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authRequest } from "../../redux/actions/auth/checkAuth";
 import { useRouter } from "next/router";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import {Dot} from "react-bootstrap-icons";
+import { Dot } from "react-bootstrap-icons";
 import unknown_avatar from "../../assets/images/avatar.png";
 import {
   ArrowRightCircleFill,
@@ -67,15 +67,10 @@ const Navigation = () => {
               <NavDropdown
                 title={
                   <>
-                   <div className="profile-picture">
-                                    <img src={user?.avatar || unknown_avatar} width="44" height="44"/>
-                              
-                                </div>
-                                {/* <div className="sign-as">
-                                <span>
-                                  Signed in as: {user.username}</span>
-                                </div> */}
-                                </>
+                    <div className="profile-picture">
+                      <img src={user?.avatar || unknown_avatar} />
+                    </div>
+                  </>
                 }
                 id="navbarScrollingDropdown"
               >

@@ -151,7 +151,6 @@ img {
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
 }
 
-
 /*PROFILE*/
 
 .profile {
@@ -472,8 +471,8 @@ img {
 .our-services:hover p {
   color: #fff;
 }
-.speedup{ 
-   transition-property: background-image;
+.speedup {
+  transition-property: background-image;
   transition-duration: 4s;
   transition-delay: 2s;
 }
@@ -483,7 +482,6 @@ img {
   background-image: linear-gradient(-45deg, #fb0054 0%, #f55b2a 100%);
   transition-delay: 1s;
 }
-
 
 .settings:hover {
   box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.05);
@@ -501,7 +499,7 @@ img {
   box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.05);
   cursor: pointer;
   background-image: linear-gradient(-45deg, #fc6a0e 0%, #fdb642 100%);
-    transition-delay: 1s;
+  transition-delay: 1s;
 }
 
 .ssl:hover {
@@ -509,7 +507,6 @@ img {
   cursor: pointer;
   background-image: linear-gradient(-45deg, #8d40fb 0%, #5a57fb 100%);
 }
-
 
 .database:hover {
   box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.05);
@@ -608,8 +605,6 @@ img {
   .contact__container {
     justify-items: center;
   }
-
-
 }
 
 @media screen and (min-width: 1024px) {
@@ -735,7 +730,7 @@ img {
 }
 /* POST AUTHOR */
 
- .author_image {
+.author_image {
   max-width: 40px;
   max-height: 40px;
   border-radius: 50%;
@@ -757,7 +752,6 @@ img {
   color: #666;
 }
 @media (min-width: 761px) and (max-width: 900px) {
-
   .Blog .blog-wrapper {
     grid-template-columns: 65% 30%;
   }
@@ -1598,7 +1592,7 @@ footer .newsletter input[type="text"] {
   margin-top: 12px;
 }
 
-footer .newsletter .sub-btn{
+footer .newsletter .sub-btn {
   width: 20%;
   padding: 14px 20px;
   border: none;
@@ -1718,72 +1712,76 @@ footer li:hover {
 .username {
   color: var(--third-color) !important;
 }
-.profile-picture {
-    width: 34px;
-    height: 34px;
-}
 .profile-picture-md {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 .profile-picture img {
-    display: block;
-    max-width: 44px;
-    max-height:  44px;
-    min-width: 44px;
-    min-height:  44px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    border: 2px solid white;
-    margin: 0 auto;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+#navbarScrollingDropdown {
+  margin-bottom: 0% !important;
+  margin-top: 0% !important;
+  top: 50%;
+  left: 50%;
+  padding: 0% !important;
+  height: auto !important;
+}
+#navbarScrollingDropdown::after {
+  content: none !important;
 }
 .profile-picture-md img {
-    display: block;
-    max-width: 50px;
-    max-height:  50px;
-    min-width: 50px;
-    min-height:  50px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    border: 2px solid var(--first-color);
-    margin: 0 auto;
+  display: block;
+  max-width: 50px;
+  max-height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid var(--first-color);
+  margin: 0 auto;
 }
 
 .profile-picture-sm img {
-    display: block;
-    max-width: 40px;
-    max-height:  40px;
-    min-width: 40px;
-    min-height:  40px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    border: 2px solid var(--first-color);
-    margin: 0 auto;
+  display: block;
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid var(--first-color);
+  margin: 0 auto;
 }
-.profile-picture span{
+.profile-picture span {
   color: white;
   text-align: center !important;
 }
-.sign-as{
+.sign-as {
   margin-top: 5px;
 }
 
-.title{
+.title {
   color: var(--second-color);
 }
 
-@media only screen and (max-width: 780px){
+@media only screen and (max-width: 780px) {
   .profile {
-display: flex;
-flex-direction: column;
-}
+    display: flex;
+    flex-direction: column;
+  }
 }
