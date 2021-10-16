@@ -129,6 +129,17 @@ const PostsByCategory = () => {
             {message && !catPosts.length ? <NotFound /> : null}
             {breadCrumb}
             {categorizedPosts}
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-format="fluid"
+     data-ad-layout-key="-i8+a-18-47+ce"
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="1682703097"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
             {catPosts && catPosts.length ? console.log(categorizedPosts) : null}
           </ul>
           {catPosts ? (
@@ -150,6 +161,17 @@ const PostsByCategory = () => {
             <br />
 
             <SideBar />
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-format="fluid"
+     data-ad-layout-key="-i8+a-18-47+ce"
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="1682703097"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
           </ul>
         </div>
       </div>

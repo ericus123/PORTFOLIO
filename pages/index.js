@@ -9,7 +9,6 @@ import Services from "../comps/home/Services";
 import Head from "next/head";
 
 const Home = () => {
-
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const pro_image = "https://i2.paste.pics/CGCQ7.png";
   const scrolToSection = (id) => {
@@ -22,28 +21,35 @@ const Home = () => {
 
   return (
     <>
-    <Head>
-  
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>AMANI Eric | Home</title>
 
-  {/* Primary Meta Tags */}
-    <title>AMANI Eric | Home</title>
-<meta name="description" content="Home for programming tutorials and trends."/>
+        <meta
+          name="description"
+          content="Home for programming tutorials and tech trends."
+        />
 
- {/* Open Graph / Facebook  */}
-<meta property="og:type" content="website"/>
-<meta property="og:url" content={frontendURL}/>
-<meta property="og:title" content="AMANI Eric"/>
-<meta property="og:description" content="Home for programming tutorials and trends."/>
-<meta property="og:image" content={pro_image}/>
+        {/* Open Graph / Facebook  */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={frontendURL} />
+        <meta property="og:title" content="AMANI Eric" />
+        <meta
+          property="og:description"
+          content="Home for programming tutorials and trends."
+        />
+        <meta property="og:image" content={pro_image} />
 
-{/* Twitter */}
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:url" content={frontendURL}/>
-<meta property="twitter:title" content="AMANI Eric"/>
-<meta property="twitter:description" content="Home for programming tutorials and trends."/>
-<meta property="twitter:image" content={pro_image}></meta>
-
-    </Head>
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={frontendURL} />
+        <meta property="twitter:title" content="AMANI Eric" />
+        <meta
+          property="twitter:description"
+          content="Home for programming tutorials and trends."
+        />
+        <meta property="twitter:image" content={pro_image}></meta>
+      </Head>
       <div className="home bd-grid" id="home">
         <ScrolButton />
         <div className="home__data">
@@ -239,8 +245,30 @@ const Home = () => {
         </div>
       </div>
       <About />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="7105763628"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       <Skills />
       <Services />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="7105763628"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       <Contact />
     </>
   );

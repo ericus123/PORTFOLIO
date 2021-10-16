@@ -28,58 +28,58 @@ const Contact = () => {
   }
   return (
     <>
-    <Head>
+      {/* <Head>
             <title>AMANI Eric | Contact</title>
 <meta name="description" content="
 If you have any issues or queries, please let us know. Get in touch with us if you need to.
 "/>
-    </Head>
-    <div className="contact section" id="contact">
-      <h2 className="section-title">Contact</h2>
+    </Head> */}
+      <div className="contact section" id="contact">
+        <h2 className="section-title">Contact</h2>
 
-      <div className="contact__container bd-grid">
-        <form action="" className="contact__form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            className="contact__input"
-          />
-          <input
-            type="mail"
-            placeholder="Email"
-            name="email"
-            className="contact__input"
-          />
-          <textarea
-            name="message"
-            id=""
-            cols="0"
-            rows="5"
-            className="contact__input"
-          ></textarea>
-          {error ? (
-            <Alert style={{ textAlign: "center" }} variant="danger">
-              {error}
-            </Alert>
-          ) : null}
-          {msg ? (
-            <Alert style={{ textAlign: "center" }} variant="success">
-              {msg}
-            </Alert>
-          ) : null}
-          {isLoading ? (
-            <div style={{ textAlign: "center" }}>
-              <Spinner animation="border" size="lg" role="status" />
-            </div>
-          ) : (
-            <button type="submit" className="contact__button button">
-              Send
-            </button>
-          )}
-        </form>
+        <div className="contact__container bd-grid">
+          <form action="" className="contact__form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              className="contact__input"
+            />
+            <input
+              type="mail"
+              placeholder="Email"
+              name="email"
+              className="contact__input"
+            />
+            <textarea
+              name="message"
+              id=""
+              cols="0"
+              rows="5"
+              className="contact__input"
+            ></textarea>
+            {error ? (
+              <Alert style={{ textAlign: "center" }} variant="danger">
+                {error}
+              </Alert>
+            ) : null}
+            {msg ? (
+              <Alert style={{ textAlign: "center" }} variant="success">
+                {msg}
+              </Alert>
+            ) : null}
+            {isLoading ? (
+              <div style={{ textAlign: "center" }}>
+                <Spinner animation="border" size="lg" role="status" />
+              </div>
+            ) : (
+              <button type="submit" className="contact__button button">
+                Send
+              </button>
+            )}
+          </form>
+        </div>
       </div>
-    </div>
     </>
   );
 };

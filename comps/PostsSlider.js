@@ -12,7 +12,7 @@ const PostsSlider = () => {
   const postsSlider = posts.length
     ? posts.slice(0, 5).map((post) => {
         return (
-          <Carousel.Item className="slider" interval={3000}>
+          <Carousel.Item className="slider" interval={10000}>
             <img
               className="slider_image"
               className="d-block w-100"
@@ -47,8 +47,7 @@ const PostsSlider = () => {
   return (
     <span>
       {err}
-
-      <Carousel prevLabel={null} nextLabel={null}>
+      <Carousel prevLabel={null} nextLabel={null} fade time>
         {postsSlider}
       </Carousel>
       <br />

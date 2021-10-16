@@ -48,7 +48,7 @@ const SearchPosts = () => {
   const postsSlider = posts.length
     ? posts.slice(-5).map((post) => {
         return (
-          <Carousel.Item style={{ maxHeight: "400px" }} interval={3000}>
+          <Carousel.Item style={{ maxHeight: "400px" }} interval={7000}>
             <img className="d-block w-100" src={post.imageUrl} />
             <Carousel.Caption>
               <a
@@ -125,6 +125,17 @@ const SearchPosts = () => {
                 </Media.Body>
               </Media>
               <br />
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-format="fluid"
+     data-ad-layout-key="-i8+a-18-47+ce"
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="1682703097"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
             </>
           );
         })
@@ -139,7 +150,9 @@ const SearchPosts = () => {
           <ul className="list-unstyled">
             {err}
 
-            <Carousel>{postsSlider}</Carousel>
+            <Carousel fade prevLabel={null} nextLabel={null}>
+              {postsSlider}
+            </Carousel>
             <br />
             {loader}
             <br />

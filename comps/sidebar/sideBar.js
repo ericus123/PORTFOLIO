@@ -69,7 +69,29 @@ const SideBar = () => {
       {posts.length ? <h2 className="recent-title">What's new</h2> : null}
       {err}
       <br />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-format="fluid"
+     data-ad-layout-key="-i8+a-18-47+ce"
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="1682703097"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       {recentPosts}
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-format="fluid"
+     data-ad-layout-key="-i8+a-18-47+ce"
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="1682703097"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       <br />
       {posts.length ? (
         <form
@@ -90,6 +112,17 @@ const SideBar = () => {
       ) : null}
       <br />
       <GetCats />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{display:"block"}}
+     data-ad-client="ca-pub-6149905527184076"
+     data-ad-slot="7105763628"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       <br />
       <br />
     </div>
