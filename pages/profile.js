@@ -10,13 +10,12 @@ import {
   updateProfile,
   deleteAccountToken,
 } from "../redux/actions/profile/profile";
+import { Upload , message} from 'antd';
 import { Spinner, Modal } from "react-bootstrap";
 import { changePassword } from "../redux/actions/auth/password";
-import { LockFill } from "react-bootstrap-icons";
 import { simpleAlert } from "../comps/Alerts";
 import { authRequest } from "../redux/actions/auth/checkAuth";
 import ImgCrop from "antd-img-crop";
-import { Upload } from "antd";
 
 const Profile = () => {
   const [active, setActive] = useState("about");
@@ -100,16 +99,13 @@ const Profile = () => {
       dispatch(authRequest(token));
   },[changeAvatarMessage])
   const uploadAvatar = async (file) => {
+    if (file.type !== 'image') {
+      message.error(`File is not an image`);
+    }
     setLoadingImg("avatar");
     const base64 = await convertBase64(file);
     dispatch(changeAvatar(base64));
     setLoadingImg(null);
-  };
-  const uploadFile = async (e) => {
-    setLoadingImg(null);
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
-    setLoadingImg(base64);
   };
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -122,6 +118,7 @@ const Profile = () => {
 
       fileReader.onerror = (error) => {
         reject(error);
+        setIsUploading(false);
       };
     });
   };
@@ -138,9 +135,7 @@ const Profile = () => {
     const occupation = e.target.occupation.value;
     const gender = e.target.gender.value;
     const bio = e.target.bio.value;
-    const image = loadingImg;
-    dispatch(completeProfile(occupation, gender, image, bio));
-    e.target.reset();
+    dispatch(completeProfile(occupation, gender,bio));
   };
   const update_Profile = (e) => {
     e.preventDefault();
@@ -154,11 +149,6 @@ const Profile = () => {
       updateProfile(first_name, last_name, user_name, occupation, gender, bio)
     );
   };
-
-
-  const beforeUpload = (file) => {
-    
-  }
   function DeleteAccountModal(props) {
     return (
       <Modal
@@ -388,16 +378,7 @@ const Profile = () => {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col}>
-            <Form.Label>Profile Image</Form.Label>
-            <Form.File
-              id="exampleFormControlFile1"
-              onChange={(e) => {
-                uploadFile(e);
-              }}
-              required
-            />
-          </Form.Group>
+ 
         </Form.Row>
 
         <Form.Row>
@@ -410,6 +391,7 @@ const Profile = () => {
             />
           </Form.Group>
         </Form.Row>
+
         {completeProfileError
           ? simpleAlert("danger", completeProfileError)
           : null}
@@ -418,12 +400,12 @@ const Profile = () => {
           disabled={completeProfileIsLoading}
           style={{ float: "right" }}
           variant="primary"
-          type="submit"
+         type="submit"
         >
           {completeProfileIsLoading ? (
             <Spinner size="sm" animation="border"></Spinner>
           ) : (
-            "Save"
+         "Save"
           )}
         </Button>
       </Form>
@@ -487,7 +469,7 @@ const Profile = () => {
         <>
           <div className="profile_picture">
             <img src={profile.avatar || avatar} />
-            <div className="file">
+         <div className="file">
                   <ImgCrop>
    <Upload  beforeUpload={uploadAvatar}>
               <form>
@@ -502,14 +484,15 @@ const Profile = () => {
                     ></Spinner>
                   </div>
                 ) :
-                  <span style={{color: "white"}}>Change photo</span>
+                  <span style={{color: "white"}}>{profile.isComplete ? "Change photo" : "Add Photo"}</span>
                }
                 {changeAvatarError
                   ? simpleAlert("danger", changeAvatarError)
                   : null}
-              </form>
+              </form> 
               </Upload>
               </ImgCrop>
+              
             </div>
           </div>
           <div className="profile_details">

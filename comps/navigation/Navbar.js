@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { authRequest } from "../../redux/actions/auth/checkAuth";
 import { useRouter } from "next/router";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import { Dot } from "react-bootstrap-icons";
 import unknown_avatar from "../../assets/images/avatar.png";
 import {
   ArrowRightCircleFill,
@@ -11,6 +10,9 @@ import {
   PersonPlusFill,
   PersonCircle,
 } from "react-bootstrap-icons";
+import {FaBars} from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/fontawesome-free-solid";
 
 const Navigation = () => {
   const logout = () => {
@@ -39,8 +41,11 @@ const Navigation = () => {
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
-          className="navbar-toogler"
-        />
+        
+        >
+          <span  ><FaBars className="menu-icon"/></span>
+        </Navbar.Toggle>
+
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto nav">
             <Nav.Link href="/" className="link">

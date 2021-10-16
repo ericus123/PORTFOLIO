@@ -55,19 +55,17 @@ export const changeAvatar = (image) => async (dispatch) => {
 };
 
 export const completeProfile =
-  (Occupation, Gender, Image, Bio) => async (dispatch) => {
+  (Occupation, Gender, Bio) => async (dispatch) => {
     try {
       dispatch({ type: types.COMPLETE_PROFILE_ISLOADING });
       const res = await http.patch("/api/profile/", {
         occupation: Occupation,
         gender: Gender,
-        img: Image,
         bio: Bio,
       });
       dispatch({ type: types.COMPLETE_PROFILE_SUCCESS, payload: res.data });
       NotificationManager.success("Profile Completed Successfuly", "SUCCESS");
-      dispatch(getProfileRequest());
-      dispatch(authRequest());
+      window.location.reload();
       setTimeout(() => {
         dispatch({ type: types.REMOVE_COMPLETE_PROFILE_SUCCESS });
       }, 3000);
