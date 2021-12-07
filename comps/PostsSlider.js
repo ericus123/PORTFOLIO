@@ -15,7 +15,7 @@ const PostsSlider = () => {
           <Carousel.Item className="slider" interval={10000}>
             <img
               className="slider_image"
-              className="d-block w-100"
+              className="d-block w-100 img-border-radius"
               src={post.imageUrl}
             />
             <Carousel.Caption>

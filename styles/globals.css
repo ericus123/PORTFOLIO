@@ -1793,6 +1793,10 @@ footer li:hover {
   color: var(--second-color);
 }
 
+.img-border-radius{
+  border-radius: 7.5px;
+}
+
 @media only screen and (max-width: 780px) {
   .profile {
     display: flex;
