@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Media, Alert } from "react-bootstrap";
 import { getPostsByCat } from "../../../redux/actions/blog/posts";
 import { useSelector, useDispatch } from "react-redux";
-import SideBar from "../../../comps/sidebar/sideBar";
+import SideBar from "../../../comps/blog/sidebar/sideBar";
 import Link from "next/link";
 import { Spinner } from "react-bootstrap";
-import Paginate from "../../../comps/Pagination";
+import Paginate from "../../../comps/blog/Pagination";
 import NotFound from "../../404";
 import ScrollButton from "../../../reusables/ScrollUp";
+import PostsList from "../../../comps/blog/PostsList";
 
 const PostsByCategory = () => {
   const message = useSelector((state) => state.postsByCat.message);
@@ -38,78 +39,13 @@ const PostsByCategory = () => {
       <>
         <br />
         <div>
-          <Link href={"/blog"}>
-            <a style={{ textDecoration: "none" }}>Blog</a>
-          </Link>
-          &nbsp;&gt;&nbsp;
-          <a style={{ textDecoration: "none" }} className="">
-            Category
-          </a>
-          &nbsp;&gt;&nbsp;
-          <a style={{ textDecoration: "none" }} className="">
-            {router.query.category}
-          </a>
+          <Link href={"/blog"}>Blog</Link>
+          &nbsp;&gt;&nbsp; Category &nbsp;&gt;&nbsp;
+          {router.query.category}
         </div>
         <br />
       </>
     ) : null;
-
-  const categorizedPosts =
-    catPosts && catPosts.length
-      ? catPosts
-          .slice()
-          .sort((a, b) => (b.date > a.date ? 1 : -1))
-          .map((post) => {
-            return (
-              <>
-                <Media as="li" key={post._id} className="media">
-                  <div className="image_wrapper">
-                    <Link
-                      href={`/blog/${post._id}`}
-                      className="text-decoration-none"
-                    >
-                      <img
-                        width={384}
-                        height={256}
-                        className="image"
-                        src={post.imageUrl}
-                        dpr="auto"
-                      />
-                    </Link>
-                  </div>
-                  <br />
-                  &nbsp; &nbsp;&nbsp;
-                  <Media.Body className="media-body">
-                    <h4 className="title">
-                      <a
-                        href={`/blog/${post._id}`}
-                        className="text-decoration-none title "
-                      >
-                        {post.title}
-                      </a>
-                    </h4>
-                    <p className="description">
-                      {decodeHtml(
-                        post.description
-                          .replace(/(<([^>]+)>)/gi, "")
-                          .substr(0, 250) + "..."
-                      )}
-                    </p>
-                    <h6 style={{ marginTop: "10px" }}>
-                      <a
-                        href={`/blog/${post._id}`}
-                        className="text-decoration-none"
-                      >
-                        Read More
-                      </a>
-                    </h6>
-                  </Media.Body>
-                </Media>
-                <br />
-              </>
-            );
-          })
-      : null;
 
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
@@ -128,19 +64,27 @@ const PostsByCategory = () => {
             {err}
             {message && !catPosts.length ? <NotFound /> : null}
             {breadCrumb}
-            {categorizedPosts}
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style={{display:"block"}}
-     data-ad-format="fluid"
-     data-ad-layout-key="-i8+a-18-47+ce"
-     data-ad-client="ca-pub-6149905527184076"
-     data-ad-slot="1682703097"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-            {catPosts && catPosts.length ? console.log(categorizedPosts) : null}
+            {
+              <PostsList
+                posts={catPosts
+                  .slice()
+                  .sort((a, b) => (b.date > a.date ? 1 : -1))}
+              />
+            }
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+              crossorigin="anonymous"
+            ></script>
+            <ins
+              class="adsbygoogle"
+              style={{ display: "block" }}
+              data-ad-format="fluid"
+              data-ad-layout-key="-i8+a-18-47+ce"
+              data-ad-client="ca-pub-6149905527184076"
+              data-ad-slot="1682703097"
+            ></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
           </ul>
           {catPosts ? (
             <div style={{ textAlign: "center" }}>
@@ -161,17 +105,20 @@ const PostsByCategory = () => {
             <br />
 
             <SideBar />
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style={{display:"block"}}
-     data-ad-format="fluid"
-     data-ad-layout-key="-i8+a-18-47+ce"
-     data-ad-client="ca-pub-6149905527184076"
-     data-ad-slot="1682703097"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+              crossorigin="anonymous"
+            ></script>
+            <ins
+              class="adsbygoogle"
+              style={{ display: "block" }}
+              data-ad-format="fluid"
+              data-ad-layout-key="-i8+a-18-47+ce"
+              data-ad-client="ca-pub-6149905527184076"
+              data-ad-slot="1682703097"
+            ></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
           </ul>
         </div>
       </div>

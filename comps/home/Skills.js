@@ -1,6 +1,6 @@
-import React from "react";
 import skills_image from "../../public/images/skills.webp";
 import Image from "next/image";
+import styles from "./index.module.scss";
 
 const Skills = () => {
   return (
@@ -36,7 +36,13 @@ const Skills = () => {
         </div>
 
         <div>
-          <Image src={skills_image} alt="" className="skills__img" />
+          <Image
+            src={skills_image}
+            alt=""
+            className={styles.skills_img}
+            priority
+            quality={25}
+          />
         </div>
       </div>
     </div>

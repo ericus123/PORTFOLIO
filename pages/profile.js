@@ -462,7 +462,15 @@ const Profile = () => {
       {profile ? (
         <>
           <div className="profile_picture">
-            <Image src={profile.avatar || avatar} layout="fill" />
+            <Image
+              width={50}
+              height={100}
+              priority
+              quality={25}
+              src={profile.avatar || avatar}
+              layout="responsive"
+              className="profile_img"
+            />
             <div className="file">
               <ImgCrop>
                 <Upload beforeUpload={uploadAvatar}>

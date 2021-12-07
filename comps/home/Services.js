@@ -19,7 +19,7 @@ const Services = () => {
             <div className="box">
               <div className="our-services settings">
                 <div className="icon">
-                  <Image src={ui_ux} />
+                  <Image src={ui_ux} priority quality={25} />
                 </div>
                 <h4>UI/UX DESIGN</h4>
                 <p>
@@ -33,7 +33,7 @@ const Services = () => {
             <div className="box">
               <div className="our-services speedup">
                 <div className="icon">
-                  <Image src={optimization} />
+                  <Image src={optimization} priority quality={25} />
                 </div>
                 <h4>SEO</h4>
                 <p>
@@ -47,7 +47,7 @@ const Services = () => {
             <div className="box">
               <div className="our-services privacy">
                 <div className="icon">
-                  <Image src={backend} />
+                  <Image src={backend} priority quality={25} />
                 </div>
                 <h4>BACKEND DEVELOPMENT</h4>
                 <p>
@@ -63,7 +63,7 @@ const Services = () => {
             <div className="box">
               <div className="our-services backups">
                 <div className="icon">
-                  <Image src={responsive} />
+                  <Image src={responsive} priority quality={25} />
                 </div>
                 <h4>RESPONSIVE WEB DESIGN</h4>
                 <p>
@@ -91,7 +91,7 @@ const Services = () => {
             <div className="box">
               <div className="our-services database">
                 <div className="icon">
-                  <Image src={frontend} />
+                  <Image src={frontend} priority quality={25} />
                 </div>
                 <h4>FRONTEND DEVELOPMENT</h4>
                 <p>

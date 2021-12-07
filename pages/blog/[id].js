@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Comments from "../../comps/comments/Comments";
-import { BigLike } from "../../comps/Likes/likes";
-import { Media, Row, Col, Alert } from "react-bootstrap";
-import readingTime from "reading-time";
+import { useSelector } from "react-redux";
+import { Alert } from "react-bootstrap";
 import http from "../../utils/axios/axios";
-import unknown_avatar from "../../public/images/avatar.png";
-import SideBar from "../../comps/sidebar/sideBar";
+import SideBar from "../../comps/blog/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
-import { PostShares } from "../../comps/shares/Shares";
-import Image from "next/image";
 import Head from "next/head";
+import PostsDetails from "../../comps/blog/PostDetails";
 
 export const getStaticPaths = async () => {
   const res = await http.get("/api/posts");
@@ -62,68 +56,6 @@ const SinglePost = ({ post, id }) => {
     (state) => state.postReaction.reactionisLoading
   );
 
-  const singlePost = post ? (
-    <>
-      <Media as="li" className="single" style={{ listStyle: "none" }}>
-        <Media.Body className="body">
-          <h3
-            className="title"
-            style={{ marginTop: "10px", marginBottom: "10px" }}
-          >
-            {post.title}
-          </h3>
-          <Row className="mb-2">
-            <Col xs="1" sm="1" className="mb-1 mr-1 ">
-              <div className="profile-picture-sm">
-                <Image
-                  src={post.author ? post.author.avatar : unknown_avatar}
-                  width="60"
-                  height="60"
-                />
-              </div>
-            </Col>
-            <Col sm="5" md="5" className="mt-2">
-              {" "}
-              <p className="more_details">
-                {post.user ? (
-                  <span classname="authors_name">
-                    {post.author ? (
-                      <b>{`${post.author.firstName} ${post.author.lastName}`}</b>
-                    ) : (
-                      "AMANI Eric"
-                    )}
-                  </span>
-                ) : (
-                  <span className="authors_name">AMANI Eric</span>
-                )}
-
-                <span className="post_det">
-                  Created at {new Date(post.createdAt).toLocaleString()}
-                  {post.updatedAt ? post.updatedAt : null} |&nbsp;
-                  {readingTime(post.description).text}
-                </span>
-              </p>
-            </Col>
-            <Col className="mt-1">
-              <PostShares id={id} />
-            </Col>
-          </Row>
-          <img className="mr-3" src={post.imageUrl} alt={post.title} />
-          <br />
-          <br />
-          <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
-          <br />
-          <BigLike id={id} />
-          <br />
-          <br />
-          <br />
-          <br />
-          <Comments comment={post.comments} id={id} />
-        </Media.Body>
-      </Media>
-    </>
-  ) : null;
-
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
     <>
@@ -168,7 +100,7 @@ const SinglePost = ({ post, id }) => {
       <div className="single-post">
         <>
           <ScrolButton />
-          {singlePost}
+          {<PostsDetails post={post} />}
         </>
         <div style={{ marginTop: "1rem" }}>
           <SideBar id={id} />

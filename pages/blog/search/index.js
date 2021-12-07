@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
-import { Media, Alert, Carousel, Spinner } from "react-bootstrap";
+import { Alert, Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   getPosts,
   searchPostsRequest,
 } from "../../../redux/actions/blog/posts";
-import SideBar from "../../../comps/sidebar/sideBar";
+import SideBar from "../../../comps/blog/sidebar/sideBar";
 import ScrollTop from "../../../reusables/ScrollUp";
-import Paginate from "../../../comps/Pagination";
-import { scrollTop } from "../../../utils/functions";
+import Paginate from "../../../comps/blog/Pagination";
+import PostsList from "../../../comps/blog/PostsList";
+import PostsSlider from "../../../comps/blog/PostsSlider";
 
 const SearchPosts = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.posts);
   const isLoading = useSelector((state) => state.posts.isLoading);
   const error = useSelector((state) => state.posts.error);
 
@@ -45,101 +44,12 @@ const SearchPosts = () => {
         <Spinner animation="border" size="lg" role="status" />
       </div>
     ) : null;
-  const postsSlider = posts.length
-    ? posts.slice(-5).map((post) => {
-        return (
-          <Carousel.Item style={{ maxHeight: "400px" }} interval={7000}>
-            <img className="d-block w-100" src={post.imageUrl} />
-            <Carousel.Caption>
-              <a
-                href={"/blog/" + post._id}
-                style={{
-                  color: "rgb(0, 123, 255)",
-                  background: "white",
-                  textDecoration: "none",
-                  paddingLeft: "2px",
-                  marginRight: "2px",
-                }}
-              >
-                {post.title}
-              </a>
-            </Carousel.Caption>
-          </Carousel.Item>
-        );
-      })
-    : null;
 
   const err = error ? (
     <Alert variant="danger" style={{ textAlign: "center" }}>
       {error}
     </Alert>
   ) : null;
-
-  const searchResults =
-    postsPerPage.length && !searchIsLoading
-      ? postsPerPage.map((post) => {
-          return (
-            <>
-              <Media as="li" key={post._id} className="media">
-                <div className="image_wrapper">
-                  <a
-                    href={`/blog/${post._id}`}
-                    className="text-decoration-none"
-                    onClick={scrollTop}
-                  >
-                    <img
-                      width={384}
-                      height={256}
-                      className="image"
-                      src={post.imageUrl}
-                      dpr="auto"
-                    />
-                  </a>
-                </div>
-                <br />
-                &nbsp;&nbsp;&nbsp;
-                <Media.Body className="media-body">
-                  <h4 className="title">
-                    <a
-                      href={`/blog/${post._id}`}
-                      className="text-decoration-none title"
-                      onClick={scrollTop}
-                    >
-                      {post.title}
-                    </a>
-                  </h4>
-                  <p className="description">
-                    {post.description
-                      .replace(/(<([^>]+)>)/gi, "")
-                      .substr(0, 250) + "..."}
-                  </p>
-                  <h6 style={{ marginTop: "10px" }}>
-                    <a
-                      href={`/blog/${post._id}`}
-                      className="text-decoration-none"
-                      onClick={scrollTop}
-                    >
-                      Read More
-                    </a>
-                  </h6>
-                </Media.Body>
-              </Media>
-              <br />
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style={{display:"block"}}
-     data-ad-format="fluid"
-     data-ad-layout-key="-i8+a-18-47+ce"
-     data-ad-client="ca-pub-6149905527184076"
-     data-ad-slot="1682703097"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-            </>
-          );
-        })
-      : null;
 
   return (
     <div className="Blog">
@@ -149,10 +59,7 @@ const SearchPosts = () => {
         <div className="content-wrapper col-md-auto">
           <ul className="list-unstyled">
             {err}
-
-            <Carousel fade prevLabel={null} nextLabel={null}>
-              {postsSlider}
-            </Carousel>
+            <PostsSlider />
             <br />
             {loader}
             <br />
@@ -186,7 +93,7 @@ const SearchPosts = () => {
               </Alert>
             ) : null}
             <br />
-            {searchResults}
+            {!searchIsLoading && <PostsList posts={postsPerPage} />}
             <br />
             {searchPosts.length && !searchIsLoading ? (
               <div style={{ textAlign: "center" }}>

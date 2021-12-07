@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import unknown_avatar from "../../public/images/avatar.png";
+import unknown_avatar from "../../../public/images/avatar.png";
 import { faHeart, faCrown } from "@fortawesome/fontawesome-free-solid";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { simpleAlert } from "../Alerts";
+import { simpleAlert } from "../../Alerts";
 import { Spinner, Form, Button, Modal, Col } from "react-bootstrap";
+import styles from "./index.module.scss";
 import {
   GetComments,
   PostComment,
@@ -16,9 +17,9 @@ import {
   DeleteCommentReply,
   ReactOnPostComment,
   ReactOnCommentReply,
-} from "../../redux/actions/blog/posts";
+} from "../../../redux/actions/blog/posts";
 import TimeAgo from "react-timeago";
-import { authRequest } from "../../redux/actions/auth/checkAuth";
+import { authRequest } from "../../../redux/actions/auth/checkAuth";
 import Image from "next/image";
 
 const Comments = ({ id }) => {
@@ -353,6 +354,7 @@ const Comments = ({ id }) => {
             src={comment.user ? comment.user.avatar : unknown_avatar}
             priority
             quality={25}
+            className={styles.user_img}
           />
         </div>
         <div className="desc">
@@ -460,10 +462,18 @@ const Comments = ({ id }) => {
               ? comment.replies.map((reply) => {
                   return (
                     <div className="reply" key={reply._id}>
-                      <div className="profile-picture-sm">
+                      <div className={`profile-p-sm ${styles.user_img}`}>
                         <Image
                           className="b-border"
                           src={reply.user ? reply.user.avatar : unknown_avatar}
+                          width="35px"
+                          height="35px"
+                          src={
+                            comment.user ? comment.user.avatar : unknown_avatar
+                          }
+                          priority
+                          quality={25}
+                          className={styles.user_img}
                         />
                       </div>
                       <div className="desc">
