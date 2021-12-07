@@ -1,0 +1,10 @@
+.about_img {
+  width: 300px;
+  justify-self: center;
+  :nth-child(1) {
+    border-radius: 0.5rem;
+  }
+}
+.skills_img {
+  border-radius: 5px;
+}

@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import about from "../../public/images/about.jpg";
 import Image from "next/image";
+import styles from "./index.module.scss";
 
 const About = () => {
   return (
@@ -19,8 +20,8 @@ Ping me if you need help (or just wanna' chat) 🤖
         <h2 className="section-title">About</h2>
 
         <div className="about__container bd-grid">
-          <div className="about__img">
-            <Image src={about} alt="" />
+          <div className={styles.about_img}>
+            <Image src={about} priority quality={25} />
           </div>
 
           <div>

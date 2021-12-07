@@ -179,7 +179,7 @@ const Footer = () => {
         <div className="">
           <div className="">
             <div className="copyright">
-              Copyright 2021 | All Rights Reserved by AMANI Eric.
+              Copyright {new Date().getFullYear()} | All Rights Reserved by AMANI Eric.
             </div>
           </div>
         </div>

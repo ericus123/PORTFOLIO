@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
-import { Media, Spinner } from "react-bootstrap";
+import { useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import Link from "next/link";
 import { getPosts } from "../../redux/actions/blog/posts";
 import ScrollButton from "../../reusables/ScrollUp";
-import SideBar from "../../comps/sidebar/sideBar";
-import Paginate from "../../comps/Pagination";
+import SideBar from "../../comps/blog/sidebar/sideBar";
+import Paginate from "../../comps/blog/Pagination";
 import { simpleAlert } from "../../comps/Alerts";
-import { scrollTop } from "../../utils/functions";
-import PostsSlider from "../../comps/PostsSlider";
-import UserPage from "../../comps/layouts/UserPage";
+import PostsSlider from "../../comps/blog/PostsSlider";
 import Head from "next/head";
+import PostsList from "../../comps/blog/PostsList";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -34,60 +31,7 @@ const Blog = () => {
       <Spinner animation="border" size="lg" role="status" />
     </div>
   ) : null;
-  const decodeHtml = (html) => {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  };
-  const postsList = postsPerPage.length
-    ? postsPerPage.map((post) => {
-        return (
-          <>
-            <Media as="li" key={post._id} className="media">
-              <div className="image_wrapper">
-                <Link
-                  href={`/blog/${post._id}`}
-                  className="text-decoration-none"
-                  onClick={scrollTop}
-                >
-                  <a className="text-decoration-none">
-                    <img
-                      width={384}
-                      height={256}
-                      className="image"
-                      src={post.imageUrl}
-                      dpr="auto"
-                    />
-                  </a>
-                </Link>
-              </div>
-              <br />
-              &nbsp; &nbsp;&nbsp;
-              <Media.Body className="media-body">
-                <h4 className="title">
-                  <Link href={`/blog/${post._id}`} onClick={scrollTop}>
-                    <a className="text-decoration-none title ">{post.title}</a>
-                  </Link>
-                </h4>
-                <p className="description">
-                  {decodeHtml(
-                    post.description
-                      .replace(/(<([^>]+)>)/gi, "")
-                      .substr(0, 250) + "..."
-                  )}
-                </p>
-                <h6 style={{ marginTop: "10px" }}>
-                  <Link href={`/blog/${post._id}`} onClick={scrollTop}>
-                    <a className="text-decoration-none read-more">Read More</a>
-                  </Link>
-                </h6>
-              </Media.Body>
-            </Media>
-            <br />
-          </>
-        );
-      })
-    : null;
+
   const err = error ? <>{simpleAlert("danger", error)}</> : null;
 
   return (
@@ -128,17 +72,22 @@ const Blog = () => {
             <ul className="list-unstyled">
               {loader}
               {err}
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style={{display:"block", textAlign:"center"}}
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6149905527184076"
-     data-ad-slot="1965117589"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+              <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+                crossorigin="anonymous"
+              ></script>
+              <ins
+                class="adsbygoogle"
+                style={{ display: "block", textAlign: "center" }}
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-6149905527184076"
+                data-ad-slot="1965117589"
+              ></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
               <PostsSlider />
               {message && !postsPerPage.length && !error ? (
                 <>
@@ -146,18 +95,23 @@ const Blog = () => {
                 </>
               ) : null}
               <br />
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style={{display:"block"}}
-     data-ad-format="fluid"
-     data-ad-layout-key="-i8+a-18-47+ce"
-     data-ad-client="ca-pub-6149905527184076"
-     data-ad-slot="1682703097"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-              {postsList}
+              <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
+                crossorigin="anonymous"
+              ></script>
+              <ins
+                class="adsbygoogle"
+                style={{ display: "block" }}
+                data-ad-format="fluid"
+                data-ad-layout-key="-i8+a-18-47+ce"
+                data-ad-client="ca-pub-6149905527184076"
+                data-ad-slot="1682703097"
+              ></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+              <PostsList posts={postsPerPage} />
               <br />
               {postsPerPage.length ? (
                 <div style={{ textAlign: "center" }}>

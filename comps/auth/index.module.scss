@@ -2,10 +2,6 @@
   color: white;
   background-color: red;
 }
-
-.google-icon {
-}
-
 .googleAuthBtn {
   height: "25vh";
   width: "100%";
@@ -14,7 +10,6 @@
   align-items: center;
   justify-items: center;
   background-color: white;
-  // box-shadow: 0px 0.5px 2.5px gray;
   border: 1px solid rgb(233, 230, 230);
   border-radius: 5px;
   gap: 5%;
@@ -49,7 +44,7 @@
   margin-top: -1.6rem;
   margin-bottom: 1.6rem;
   text-decoration: underline;
-  font-size: 1em;
+  font-size: 0.8em;
   width: 100%;
   a {
     text-decoration: underline;

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 const NotFound = () => {
@@ -13,7 +12,7 @@ const NotFound = () => {
           been removed, changed or is temporarily unavailable
         </p>
         <Link href="/" shallow={true}>
-          <a style={{ textDecoration: "none" }}>Back to homepage</a>
+          Back to homepage
         </Link>
       </div>
     </div>

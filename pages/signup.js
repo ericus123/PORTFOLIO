@@ -75,7 +75,7 @@ const Signup = () => {
                   <p style={{ textAlign: "center", fontSize: "smaller" }}>
                     Already have an account?
                     <Link href="/login" shallow={true}>
-                      <a style={{ textDecoration: "none" }}>SignIn</a>
+                      SignIn
                     </Link>
                   </p>
                 </div>

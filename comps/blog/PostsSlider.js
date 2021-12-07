@@ -2,10 +2,10 @@ import React from "react";
 import { Alert, Carousel } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "./index.module.scss";
 
 const PostsSlider = () => {
-  const dispatch = useDispatch();
-
   const posts = useSelector((state) => state.posts.posts);
   const error = useSelector((state) => state.posts.error);
 
@@ -13,24 +13,21 @@ const PostsSlider = () => {
     ? posts.slice(0, 5).map((post) => {
         return (
           <Carousel.Item className="slider" interval={10000}>
-            <img
-              className="slider_image"
-              className="d-block w-100 img-border-radius"
-              src={post.imageUrl}
-            />
+            <div className={styles.image_slider_item}>
+              <Image
+                className="slider_image"
+                className="d-block w-100 img-border-radius"
+                src={post.imageUrl}
+                width={400}
+                height={300}
+                layout="responsive"
+                priority
+                quality={25}
+              />
+            </div>
             <Carousel.Caption>
               <Link href={`/blog/${post._id}`}>
-                <a
-                  style={{
-                    color: "rgb(0, 123, 255)",
-                    background: "white",
-                    textDecoration: "none",
-                    paddingLeft: "2px",
-                    marginRight: "2px",
-                  }}
-                >
-                  {post.title}
-                </a>
+                <span className={styles.slider_caption}>{post.title}</span>
               </Link>
             </Carousel.Caption>
           </Carousel.Item>

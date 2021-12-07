@@ -7,7 +7,7 @@ const Projects = () => {
   return (
     <div className="projects">
       <Carousel>
-        <Image src={image} style={{ borderRadius: "1%" }} />{" "}
+        <Image src={image} style={{ borderRadius: "1%" }} />
         {[1, 2, 3, 4, 5].map(() => (
           <Carousel.Item>
             <Row>

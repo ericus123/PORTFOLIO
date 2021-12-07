@@ -71,7 +71,13 @@ const Navigation = () => {
                 title={
                   <>
                     <div className="profile-picture">
-                      <Image src={user?.avatar || unknown_avatar} />
+                      <Image
+                        src={user?.avatar || unknown_avatar}
+                        width={40}
+                        height={40}
+                        quality={25}
+                        priority
+                      />
                     </div>
                   </>
                 }
