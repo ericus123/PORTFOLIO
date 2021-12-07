@@ -1152,7 +1152,7 @@ body {
   display: inline-block;
   width: 140px;
   height: 140px;
-  background-image: url(../assets/images/emoji.png);
+  background-image: url("../public/images/emoji.png");
   background-size: cover;
 }
 .notfound .notfound-404:before {
@@ -1592,8 +1592,8 @@ footer .newsletter input[type="email"] {
   margin-right: 0.5%;
 }
 
-.menu-icon{
-  color: var(--first-color)
+.menu-icon {
+  color: var(--first-color);
 }
 footer .newsletter .sub-btn {
   width: 20%;
@@ -1604,7 +1604,7 @@ footer .newsletter .sub-btn {
   border-radius: 0px 2px 2px 0px;
   outline: none;
 }
-.ant-upload-list-text-container{
+.ant-upload-list-text-container {
   display: none !important;
 }
 .newsletter .newsletter_submit_btn {
@@ -1793,7 +1793,7 @@ footer li:hover {
   color: var(--second-color);
 }
 
-.img-border-radius{
+.img-border-radius {
   border-radius: 7.5px;
 }
 

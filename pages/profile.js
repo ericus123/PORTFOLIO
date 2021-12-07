@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import avatar from "../assets/images/avatar.png";
+import avatar from "../public/images/avatar.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Alert, Form, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
@@ -10,12 +10,13 @@ import {
   updateProfile,
   deleteAccountToken,
 } from "../redux/actions/profile/profile";
-import { Upload , message} from 'antd';
+import { Upload, message } from "antd";
 import { Spinner, Modal } from "react-bootstrap";
 import { changePassword } from "../redux/actions/auth/password";
 import { simpleAlert } from "../comps/Alerts";
 import { authRequest } from "../redux/actions/auth/checkAuth";
 import ImgCrop from "antd-img-crop";
+import Image from "next/image";
 
 const Profile = () => {
   const [active, setActive] = useState("about");
@@ -85,7 +86,6 @@ const Profile = () => {
         router.push("/login");
       }
     });
-
   }, [
     changeAvatarError,
     changePasswordError,
@@ -96,10 +96,10 @@ const Profile = () => {
   ]);
 
   useEffect(() => {
-      dispatch(authRequest(token));
-  },[changeAvatarMessage])
+    dispatch(authRequest(token));
+  }, [changeAvatarMessage]);
   const uploadAvatar = async (file) => {
-    if (file.type !== 'image') {
+    if (file.type !== "image") {
       message.error(`File is not an image`);
     }
     setLoadingImg("avatar");
@@ -135,7 +135,7 @@ const Profile = () => {
     const occupation = e.target.occupation.value;
     const gender = e.target.gender.value;
     const bio = e.target.bio.value;
-    dispatch(completeProfile(occupation, gender,bio));
+    dispatch(completeProfile(occupation, gender, bio));
   };
   const update_Profile = (e) => {
     e.preventDefault();
@@ -166,16 +166,16 @@ const Profile = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-          disabled={deleteTokenIsLoading}
+            disabled={deleteTokenIsLoading}
             onClick={() => {
               dispatch(deleteAccountToken());
             }}
           >
-          {deleteTokenIsLoading? (
-            <Spinner size="sm" animation="border"></Spinner>
-          ) : (
-            "Yes"
-          )}
+            {deleteTokenIsLoading ? (
+              <Spinner size="sm" animation="border"></Spinner>
+            ) : (
+              "Yes"
+            )}
           </Button>
           <Button variant="danger" onClick={props.onHide}>
             No
@@ -209,7 +209,7 @@ const Profile = () => {
       </>
     );
   }
-  if(deleteTokenMessage){
+  if (deleteTokenMessage) {
     setTimeout(() => {
       setModalShow(false);
     }, 1000);
@@ -251,7 +251,7 @@ const Profile = () => {
               defaultValue={profile.username}
             />
           </Form.Group>
-          <Form.Group as={Col} >
+          <Form.Group as={Col}>
             <Form.Label>Occupation</Form.Label>
             <Form.Control
               type="text"
@@ -377,18 +377,12 @@ const Profile = () => {
             </Form.Control>
           </Form.Group>
         </Form.Row>
-        <Form.Row>
- 
-        </Form.Row>
+        <Form.Row></Form.Row>
 
         <Form.Row>
           <Form.Group as={Col}>
             <Form.Label>Bio</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              name="bio"
-            />
+            <Form.Control as="textarea" rows={3} name="bio" />
           </Form.Group>
         </Form.Row>
 
@@ -400,12 +394,12 @@ const Profile = () => {
           disabled={completeProfileIsLoading}
           style={{ float: "right" }}
           variant="primary"
-         type="submit"
+          type="submit"
         >
           {completeProfileIsLoading ? (
             <Spinner size="sm" animation="border"></Spinner>
           ) : (
-         "Save"
+            "Save"
           )}
         </Button>
       </Form>
@@ -441,12 +435,12 @@ const Profile = () => {
               <span style={{ fontSize: "large" }}>&bull;</span>&nbsp;Allow your
               username to become available to anyone.
             </li>
-            <li>
-              {" "} 
-            </li>
+            <li> </li>
           </ul>
           {deleteTokenError ? simpleAlert("danger", deleteTokenError) : null}
-          {deleteTokenMessage ? simpleAlert("success", deleteTokenMessage) : null}
+          {deleteTokenMessage
+            ? simpleAlert("success", deleteTokenMessage)
+            : null}
           {!deleteTokenError && !deleteTokenMessage && !deleteTokenIsLoading ? (
             <Button onClick={() => setModalShow(true)} className="delete_acc">
               Continue
@@ -468,31 +462,32 @@ const Profile = () => {
       {profile ? (
         <>
           <div className="profile_picture">
-            <img src={profile.avatar || avatar} />
-         <div className="file">
-                  <ImgCrop>
-   <Upload  beforeUpload={uploadAvatar}>
-              <form>
-                {" "}
-                {loadingImg == "avatar" ||
-                (changeAvatarIsLoading && !changeAvatarError) ? (
-                  <div style={{ textAlign: "center" }}>
-                    <Spinner
-                      animation="border"
-                      size="md"
-                      role="status"
-                    ></Spinner>
-                  </div>
-                ) :
-                  <span style={{color: "white"}}>{profile.isComplete ? "Change photo" : "Add Photo"}</span>
-               }
-                {changeAvatarError
-                  ? simpleAlert("danger", changeAvatarError)
-                  : null}
-              </form> 
-              </Upload>
+            <Image src={profile.avatar || avatar} layout="fill" />
+            <div className="file">
+              <ImgCrop>
+                <Upload beforeUpload={uploadAvatar}>
+                  <form>
+                    {" "}
+                    {loadingImg == "avatar" ||
+                    (changeAvatarIsLoading && !changeAvatarError) ? (
+                      <div style={{ textAlign: "center" }}>
+                        <Spinner
+                          animation="border"
+                          size="md"
+                          role="status"
+                        ></Spinner>
+                      </div>
+                    ) : (
+                      <span style={{ color: "white" }}>
+                        {profile.isComplete ? "Change photo" : "Add Photo"}
+                      </span>
+                    )}
+                    {changeAvatarError
+                      ? simpleAlert("danger", changeAvatarError)
+                      : null}
+                  </form>
+                </Upload>
               </ImgCrop>
-              
             </div>
           </div>
           <div className="profile_details">
@@ -509,7 +504,7 @@ const Profile = () => {
                   onClick={() => {
                     setActive("complete");
                   }}
-                   style={{
+                  style={{
                     float: "right",
                     borderRadius: "1em",
                     color: "white",

@@ -1,5 +1,6 @@
 import React from "react";
-import skills_image from "../../assets/images/skills.webp";
+import skills_image from "../../public/images/skills.webp";
+import Image from "next/image";
 
 const Skills = () => {
   return (
@@ -35,7 +36,7 @@ const Skills = () => {
         </div>
 
         <div>
-          <img src={skills_image} alt="" className="skills__img" />
+          <Image src={skills_image} alt="" className="skills__img" />
         </div>
       </div>
     </div>

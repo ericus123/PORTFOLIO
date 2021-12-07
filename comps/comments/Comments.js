@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import unknown_avatar from "../../assets/images/avatar.png";
+import unknown_avatar from "../../public/images/avatar.png";
 import { faHeart, faCrown } from "@fortawesome/fontawesome-free-solid";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +19,7 @@ import {
 } from "../../redux/actions/blog/posts";
 import TimeAgo from "react-timeago";
 import { authRequest } from "../../redux/actions/auth/checkAuth";
+import Image from "next/image";
 
 const Comments = ({ id }) => {
   const [sort, setSort] = useState("new");
@@ -32,7 +33,7 @@ const Comments = ({ id }) => {
   const [com, setCom] = useState("");
   const [rep, setRep] = useState("");
   const postCommentError = useSelector((state) => state.postComment.error);
-    const postCommentMessage = useSelector((state) => state.postComment.message);
+  const postCommentMessage = useSelector((state) => state.postComment.message);
   const postCommentIsLoading = useSelector(
     (state) => state.postComment.isLoading
   );
@@ -108,14 +109,14 @@ const Comments = ({ id }) => {
     deleteReplyIsLoading,
     commentReactionMessage,
     replyReactionMessage,
-    postCommentMessage
+    postCommentMessage,
   ]);
 
   useEffect(() => {
     setEdComShow(false);
   }, [editCommentMessage]);
 
-    useEffect(() => {
+  useEffect(() => {
     setDelComShow(false);
   }, [deleteCommentMessage]);
 
@@ -124,7 +125,7 @@ const Comments = ({ id }) => {
       setEdRepShow(false);
     }, 1000);
   }, [editReplyMessage]);
-  
+
   useEffect(() => {
     setTimeout(() => {
       setDelRepShow(false);
@@ -156,11 +157,7 @@ const Comments = ({ id }) => {
 
   const DeleteCommentModal = (props) => {
     return (
-      <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title"
-      >
+      <Modal {...props} size="md" aria-labelledby="contained-modal-title">
         <Modal.Body>
           <h4>Delete comment</h4>
           <p>
@@ -170,16 +167,21 @@ const Comments = ({ id }) => {
           </p>
         </Modal.Body>
         <div className="mod-footer">
-          <Button disabled={deleteCommentIsLoading} onClick={props.onHide}>No</Button>
+          <Button disabled={deleteCommentIsLoading} onClick={props.onHide}>
+            No
+          </Button>
           <Button
-          disabled={deleteCommentIsLoading}
+            disabled={deleteCommentIsLoading}
             variant="danger"
             onClick={() => {
               dispatch(DeletePostComment(comId));
             }}
           >
-                   {deleteCommentIsLoading ? 
-                <Spinner animation="border" size="sm" role="status" /> : "Yes"}
+            {deleteCommentIsLoading ? (
+              <Spinner animation="border" size="sm" role="status" />
+            ) : (
+              "Yes"
+            )}
           </Button>
         </div>
       </Modal>
@@ -202,7 +204,9 @@ const Comments = ({ id }) => {
           </p>
         </Modal.Body>
         <div className="mod-footer">
-          <Button disabled={deleteReplyIsLoading} onClick={props.onHide}>No</Button>
+          <Button disabled={deleteReplyIsLoading} onClick={props.onHide}>
+            No
+          </Button>
           <Button
             variant="danger"
             diabled={deleteReplyIsLoading}
@@ -210,8 +214,11 @@ const Comments = ({ id }) => {
               dispatch(DeleteCommentReply(repId));
             }}
           >
-              {deleteReplyIsLoading ? 
-                <Spinner animation="border" size="sm" role="status" /> : "Yes"}
+            {deleteReplyIsLoading ? (
+              <Spinner animation="border" size="sm" role="status" />
+            ) : (
+              "Yes"
+            )}
           </Button>
         </div>
       </Modal>
@@ -240,7 +247,7 @@ const Comments = ({ id }) => {
                   rows={3}
                   controlId="exampleForm.ControlTextarea1"
                   name="desc"
-                     disabled={editReplyIsLoading}
+                  disabled={editReplyIsLoading}
                   defaultValue={rep}
                 />
               </Form.Group>
@@ -250,11 +257,18 @@ const Comments = ({ id }) => {
             {editReplyError ? simpleAlert("danger", editReplyError) : null}
           </div>
 
-          {!editReplyError ?
+          {!editReplyError ? (
             <div className="mod-footer">
-              <Button    disabled={editReplyIsLoading} style={{ margin: "1% 1% 1% 0%" }} type="submit">
-                {editReplyIsLoading ? 
-                <Spinner animation="border" size="sm" role="status" /> : "Save"}
+              <Button
+                disabled={editReplyIsLoading}
+                style={{ margin: "1% 1% 1% 0%" }}
+                type="submit"
+              >
+                {editReplyIsLoading ? (
+                  <Spinner animation="border" size="sm" role="status" />
+                ) : (
+                  "Save"
+                )}
               </Button>
               <Button
                 style={{ margin: "1% 1% 1% 0%" }}
@@ -262,12 +276,10 @@ const Comments = ({ id }) => {
                 variant="danger"
                 disabled={editReplyIsLoading}
               >
-                Cancel 
+                Cancel
               </Button>{" "}
-
-              
             </div>
-           : null}
+          ) : null}
         </Form>
       </Modal>
     );
@@ -306,20 +318,25 @@ const Comments = ({ id }) => {
 
           {!editCommentError ? (
             <div className="mod-footer">
-               <Button disabled={editCommentIsLoading} style={{ margin: "1% 1% 1% 0%" }} type="submit">
-                {editCommentIsLoading ? 
-                <Spinner animation="border" size="sm" role="status" /> : "Save"}
+              <Button
+                disabled={editCommentIsLoading}
+                style={{ margin: "1% 1% 1% 0%" }}
+                type="submit"
+              >
+                {editCommentIsLoading ? (
+                  <Spinner animation="border" size="sm" role="status" />
+                ) : (
+                  "Save"
+                )}
               </Button>
               <Button
-              disabled={editCommentIsLoading}
+                disabled={editCommentIsLoading}
                 style={{ margin: "1% 1% 1% 0%" }}
                 onClick={props.onHide}
                 variant="danger"
               >
                 Cancel
               </Button>{" "}
-               
- 
             </div>
           ) : null}
         </Form>
@@ -330,7 +347,13 @@ const Comments = ({ id }) => {
     return (
       <div className="comment" key={comment._id}>
         <div className="profile-picture-sm">
-          <img width="40px" height="40px" src={comment.user ? comment.user.avatar : unknown_avatar} />
+          <Image
+            width="40px"
+            height="40px"
+            src={comment.user ? comment.user.avatar : unknown_avatar}
+            priority
+            quality={25}
+          />
         </div>
         <div className="desc">
           <p style={{ marginBottom: "0px" }}>
@@ -373,7 +396,6 @@ const Comments = ({ id }) => {
                       dispatch(ReactOnPostComment(comment._id));
                     }}
                   />{" "}
-
                   {comment.likes.length ? (
                     <span class="n">{comment.likes.length}</span>
                   ) : null}
@@ -439,8 +461,8 @@ const Comments = ({ id }) => {
                   return (
                     <div className="reply" key={reply._id}>
                       <div className="profile-picture-sm">
-                        <img
-                        className="b-border"
+                        <Image
+                          className="b-border"
                           src={reply.user ? reply.user.avatar : unknown_avatar}
                         />
                       </div>
@@ -548,13 +570,19 @@ const Comments = ({ id }) => {
               }}
             >
               <textarea name="desc" placeholder="Reply here..." />
-              
+
               {postCommentReplyError
                 ? simpleAlert("danger", postCommentReplyError)
                 : null}
               {!postCommentReplyError ? (
-                
-                <button type="submit" className="px-2"> {postCommentReplyIsLoading ? <Spinner animation="border" size="sm" role="status" /> : "Reply"}</button>
+                <button type="submit" className="px-2">
+                  {" "}
+                  {postCommentReplyIsLoading ? (
+                    <Spinner animation="border" size="sm" role="status" />
+                  ) : (
+                    "Reply"
+                  )}
+                </button>
               ) : null}
             </form>
           </div>
@@ -624,11 +652,13 @@ const Comments = ({ id }) => {
         {postCommentError ? simpleAlert("danger", postCommentError) : null}
         {!postCommentError ? (
           <button stype="submit" className="px-2">
-            {postCommentIsLoading ? 
-                  <Spinner animation="border" size="sm" role="status" /> : "Comment"}
+            {postCommentIsLoading ? (
+              <Spinner animation="border" size="sm" role="status" />
+            ) : (
+              "Comment"
+            )}
           </button>
         ) : null}
-        
       </form>
     </div>
   );

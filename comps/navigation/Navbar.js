@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { authRequest } from "../../redux/actions/auth/checkAuth";
 import { useRouter } from "next/router";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import unknown_avatar from "../../assets/images/avatar.png";
+import unknown_avatar from "../../public/images/avatar.png";
 import {
   ArrowRightCircleFill,
   ArrowLeftCircleFill,
   PersonPlusFill,
   PersonCircle,
 } from "react-bootstrap-icons";
-import {FaBars} from "react-icons/fa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/fontawesome-free-solid";
+import { FaBars } from "react-icons/fa";
+import Image from "next/image";
 
 const Navigation = () => {
   const logout = () => {
@@ -39,11 +38,10 @@ const Navigation = () => {
         <Navbar.Brand href="/#home" className="logo-name">
           AMANI Eric
         </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-        
-        >
-          <span  ><FaBars className="menu-icon"/></span>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav">
+          <span>
+            <FaBars className="menu-icon" />
+          </span>
         </Navbar.Toggle>
 
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -73,7 +71,7 @@ const Navigation = () => {
                 title={
                   <>
                     <div className="profile-picture">
-                      <img src={user?.avatar || unknown_avatar} />
+                      <Image src={user?.avatar || unknown_avatar} />
                     </div>
                   </>
                 }

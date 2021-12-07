@@ -8,6 +8,9 @@ import { simpleAlert } from "../comps/Alerts";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import GoogleAuth from "../comps/auth/GoogleAuth";
+import AuthButton from "../comps/auth/AuthButton";
+import AuthLinks from "../comps/auth/AuthLinks";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
@@ -43,7 +46,7 @@ const Login = () => {
         />
       </Head>
       <div className="login">
-        <h2 className="section-title login_title">Login</h2>
+        <h2 className="section-title login_title">SignIn</h2>
         <div className="contact__container login_container bd-grid">
           <form className="contact__form" onSubmit={handleSubmit}>
             <input
@@ -59,47 +62,24 @@ const Login = () => {
               autoComplete="cc-csc"
               className="contact__input"
             />
-            <Row>
-              {!error && !message && !isLoading ? (
-                <Col>
-                  <Row style={{ width: "100%" }}>
-                    <span style={{ textAlign: "center" }}>
-                      Don't have account ?
-                      <Link href="/signup" shallow={true}>
-                        <a style={{ textDecoration: "none" }}>Signup</a>
-                      </Link>
-                    </span>
-                  </Row>
-                  <Row style={{ width: "100%" }}>
-                    <span style={{ textAlign: "center" }}>
-                      Forgot password? click{" "}
-                      <Link href="/password/reset" shallow={true}>
-                        <a style={{ textDecoration: "none" }}>here</a>
-                      </Link>
-                    </span>
-                  </Row>
-                </Col>
-              ) : null}
 
-              <Col style={{ width: "100%" }}>
-                {error ? <>{simpleAlert("danger", error)}</> : null}
+            {!error && !message && !isLoading && <AuthLinks type="login" />}
 
-                {message ? <>{simpleAlert("success", message)}</> : null}
-                {isLoading ? (
-                  <div style={{ textAlign: "center" }}>
-                    <Spinner
-                      animation="border"
-                      size="md"
-                      role="status"
-                    ></Spinner>
-                  </div>
-                ) : message ? null : (
-                  <button type="submit" className="contact__button button">
-                    Login
-                  </button>
-                )}
-              </Col>
-            </Row>
+            <div style={{ width: "100%" }}>
+              {error ? <>{simpleAlert("danger", error)}</> : null}
+
+              {message ? <>{simpleAlert("success", message)}</> : null}
+              {isLoading ? (
+                <div style={{ textAlign: "center" }}>
+                  <Spinner animation="border" size="md" role="status"></Spinner>
+                </div>
+              ) : message ? null : (
+                <>
+                  <AuthButton text="Login" type="submit" />
+                  <GoogleAuth />
+                </>
+              )}
+            </div>
           </form>
         </div>
       </div>

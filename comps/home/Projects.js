@@ -1,12 +1,13 @@
 import React from "react";
 import { Button, Row, Col, Carousel } from "react-bootstrap";
-import image from "../../assets/images/skills.webp";
+import image from "../";
+import Image from "next/image";
 
 const Projects = () => {
   return (
     <div className="projects">
       <Carousel>
-        <img src={image} style={{ borderRadius: "1%" }} />{" "}
+        <Image src={image} style={{ borderRadius: "1%" }} />{" "}
         {[1, 2, 3, 4, 5].map(() => (
           <Carousel.Item>
             <Row>

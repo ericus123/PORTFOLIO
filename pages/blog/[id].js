@@ -5,10 +5,11 @@ import { BigLike } from "../../comps/Likes/likes";
 import { Media, Row, Col, Alert } from "react-bootstrap";
 import readingTime from "reading-time";
 import http from "../../utils/axios/axios";
-import unknown_avatar from "../../assets/images/avatar.png";
+import unknown_avatar from "../../public/images/avatar.png";
 import SideBar from "../../comps/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
 import { PostShares } from "../../comps/shares/Shares";
+import Image from "next/image";
 import Head from "next/head";
 
 export const getStaticPaths = async () => {
@@ -74,7 +75,7 @@ const SinglePost = ({ post, id }) => {
           <Row className="mb-2">
             <Col xs="1" sm="1" className="mb-1 mr-1 ">
               <div className="profile-picture-sm">
-                <img
+                <Image
                   src={post.author ? post.author.avatar : unknown_avatar}
                   width="60"
                   height="60"

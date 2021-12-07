@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
-import about from "../../assets/images/about.jpg";
+import about from "../../public/images/about.jpg";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -19,7 +20,7 @@ Ping me if you need help (or just wanna' chat) 🤖
 
         <div className="about__container bd-grid">
           <div className="about__img">
-            <img src={about} alt="" />
+            <Image src={about} alt="" />
           </div>
 
           <div>

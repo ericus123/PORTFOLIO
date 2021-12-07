@@ -1,22 +1,15 @@
 import React from "react";
-import ui_ux from "../../assets/images/ui_ux.svg";
-import responsive from "../../assets/images/responsive.svg";
-import frontend from "../../assets/images/frontend.svg";
-import optimization from "../../assets/images/optimization.svg";
-import database from "../../assets/images/database.svg";
-import backend from "../../assets/images/backend.svg";
-import Head from "next/head";
+import ui_ux from "../../public/images/ui_ux.svg";
+import responsive from "../../public/images/responsive.svg";
+import frontend from "../../public/images/frontend.svg";
+import optimization from "../../public/images/optimization.svg";
+import database from "../../public/images/database.svg";
+import backend from "../../public/images/backend.svg";
+import Image from "next/image";
 
 const Services = () => {
   return (
     <>
-      {/* <Head>
-  <title>AMANI Eric | Services</title>
-<meta name="description" content="
-Here are some of the services we offer. Check them and 
-feel free to contact us in case you any of the services we offer 
-"/>
-    </Head> */}
       <div className=" section container-fluid mb-5" id="services">
         <br />
         <h2 className="section-title">Services</h2>
@@ -26,7 +19,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services settings">
                 <div className="icon">
-                  <img src={ui_ux} />
+                  <Image src={ui_ux} />
                 </div>
                 <h4>UI/UX DESIGN</h4>
                 <p>
@@ -40,7 +33,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services speedup">
                 <div className="icon">
-                  <img src={optimization} />
+                  <Image src={optimization} />
                 </div>
                 <h4>SEO</h4>
                 <p>
@@ -54,7 +47,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services privacy">
                 <div className="icon">
-                  <img src={backend} />
+                  <Image src={backend} />
                 </div>
                 <h4>BACKEND DEVELOPMENT</h4>
                 <p>
@@ -70,7 +63,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services backups">
                 <div className="icon">
-                  <img src={responsive} />
+                  <Image src={responsive} />
                 </div>
                 <h4>RESPONSIVE WEB DESIGN</h4>
                 <p>
@@ -84,7 +77,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services ssl">
                 <div className="icon">
-                  <img src={database} />
+                  <Image src={database} />
                 </div>
                 <h4>DATABASE MANAGEMENT</h4>
                 <p>
@@ -98,7 +91,7 @@ feel free to contact us in case you any of the services we offer
             <div className="box">
               <div className="our-services database">
                 <div className="icon">
-                  <img src={frontend} />
+                  <Image src={frontend} />
                 </div>
                 <h4>FRONTEND DEVELOPMENT</h4>
                 <p>
