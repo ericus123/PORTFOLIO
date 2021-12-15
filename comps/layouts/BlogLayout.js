@@ -1,6 +1,7 @@
 import ScrollButton from "../../reusables/ScrollUp";
 import PostsSlider from "../blog/PostsSlider";
 import SideBar from "../blog/sidebar/sideBar";
+import styles from "./index.module.scss";
 
 const BlogLayout = ({ children, showSlider }) => {
   return (
@@ -13,7 +14,7 @@ const BlogLayout = ({ children, showSlider }) => {
           {children}
         </div>
 
-        <div className="side-nav">
+        <div className={styles.side_nav}>
           <ul className="list-unstyled">
             <br />
 

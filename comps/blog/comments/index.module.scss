@@ -21,3 +21,20 @@
   color: gray;
   cursor: pointer;
 }
+
+//Comments blocked
+
+.comments_blocked {
+  float: right;
+  h1 {
+    font-size: 1rem;
+    cursor: pointer;
+    color: #007bff;
+    margin-left: -5%;
+    transition: 0.3s;
+    &:hover {
+      margin-left: 0%;
+      transition: 0.3s;
+    }
+  }
+}

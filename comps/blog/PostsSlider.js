@@ -47,7 +47,7 @@ const PostsSlider = () => {
   return (
     <span>
       {err}
-      <Carousel prevLabel={null} nextLabel={null} fade time>
+      <Carousel prevLabel={null} nextLabel={null} fade time="true">
         {postsSlider}
       </Carousel>
       <br />

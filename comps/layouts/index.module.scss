@@ -1,0 +1,13 @@
+//SIDE NAV
+
+.side_nav {
+  position: sticky;
+  top: 0;
+  height: 180vh;
+}
+
+@media screen and (max-width: 500px) {
+  .side_nav {
+    height: 225vh;
+  }
+}

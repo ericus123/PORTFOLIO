@@ -21,12 +21,12 @@ import TimeAgo from "react-timeago";
 import { authRequest } from "../../../redux/actions/auth/checkAuth";
 import Image from "next/image";
 import PopConfirm from "../../popups/popComfirm";
-import CommentsSort from "./CommentsSort";
 import HighLightAuthor from "./HighlightAuthor";
 import CommentReactions from "./CommentReactions";
+import CommentsBlocked from "./CommentsBlocked";
+import CommentBox from "./CommentBox";
 
 const Comments = ({ id, post }) => {
-  const [sort, setSort] = useState("new");
   const [reply, setReply] = useState(null);
   const [edComShow, setEdComShow] = useState(false);
   const [edRepShow, setEdRepShow] = useState(false);
@@ -76,9 +76,7 @@ const Comments = ({ id, post }) => {
   const postCommentReplyError = useSelector(
     (state) => state.postCommentReply.error
   );
-  const postCommentReplyMessage = useSelector(
-    (state) => state.postCommentReply.message
-  );
+
   const postCommentReply = useSelector((state) => state.postCommentReply.reply);
   const postCommentReplyIsLoading = useSelector(
     (state) => state.postCommentReply.isLoading
@@ -87,9 +85,7 @@ const Comments = ({ id, post }) => {
   const commentReactionError = useSelector(
     (state) => state.commentReaction.error
   );
-  const commentReactionIsLoading = useSelector(
-    (state) => state.commentReaction.isLoading
-  );
+
   const commentReactionMessage = useSelector(
     (state) => state.commentReaction.message
   );
@@ -152,6 +148,12 @@ const Comments = ({ id, post }) => {
       }
     });
   }, errors_arr);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(PostComment(id, e.target.desc.value));
+    e.target.reset();
+  };
 
   const EditReplyModal = (props) => {
     return (
@@ -362,16 +364,12 @@ const Comments = ({ id, post }) => {
                     <div className="reply" key={reply._id}>
                       <div className={`profile-p-sm ${styles.user_img}`}>
                         <Image
-                          className="b-border"
+                          className={`${styles.user_img} b-border`}
                           src={reply.user ? reply.user.avatar : unknown_avatar}
                           width="35px"
                           height="35px"
-                          src={
-                            comment.user ? comment.user.avatar : unknown_avatar
-                          }
                           priority
                           quality={25}
-                          className={styles.user_img}
                         />
                       </div>
                       <div className="desc">
@@ -488,38 +486,25 @@ const Comments = ({ id, post }) => {
         </span>
       </p>
       <hr style={{ fontWeight: "bold", fontSize: "10px" }} />
-      {!comments?.length ? (
+      {!comments?.length && user && (
         <p style={{ fontSize: ".8em", textAlign: "center" }}>
           Be the first to comment
         </p>
-      ) : null}
+      )}
       <div className="comment-wrapper">
         {all_comments}
         <EditCommentModal show={edComShow} onHide={() => setEdComShow(false)} />
         <EditReplyModal show={edRepShow} onHide={() => setEdRepShow(false)} />
       </div>
       {/* <CommentsSort comments={comments} /> */}
-      <form
-        className="com-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(PostComment(id, e.target.desc.value));
-          e.target.reset();
-        }}
-      >
-        <textarea name="desc" />
 
-        {postCommentError ? simpleAlert("danger", postCommentError) : null}
-        {!postCommentError ? (
-          <button stype="submit" className="px-2">
-            {postCommentIsLoading ? (
-              <Spinner animation="border" size="sm" role="status" />
-            ) : (
-              "Comment"
-            )}
-          </button>
-        ) : null}
-      </form>
+      {(user && (
+        <CommentBox
+          onSubmit={handleSubmit}
+          postCommentError={postCommentError}
+          postCommentIsLoading={postCommentIsLoading}
+        />
+      )) || <CommentsBlocked />}
     </div>
   );
 };

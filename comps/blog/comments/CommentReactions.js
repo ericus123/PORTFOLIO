@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/fontawesome-free-solid";
 import styles from "./index.module.scss";
-import BounceLoader from "../../loaders/BounceLoader";
-import { css } from "@emotion/react";
 
 const CommentReactions = ({ data, onClick, user }) => {
   return (
@@ -17,7 +15,9 @@ const CommentReactions = ({ data, onClick, user }) => {
               onClick={onClick}
             />{" "}
             {data.likes.length ? (
-              <span class={styles.com_reactions_num}>{data.likes.length}</span>
+              <span className={styles.com_reactions_num}>
+                {data.likes.length}
+              </span>
             ) : null}
           </span>
         ) : (
@@ -30,7 +30,7 @@ const CommentReactions = ({ data, onClick, user }) => {
             />
             &nbsp;
             {data.likes.length ? (
-              <span class="n">{data.likes.length}</span>
+              <span className="n">{data.likes.length}</span>
             ) : null}
           </span>
         )}

@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 const CommentsSort = ({ comments }) => {
+  const [sort, setSort] = useState("new");
+
+  const handleSort = (type) => {
+    setSort(type);
+  };
   return (
     comments?.length > 1 && (
       <div className="com-sort">
@@ -6,7 +13,7 @@ const CommentsSort = ({ comments }) => {
           <button
             className={sort == "top" ? "sort-on" : "sort-off"}
             onClick={() => {
-              setSort("top");
+              handleSort("top");
             }}
           >
             Top Comments
@@ -14,7 +21,7 @@ const CommentsSort = ({ comments }) => {
           <button
             className={sort == "new" ? "sort-on" : "sort-off"}
             onClick={() => {
-              setSort("new");
+              handleSort("new");
             }}
           >
             Newest First

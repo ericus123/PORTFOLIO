@@ -16,7 +16,7 @@
   --danger-color: #dc3545;
   --info-color: #17a2b8;
   --success-color: #28a745;
-  --primary-color: #007bff;
+  --primary-color: #c2c7cc;
 }
 
 :root {
@@ -548,6 +548,8 @@ img {
 
 .Blog {
   min-height: 90vh;
+  max-width: 1400px;
+  margin: auto;
 }
 .Blog .blog-wrapper {
   display: grid;
@@ -912,7 +914,7 @@ img {
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 560px) {
   .media {
     display: flex;
   }
@@ -1728,12 +1730,4 @@ footer li:hover {
   height: 60vh;
   min-height: 60vh;
   position: static;
-}
-
-//SIDE NAV
-
-.side-nav {
-  position: sticky;
-  top: 0;
-  height: 180vh;
 }

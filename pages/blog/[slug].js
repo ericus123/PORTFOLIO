@@ -4,26 +4,20 @@ import PostsDetails from "../../comps/blog/PostDetails";
 import BlogLayout from "../../comps/layouts/BlogLayout";
 import AdBanner from "../../comps/ads";
 
-export const getStaticPaths = async () => {
-  const res = await http.get("/api/posts");
-  const data = await res.data?.posts;
-  const paths = data?.map((post) => {
-    return {
-      params: { slug: post.slug },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const slug = context.params.slug;
 
   const res = await http.get(`/api/posts/${slug}`);
   const post = await res.data.post[0];
-
+  if (!post) {
+    return {
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {post,slug },
   };

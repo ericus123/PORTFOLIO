@@ -1,0 +1,11 @@
+.spinner_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+@media screen and (min-width: 740px) {
+  .spinner {
+    font-size: 3em !important;
+  }
+}

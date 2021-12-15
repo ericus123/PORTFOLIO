@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/actions/blog/posts";
 import Paginate from "../../comps/blog/Pagination";
@@ -8,6 +7,7 @@ import Head from "next/head";
 import PostsList from "../../comps/blog/PostsList";
 import BlogLayout from "../../comps/layouts/BlogLayout";
 import AdBanner from "../../comps/ads";
+import { SpinningLoader } from "../../comps/loaders";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -24,12 +24,7 @@ const Blog = () => {
     dispatch(getPosts(page, 10));
   }, [page]);
 
-  const loader = isLoading ? (
-    <div style={{ textAlign: "center" }}>
-      <br />
-      <Spinner animation="border" size="lg" role="status" />
-    </div>
-  ) : null;
+  const loader = isLoading && <SpinningLoader />;
 
   const err = error ? <>{simpleAlert("danger", error)}</> : null;
 
