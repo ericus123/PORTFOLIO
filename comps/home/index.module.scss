@@ -29,15 +29,12 @@
   }
 }
 
-//services
-
 /*===== SERVICES =====*/
 
 .box {
   position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  width: auto;
+  margin-left: 5%;
 }
 
 .our_services {
@@ -47,14 +44,21 @@
   padding-right: 60px;
   padding-top: 0px;
   text-align: center;
+  min-height: 35vh;
+  max-height: 35vh;
   border-radius: 10px;
   background-color: #fff;
   transition: all 1 ease-in-out;
   box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17);
+  width: 100%;
+  h6 {
+    font-weight: bold;
+  }
   p {
     font-size: 1em;
   }
 }
+
 .icon {
   margin-bottom: -21px;
   transform: translateY(-50%);
@@ -123,5 +127,18 @@
     background-color: #25b478;
     transition: 1s;
     color: white;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .our_services {
+    max-height: 50vh;
+  }
+  .box {
+    margin-left: 7.5%;
+  }
+  .resumeContainer {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
