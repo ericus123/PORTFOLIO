@@ -3,6 +3,7 @@ import React from "react";
 import about from "../../public/images/about.jpg";
 import Image from "next/image";
 import styles from "./index.module.scss";
+import Resume from "./Resume";
 
 const About = () => {
   return (
@@ -38,6 +39,7 @@ Ping me if you need help (or just wanna' chat) 🤖
               Node.js,react and Figma 🎨 Ping me if you need help (or just
               wanna' chat) 🤖
             </p>
+            <Resume />
           </div>
         </div>
       </div>
