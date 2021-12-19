@@ -1,15 +1,9 @@
 import React from "react";
-import { Spinner } from "react-bootstrap";
-import {
-  Telegram,
-  Whatsapp,
-  Twitter,
-  Github,
-  Linkedin,
-} from "react-bootstrap-icons";
+import { Whatsapp, Twitter, Github, Linkedin } from "react-bootstrap-icons";
 
 import { useDispatch, useSelector } from "react-redux";
-import { subscribeNewsletter } from "../redux/actions/subscriptions/newsLetter";
+import { subscribeNewsletter } from "../../redux/actions/subscriptions/newsLetter";
+import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
   const isLoading = useSelector((state) => state.subscribeNewsletter.isLoading);
@@ -32,30 +26,7 @@ const Footer = () => {
                 right to your inbox. Sign up for our newsletter today.
               </p>
             </div>
-            <div className="col-md-4 col-sm-4">
-              <form className="newsletter" onSubmit={handleSubmit}>
-                <input
-                  disabled={isLoading}
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  required
-                />
-                <button
-                  disabled={isLoading}
-                  xs="1"
-                  sm="1"
-                  className="sub-btn"
-                  type="submit"
-                >
-                  {isLoading ? (
-                    <Spinner animation="border" size="sm" role="status" />
-                  ) : (
-                    <Telegram size={25} />
-                  )}
-                </button>
-              </form>
-            </div>
+            <NewsLetter isLoading={isLoading} handleSubmit={handleSubmit} />
             <div className="col-md-4 col-sm-6">
               <div className="col-md-12">
                 <div className="standard_social_links">
@@ -179,7 +150,8 @@ const Footer = () => {
         <div className="">
           <div className="">
             <div className="copyright">
-              Copyright {new Date().getFullYear()} | All Rights Reserved by AMANI Eric.
+              Copyright {new Date().getFullYear()} | All Rights Reserved by
+              AMANI Eric.
             </div>
           </div>
         </div>
