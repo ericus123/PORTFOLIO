@@ -17,7 +17,7 @@ const EmailVerification = () => {
   authRedirect();
 
   return (
-    <div style={{ marginTop: "10%", marginBottom: "10%", minHeight: "90vh" }}>
+    <div className="account_verification_container">
       <h2 className="section-title">
         <FontAwesomeIcon icon={faEnvelope} />
       </h2>

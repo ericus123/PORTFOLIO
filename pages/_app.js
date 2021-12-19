@@ -1,12 +1,12 @@
-import Layout from "../comps/Layout";
 import "../styles/globals.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Provider } from "react-redux";
+import Layout from "../comps/Layout";
 
+import { Provider } from "react-redux";
 import store from "../redux/store";
 import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
 import Head from "next/head";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {

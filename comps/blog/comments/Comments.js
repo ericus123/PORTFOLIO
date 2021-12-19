@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import unknown_avatar from "../../../public/images/avatar.png";
-import { faHeart, faCrown } from "@fortawesome/fontawesome-free-solid";
 import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { simpleAlert } from "../../Alerts";
 import { Spinner, Form, Button, Modal, Col } from "react-bootstrap";
 import styles from "./index.module.scss";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import {
   GetComments,
   PostComment,
@@ -21,14 +20,16 @@ import {
 import TimeAgo from "react-timeago";
 import { authRequest } from "../../../redux/actions/auth/checkAuth";
 import Image from "next/image";
+import PopConfirm from "../../popups/popComfirm";
+import CommentsSort from "./CommentsSort";
+import HighLightAuthor from "./HighlightAuthor";
+import CommentReactions from "./CommentReactions";
 
-const Comments = ({ id }) => {
+const Comments = ({ id, post }) => {
   const [sort, setSort] = useState("new");
   const [reply, setReply] = useState(null);
-  const [delComShow, setDelComShow] = useState(false);
   const [edComShow, setEdComShow] = useState(false);
   const [edRepShow, setEdRepShow] = useState(false);
-  const [delRepShow, setDelRepShow] = useState(false);
   const [comId, setComId] = useState(null);
   const [repId, setRepId] = useState(null);
   const [com, setCom] = useState("");
@@ -38,7 +39,6 @@ const Comments = ({ id }) => {
   const postCommentIsLoading = useSelector(
     (state) => state.postComment.isLoading
   );
-  const post = useSelector((state) => state.post.post);
   const editCommentError = useSelector((state) => state.editComment.error);
   const editCommentMessage = useSelector((state) => state.editComment.message);
   const editCommentIsLoading = useSelector(
@@ -87,10 +87,17 @@ const Comments = ({ id }) => {
   const commentReactionError = useSelector(
     (state) => state.commentReaction.error
   );
+  const commentReactionIsLoading = useSelector(
+    (state) => state.commentReaction.isLoading
+  );
   const commentReactionMessage = useSelector(
     (state) => state.commentReaction.message
   );
+
   const replyReactionError = useSelector((state) => state.replyReaction.error);
+  const replyReactionIsLoading = useSelector(
+    (state) => state.replyReaction.isLoading
+  );
   const replyReactionMessage = useSelector(
     (state) => state.replyReaction.message
   );
@@ -118,20 +125,10 @@ const Comments = ({ id }) => {
   }, [editCommentMessage]);
 
   useEffect(() => {
-    setDelComShow(false);
-  }, [deleteCommentMessage]);
-
-  useEffect(() => {
     setTimeout(() => {
       setEdRepShow(false);
     }, 1000);
   }, [editReplyMessage]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDelRepShow(false);
-    }, 1000);
-  }, [deleteReplyMessage]);
 
   let errors_arr = [
     editCommentError,
@@ -155,76 +152,6 @@ const Comments = ({ id }) => {
       }
     });
   }, errors_arr);
-
-  const DeleteCommentModal = (props) => {
-    return (
-      <Modal {...props} size="md" aria-labelledby="contained-modal-title">
-        <Modal.Body>
-          <h4>Delete comment</h4>
-          <p>
-            Are you sure you want to delete this comment?
-            <br />
-            This action can't be undone{" "}
-          </p>
-        </Modal.Body>
-        <div className="mod-footer">
-          <Button disabled={deleteCommentIsLoading} onClick={props.onHide}>
-            No
-          </Button>
-          <Button
-            disabled={deleteCommentIsLoading}
-            variant="danger"
-            onClick={() => {
-              dispatch(DeletePostComment(comId));
-            }}
-          >
-            {deleteCommentIsLoading ? (
-              <Spinner animation="border" size="sm" role="status" />
-            ) : (
-              "Yes"
-            )}
-          </Button>
-        </div>
-      </Modal>
-    );
-  };
-
-  const DeleteReplyModal = (props) => {
-    return (
-      <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Modal.Body>
-          <h4>Delete reply</h4>
-          <p>
-            Are you sure you want to delete this reply?
-            <br />
-            This action can't be undone{" "}
-          </p>
-        </Modal.Body>
-        <div className="mod-footer">
-          <Button disabled={deleteReplyIsLoading} onClick={props.onHide}>
-            No
-          </Button>
-          <Button
-            variant="danger"
-            diabled={deleteReplyIsLoading}
-            onClick={() => {
-              dispatch(DeleteCommentReply(repId));
-            }}
-          >
-            {deleteReplyIsLoading ? (
-              <Spinner animation="border" size="sm" role="status" />
-            ) : (
-              "Yes"
-            )}
-          </Button>
-        </div>
-      </Modal>
-    );
-  };
 
   const EditReplyModal = (props) => {
     return (
@@ -375,49 +302,22 @@ const Comments = ({ id }) => {
               </span>
             ) : null}
           </p>
-          {post?.user && post?.author._id == comment?.user._id ? (
-            <p className="author-badge">
-              <FontAwesomeIcon icon={faCrown} />
-              &nbsp;Author
-            </p>
-          ) : null}
+
+          <HighLightAuthor
+            postAuthor={post?.author._id}
+            dataAuthor={comment?.user?._id}
+          />
 
           <p className="text">{comment.description}</p>
 
           <p>
-            <span className="com-like">
-              {user &&
-              comment.likes.some(
-                (like) => like.user && like.user._id == user._id
-              ) ? (
-                <span className="likes">
-                  <FontAwesomeIcon
-                    className="com-icon com-liked"
-                    icon={faHeart}
-                    onClick={() => {
-                      dispatch(ReactOnPostComment(comment._id));
-                    }}
-                  />{" "}
-                  {comment.likes.length ? (
-                    <span class="n">{comment.likes.length}</span>
-                  ) : null}
-                </span>
-              ) : (
-                <span className="likes">
-                  <FontAwesomeIcon
-                    onClick={() => {
-                      dispatch(ReactOnPostComment(comment._id));
-                    }}
-                    className="com-unliked"
-                    icon={faHeart}
-                  />
-                  &nbsp;
-                  {comment.likes.length ? (
-                    <span class="n">{comment.likes.length}</span>
-                  ) : null}
-                </span>
-              )}
-            </span>
+            <CommentReactions
+              data={comment}
+              onClick={() => {
+                dispatch(ReactOnPostComment(comment._id));
+              }}
+              user={user}
+            />
             <span
               className="com-reply"
               onClick={() => {
@@ -445,15 +345,13 @@ const Comments = ({ id }) => {
                   Edit
                 </span>
                 &nbsp;
-                <span
-                  style={{ color: "#dc3545", cursor: "pointer" }}
-                  onClick={() => {
-                    setComId(comment._id);
-                    setDelComShow(true);
-                  }}
-                >
-                  Delete
-                </span>
+                <PopConfirm
+                  title="Are You Sure?"
+                  text="Delete"
+                  style={{ color: "#dc3545" }}
+                  icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                  action={() => dispatch(DeletePostComment(comment._id))}
+                />
               </>
             ) : null}
           </p>
@@ -499,41 +397,21 @@ const Comments = ({ id }) => {
                             </span>
                           ) : null}
                         </p>
+
+                        <HighLightAuthor
+                          postAuthor={post?.author._id}
+                          dataAuthor={reply?.user?._id}
+                        />
                         <p className="text">{reply.description}</p>
                         <p>
-                          <span className="com-like">
-                            {user &&
-                            reply.likes.some(
-                              (like) => like.user && like.user._id == user._id
-                            ) ? (
-                              <span className="likes">
-                                <FontAwesomeIcon
-                                  className="com-icon com-liked"
-                                  icon={faHeart}
-                                  onClick={() => {
-                                    dispatch(ReactOnCommentReply(reply._id));
-                                  }}
-                                />{" "}
-                                {reply.likes.length ? (
-                                  <span class="n">{reply.likes.length}</span>
-                                ) : null}
-                              </span>
-                            ) : (
-                              <span className="likes">
-                                <FontAwesomeIcon
-                                  onClick={() => {
-                                    dispatch(ReactOnCommentReply(reply._id));
-                                  }}
-                                  className="com-unliked"
-                                  icon={faHeart}
-                                />
-                                &nbsp;
-                                {reply.likes.length ? (
-                                  <span class="n">{reply.likes.length}</span>
-                                ) : null}
-                              </span>
-                            )}
-                          </span>
+                          <CommentReactions
+                            data={reply}
+                            onClick={() => {
+                              dispatch(ReactOnCommentReply(reply._id));
+                            }}
+                            user={user}
+                            isLoading={replyReactionIsLoading}
+                          />
                           {user && user.id == reply.user._id ? (
                             <>
                               {" "}
@@ -551,18 +429,19 @@ const Comments = ({ id }) => {
                                 Edit
                               </span>
                               &nbsp;
-                              <span
-                                style={{
-                                  color: "#dc3545",
-                                  cursor: "pointer",
-                                }}
-                                onClick={() => {
-                                  setDelRepShow(true);
-                                  setRepId(reply._id);
-                                }}
-                              >
-                                Delete
-                              </span>
+                              <PopConfirm
+                                title="Are You Sure?"
+                                text="Delete"
+                                style={{ color: "#dc3545" }}
+                                icon={
+                                  <QuestionCircleOutlined
+                                    style={{ color: "red" }}
+                                  />
+                                }
+                                action={() =>
+                                  dispatch(DeleteCommentReply(reply._id))
+                                }
+                              />
                             </>
                           ) : null}
                         </p>
@@ -616,39 +495,10 @@ const Comments = ({ id }) => {
       ) : null}
       <div className="comment-wrapper">
         {all_comments}
-        <DeleteCommentModal
-          show={delComShow}
-          onHide={() => setDelComShow(false)}
-        />
         <EditCommentModal show={edComShow} onHide={() => setEdComShow(false)} />
         <EditReplyModal show={edRepShow} onHide={() => setEdRepShow(false)} />
-        <DeleteReplyModal
-          show={delRepShow}
-          onHide={() => setDelRepShow(false)}
-        />
       </div>
-      {/* {comments?.length > 1 ? (
-        <div className="com-sort">
-          <div>
-            <button
-              className={sort == "top" ? "sort-on" : "sort-off"}
-              onClick={() => {
-                setSort("top");
-              }}
-            >
-              Top Comments
-            </button>
-            <button
-              className={sort == "new" ? "sort-on" : "sort-off"}
-              onClick={() => {
-                setSort("new");
-              }}
-            >
-              Newest First
-            </button>
-          </div>
-        </div>
-      ) : null} */}
+      {/* <CommentsSort comments={comments} /> */}
       <form
         className="com-form"
         onSubmit={(e) => {

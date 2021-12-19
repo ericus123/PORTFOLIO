@@ -79,7 +79,7 @@ const PostsDetails = ({ post }) => {
             <br />
             <br />
             <br />
-            <Comments comment={post.comments} id={id} />
+            <Comments comment={post.comments} id={id} post={post} />
           </Media.Body>
         </Media>
       </>

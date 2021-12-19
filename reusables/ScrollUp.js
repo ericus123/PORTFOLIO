@@ -24,7 +24,9 @@ const ScrollButton = () => {
       : null;
   };
 
-  process.browser ? window.addEventListener("scroll", toggleVisible) : null;
+  process.browser
+    ? window.addEventListener("scroll", toggleVisible, { passive: true })
+    : null;
 
   return (
     <div

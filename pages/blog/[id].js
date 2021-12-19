@@ -31,7 +31,7 @@ export const getStaticProps = async (context) => {
     props: { post: post, id: id },
   };
 };
-const SinglePost = ({ post, id }) => {
+const SinglePost = ({ post }) => {
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
   const message = useSelector((state) => state.post.message);
