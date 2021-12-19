@@ -8,3 +8,23 @@
 .skills_img {
   border-radius: 5px;
 }
+.resumeContainer {
+  display: flex;
+  justify-content: center;
+  gap: 3%;
+  align-items: center;
+  background-color: var(--first-color);
+  height: 4vh;
+  width: 25%;
+  border-radius: 5px;
+  font-size: 0.9em;
+  cursor: pointer;
+  color: white;
+  border: 2px solid rgb(237, 232, 232);
+  box-shadow: 0px 5px 5px var(--first-color);
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+  }
+}

@@ -9,6 +9,7 @@ import { simpleAlert } from "../../comps/Alerts";
 import PostsSlider from "../../comps/blog/PostsSlider";
 import Head from "next/head";
 import PostsList from "../../comps/blog/PostsList";
+import BlogLayout from "../../comps/layouts/BlogLayout";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -64,80 +65,32 @@ const Blog = () => {
         />
         {/* <meta property="twitter:image" content={pro_image}></meta> */}
       </Head>
-      <div className="Blog">
-        <br />
-        <ScrollButton />
-        <div className="blog-wrapper">
-          <div className="content-wrapper col-md-auto">
-            <ul className="list-unstyled">
-              {loader}
-              {err}
-              <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-                crossorigin="anonymous"
-              ></script>
-              <ins
-                class="adsbygoogle"
-                style={{ display: "block", textAlign: "center" }}
-                data-ad-layout="in-article"
-                data-ad-format="fluid"
-                data-ad-client="ca-pub-6149905527184076"
-                data-ad-slot="1965117589"
-              ></ins>
-              <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
-              <PostsSlider />
-              {message && !postsPerPage.length && !error ? (
-                <>
-                  <div>No results found</div>
-                </>
-              ) : null}
-              <br />
-              <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-                crossorigin="anonymous"
-              ></script>
-              <ins
-                class="adsbygoogle"
-                style={{ display: "block" }}
-                data-ad-format="fluid"
-                data-ad-layout-key="-i8+a-18-47+ce"
-                data-ad-client="ca-pub-6149905527184076"
-                data-ad-slot="1682703097"
-              ></ins>
-              <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
-              <PostsList posts={postsPerPage} />
-              <br />
-              {postsPerPage.length ? (
-                <div style={{ textAlign: "center" }}>
-                  <Paginate
-                    path="blog?page="
-                    items={{
-                      prevPage: prevPage,
-                      nextPage: nextPage,
-                      error: error,
-                    }}
-                  />
-                </div>
-              ) : null}
-              <br />
-            </ul>
-          </div>
-
-          <div className="side-nav">
-            <ul className="list-unstyled">
-              <br />
-
-              <SideBar />
-            </ul>
-          </div>
+      <BlogLayout showSlider>
+        <div className="list-unstyled">
+          {loader}
+          {err}
+          {message && !postsPerPage.length && !error ? (
+            <>
+              <div>No results found</div>
+            </>
+          ) : null}
+          <br />
+          <PostsList posts={postsPerPage} />
+          {postsPerPage.length ? (
+            <div style={{ textAlign: "center" }}>
+              <Paginate
+                path="blog?page="
+                items={{
+                  prevPage: prevPage,
+                  nextPage: nextPage,
+                  error: error,
+                }}
+              />
+            </div>
+          ) : null}
+          <br />
         </div>
-      </div>
+      </BlogLayout>
     </>
   );
 };
