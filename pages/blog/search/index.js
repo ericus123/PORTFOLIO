@@ -11,6 +11,7 @@ import ScrollTop from "../../../reusables/ScrollUp";
 import Paginate from "../../../comps/blog/Pagination";
 import PostsList from "../../../comps/blog/PostsList";
 import PostsSlider from "../../../comps/blog/PostsSlider";
+import BlogLayout from "../../../comps/layouts/BlogLayout";
 
 const SearchPosts = () => {
   const dispatch = useDispatch();
@@ -52,79 +53,61 @@ const SearchPosts = () => {
   ) : null;
 
   return (
-    <div className="Blog">
-      <br />
-      <ScrollTop />
-      <div className="blog-wrapper">
-        <div className="content-wrapper col-md-auto">
-          <ul className="list-unstyled">
-            {err}
-            <PostsSlider />
-            <br />
-            {loader}
-            <br />
-            <br />
-            {postsPerPage.length && searchTerm && !searchIsLoading ? (
-              <h2 style={{ fontWeight: "light", textAlign: "center" }}>
-                Showing {searchPosts.length}{" "}
-                {searchPosts.length > 1 ? "results" : "result"} for "
-                {searchTerm}"
-              </h2>
-            ) : null}
-            {!searchIsLoading &&
-            !postsPerPage.length &&
-            !searchError &&
-            searchTerm ? (
-              <h2
-                style={{
-                  fontWeight: "light",
-                  color: "#dc3545",
-                  textAlign: "center",
-                }}
-              >
-                Ooops! No results found for "{searchTerm}"
-                <span style={{ fontWeight: "bold" }}></span>
-              </h2>
-            ) : null}
+    <BlogLayout showSlider>
+      <ul className="list-unstyled">
+        {err}
+        {loader}
+        <br />
+        {postsPerPage.length && searchTerm && !searchIsLoading ? (
+          <h2 style={{ fontWeight: "light", textAlign: "center" }}>
+            Showing {searchPosts.length}{" "}
+            {searchPosts.length > 1 ? "results" : "result"} for "{searchTerm}"
+          </h2>
+        ) : null}
+        {!searchIsLoading &&
+        !postsPerPage.length &&
+        !searchError &&
+        searchTerm ? (
+          <h2
+            style={{
+              fontWeight: "light",
+              color: "#dc3545",
+              textAlign: "center",
+            }}
+          >
+            Ooops! No results found for "{searchTerm}"
+            <span style={{ fontWeight: "bold" }}></span>
+          </h2>
+        ) : null}
 
-            {searchError ? (
-              <Alert variant="danger" style={{ textAlign: "center" }}>
-                {searchError}
-              </Alert>
-            ) : null}
-            <br />
-            {!searchIsLoading && <PostsList posts={postsPerPage} />}
-            <br />
-            {searchPosts.length && !searchIsLoading ? (
+        {searchError ? (
+          <Alert variant="danger" style={{ textAlign: "center" }}>
+            {searchError}
+          </Alert>
+        ) : null}
+        <br />
+        {!searchIsLoading && <PostsList posts={postsPerPage} />}
+        <br />
+        {searchPosts.length && !searchIsLoading ? (
+          <div style={{ textAlign: "center" }}>
+            {postsPerPage.length ? (
               <div style={{ textAlign: "center" }}>
-                {postsPerPage.length ? (
-                  <div style={{ textAlign: "center" }}>
-                    <Paginate
-                      path={`search?term=${router.query.term}&page=`}
-                      items={{
-                        prevPage: prevPage,
-                        nextPage: nextPage,
-                        maxPages: maxPages,
-                        error: searchError,
-                      }}
-                    />
-                  </div>
-                ) : null}
+                <Paginate
+                  path={`search?term=${router.query.term}&page=`}
+                  items={{
+                    prevPage: prevPage,
+                    nextPage: nextPage,
+                    maxPages: maxPages,
+                    error: searchError,
+                  }}
+                />
               </div>
             ) : null}
-            <br />
-          </ul>
-        </div>
-
-        <div className="side-nav">
-          <ul className="list-unstyled">
-            <br />
-
-            <SideBar />
-          </ul>
-        </div>
-      </div>
-    </div>
+          </div>
+        ) : null}
+        <br />
+      </ul>
+    </BlogLayout>
   );
 };
 

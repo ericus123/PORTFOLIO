@@ -5,6 +5,7 @@ import SideBar from "../../comps/blog/sidebar/sideBar";
 import ScrolButton from "../../reusables/ScrollUp";
 import Head from "next/head";
 import PostsDetails from "../../comps/blog/PostDetails";
+import BlogLayout from "../../comps/layouts/BlogLayout";
 
 export const getStaticPaths = async () => {
   const res = await http.get("/api/posts");
@@ -97,15 +98,11 @@ const SinglePost = ({ post, id }) => {
         />
         <meta property="twitter:image" content={`${post.imageUrl}`} />
       </Head>
-      <div className="single-post">
-        <>
-          <ScrolButton />
-          {<PostsDetails post={post} />}
-        </>
-        <div style={{ marginTop: "1rem" }}>
-          <SideBar id={id} />
+      <BlogLayout showSlider={false}>
+        <div className="single-post">
+          <PostsDetails post={post} />
         </div>
-      </div>
+      </BlogLayout>
     </>
   );
 };
