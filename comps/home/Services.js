@@ -6,6 +6,7 @@ import optimization from "../../public/images/optimization.svg";
 import database from "../../public/images/database.svg";
 import backend from "../../public/images/backend.svg";
 import Image from "next/image";
+import styles from "./index.module.scss";
 
 const Services = () => {
   return (
@@ -16,12 +17,12 @@ const Services = () => {
 
         <div className="row">
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services settings">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.settings}`}>
+                <div className={styles.icon}>
                   <Image src={ui_ux} priority quality={25} />
                 </div>
-                <h4>UI/UX DESIGN</h4>
+                <h6>UI/UX DESIGN</h6>
                 <p>
                   Translating requirements into style design patterns and create
                   user flows, wireframes, prototypes and mockups.
@@ -30,12 +31,12 @@ const Services = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services speedup">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.speedup}`}>
+                <div className={styles.icon}>
                   <Image src={optimization} priority quality={25} />
                 </div>
-                <h4>SEO</h4>
+                <h6>SEO</h6>
                 <p>
                   Monitoring search algorithms set by search engine and
                   developing and integrating content marketing strategies.
@@ -44,12 +45,12 @@ const Services = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services privacy">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.privacy}`}>
+                <div className={styles.icon}>
                   <Image src={backend} priority quality={25} />
                 </div>
-                <h4>BACKEND DEVELOPMENT</h4>
+                <h6>BACKEND DEVELOPMENT</h6>
                 <p>
                   Building and maintaining web applications,boosting current
                   applications and managing hosting environments.
@@ -60,12 +61,12 @@ const Services = () => {
         </div>
         <div className="row">
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services backups">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.backups}`}>
+                <div className={styles.icon}>
                   <Image src={responsive} priority quality={25} />
                 </div>
-                <h4>RESPONSIVE WEB DESIGN</h4>
+                <h5>RESPONSIVE WEB DESIGN</h5>
                 <p>
                   create content that adjusts smoothly to various screen sizes
                   to automatically adapt to the browser space.
@@ -74,12 +75,12 @@ const Services = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services ssl">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.ssl}`}>
+                <div className={styles.icon}>
                   <Image src={database} />
                 </div>
-                <h4>DATABASE MANAGEMENT</h4>
+                <h6>DATABASE MANAGEMENT</h6>
                 <p>
                   Develop and maintain databases. Create data storage and
                   retrieval systems, troubleshoot database issues.
@@ -88,12 +89,12 @@ const Services = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="box">
-              <div className="our-services database">
-                <div className="icon">
+            <div className={styles.box}>
+              <div className={`${styles.our_services} ${styles.database}`}>
+                <div className={styles.icon}>
                   <Image src={frontend} priority quality={25} />
                 </div>
-                <h4>FRONTEND DEVELOPMENT</h4>
+                <h6>FRONTEND DEVELOPMENT</h6>
                 <p>
                   {" "}
                   Implementing visual elements and combining the art of design

@@ -28,3 +28,100 @@
     transition: 0.5s;
   }
 }
+
+//services
+
+/*===== SERVICES =====*/
+
+.box {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.our_services {
+  margin-top: 75px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 0px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: all 1 ease-in-out;
+  box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17);
+  p {
+    font-size: 1em;
+  }
+}
+.icon {
+  margin-bottom: -21px;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.our_services:hover h6,
+.our-services:hover p {
+  color: #fff;
+}
+.speedup {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #d40c54;
+    transition: 1s;
+    color: white;
+  }
+}
+.settings {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #5d3fd4;
+    transition: 1s;
+    color: white;
+  }
+}
+.privacy {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #2b69a3;
+    transition: 1s;
+    color: white;
+  }
+}
+.backups {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #e58a38;
+    transition: 1s;
+    color: white;
+  }
+}
+.ssl {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #5d4395;
+    transition: 1s;
+    color: white;
+  }
+}
+.database {
+  background-color: white;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    background-color: #25b478;
+    transition: 1s;
+    color: white;
+  }
+}
