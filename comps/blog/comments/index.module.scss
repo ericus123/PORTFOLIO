@@ -1,3 +1,23 @@
 .user_img {
   border-radius: 50%;
 }
+.com_reactions {
+  margin-right: 1%;
+}
+.com_reactions_num {
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-top: 25% !important;
+  position: relative;
+}
+.com_liked {
+  color: black;
+  height: 0.8rem;
+  cursor: pointer;
+}
+
+.com_unliked {
+  height: 0.8rem;
+  color: gray;
+  cursor: pointer;
+}

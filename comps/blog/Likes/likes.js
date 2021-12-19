@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import {
-  faHeart,
-  faHandHoldingHeart,
-} from "@fortawesome/fontawesome-free-solid";
+import { faHandHoldingHeart } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ReactOnPost,
@@ -12,7 +9,7 @@ import {
 } from "../../../redux/actions/blog/posts";
 import { authRequest } from "../../../redux/actions/auth/checkAuth";
 import { css } from "@emotion/react";
-import { BounceLoader } from "react-spinners";
+import BounceLoader from "../../loaders/BounceLoader";
 
 export const BigLike = ({ id }) => {
   const override = css`
@@ -60,7 +57,7 @@ export const BigLike = ({ id }) => {
     <div className="big-like">
       {postReactions ? (
         !isLoading ? (
-          <span className="likes">
+          <span>
             <FontAwesomeIcon
               className={liked}
               icon={faHandHoldingHeart}
@@ -68,6 +65,7 @@ export const BigLike = ({ id }) => {
                 setClicked(!btn);
                 dispatch(ReactOnPost(id));
               }}
+              size={40}
             />
             <span className="n">{likesLen}</span>
           </span>

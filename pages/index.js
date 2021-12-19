@@ -67,7 +67,10 @@ const Home = () => {
               scrolToSection("#contact");
             }}
           >
-            <div style={{ textDecoration: "none" }} className="button">
+            <div
+              style={{ textDecoration: "none", cursor: "pointer" }}
+              className="button"
+            >
               Contact
             </div>
           </Link>

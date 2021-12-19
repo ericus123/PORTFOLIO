@@ -129,6 +129,8 @@ const SideBar = () => {
             name="data"
             required
             className={styles.search_bar}
+            maxLength={30}
+            minLength={5}
           />
 
           <Button className={`submit_btn ${styles.search_btn}`} type="submit">
