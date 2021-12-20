@@ -497,6 +497,11 @@ const Profile = () => {
                 </Upload>
               </ImgCrop>
             </div>
+            <AdBanner
+              data-ad-slot="7105763628"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            />
           </div>
           <div className="profile_details">
             <br />

@@ -103,6 +103,11 @@ const SearchPosts = () => {
                 />
               </div>
             ) : null}
+            <AdBanner
+              data-ad-slot="1682703097"
+              data-ad-format="fluid"
+              data-ad-layout-key="-i8+a-18-47+ce"
+            />
           </div>
         ) : null}
         <br />

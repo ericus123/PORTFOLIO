@@ -5,16 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { faCheckCircle } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { simpleAlert } from "../../../../comps/Alerts";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 export const getServerSideProps = async (context) => {
   const token = context.params.token;
   return {
-    props: { token:token},
+    props: { token: token },
   };
 };
 const ConfirmEmail = () => {
-const router = useRouter();
-const {email,token} = router.query;
+  const router = useRouter();
+  const { email, token } = router.query;
   const error = useSelector((state) => state.confirmEmail.error);
   const message = useSelector((state) => state.confirmEmail.message);
   const isLoading = useSelector((state) => state.confirmEmail.isLoading);
@@ -23,32 +23,36 @@ const {email,token} = router.query;
   useEffect(() => {
     dispatch(confirmEmail(email, token));
   }, []);
+
+  const handleRedirects = () => {
+    message &&
+      setTimeout(() => {
+        router.push("/login");
+      }, 3000);
+  };
   useEffect(() => {
-    confirmEmail(email, token);
-  }, []);
+    handleRedirects();
+  }, [message, error]);
   return (
-    <div style={{ marginTop: "10%", marginBottom: "10%" }}>
-      {isVerified ? (
+    <div className="account_verification_container">
+      {(isVerified && (
         <h2 className="section-title">
-          <FontAwesomeIcon icon={faCheckCircle} style={{ color: "success" }} />{" "}
-          Verified{" "}
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            style={{ color: "success", marginRight: "5px" }}
+          />
+          Verified
         </h2>
-      ) : (
-        <h2 className="section-title">Verification </h2>
-      )}
+      )) || <h2 className="section-title">Verification</h2>}
 
       <div className="contact__container bd-grid">
-        {error ? (
-          <>{simpleAlert("danger",error)}</>
-        ) : null}
-        {isLoading ? (
+        {error && <>{simpleAlert("danger", error)}</>}
+        {isLoading && (
           <div style={{ textAlign: "center" }}>
             <Spinner animation="border" size="md" role="status"></Spinner>
           </div>
-        ) : null}
-        {message ? (
-          <>{simpleAlert("success",message)}</>
-        ) : null}
+        )}
+        {message && <>{simpleAlert("success", message)}</>}
       </div>
     </div>
   );

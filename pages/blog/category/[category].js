@@ -60,20 +60,11 @@ const PostsByCategory = () => {
             posts={catPosts.slice().sort((a, b) => (b.date > a.date ? 1 : -1))}
           />
         }
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-          crossorigin="anonymous"
-        ></script>
-        <ins
-          class="adsbygoogle"
-          style={{ display: "block" }}
+        <AdBanner
+          data-ad-slot="1682703097"
           data-ad-format="fluid"
           data-ad-layout-key="-i8+a-18-47+ce"
-          data-ad-client="ca-pub-6149905527184076"
-          data-ad-slot="1682703097"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        />
       </ul>
     </BlogLayout>
   );

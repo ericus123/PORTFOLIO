@@ -25,7 +25,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div style={{ marginTop: "10%", marginBottom: "10%" }}>
+    <div className="account_verification_container">
       <h2 className="section-title">
         <FontAwesomeIcon icon={faLock} />
       </h2>
@@ -59,12 +59,9 @@ const ResetPassword = () => {
             <div style={{ textAlign: "center" }}>
               <Spinner animation="border" size="md" role="status"></Spinner>
             </div>
-          ) : message ? null : (
-              !error ? 
-<button className="passresreq__button">Reset Password</button>
-              : null
-            
-          )}
+          ) : message ? null : !error ? (
+            <button className="passresreq__button">Reset Password</button>
+          ) : null}
         </form>
       </div>
     </div>

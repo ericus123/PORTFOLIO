@@ -1,5 +1,5 @@
 import React from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import { resetPassword } from "../../../../redux/actions/auth/password";
@@ -9,8 +9,7 @@ import { simpleAlert } from "../../../../comps/Alerts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ChangePassword = () => {
-
-    const router = useRouter();
+  const router = useRouter();
 
   const error = useSelector((state) => state.resetPassword.error);
   const message = useSelector((state) => state.resetPassword.message);
@@ -20,7 +19,7 @@ const ChangePassword = () => {
 
   authRedirect();
 
-const {token} = router.query;
+  const { token } = router.query;
   const handleSubmit = (e) => {
     e.preventDefault();
     const password = e.target.password.value;
@@ -29,14 +28,14 @@ const {token} = router.query;
     e.target.reset();
   };
 
-  if(message){
+  if (message) {
     setTimeout(() => {
       router.push("/login");
     }, 3000);
   }
 
   return (
-    <div style={{ marginTop: "10%", marginBottom: "10%" }}>
+    <div className="account_verification_container">
       <h2 className="section-title">
         <FontAwesomeIcon icon={faLock} />
       </h2>
@@ -57,18 +56,16 @@ const {token} = router.query;
             disabled={isLoading}
           />
 
-          {error ? (
-           <>{simpleAlert("danger",error)}</>
-          ) : null}
-          {message ? 
-            <>{simpleAlert("success", message)}</>
-           : null}
+          {error ? <>{simpleAlert("danger", error)}</> : null}
+          {message ? <>{simpleAlert("success", message)}</> : null}
           {isLoading ? (
             <div style={{ textAlign: "center" }}>
               <Spinner animation="border" size="md" role="status"></Spinner>
             </div>
           ) : message || error ? null : (
-            <button className="passresreq__button" disabled={isLoading}>Reset Password</button>
+            <button className="passresreq__button" disabled={isLoading}>
+              Reset Password
+            </button>
           )}
         </form>
       </div>
