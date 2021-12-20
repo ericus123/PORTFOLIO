@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, Spinner } from "react-bootstrap";
 import { sendConfirmation } from "../../../../redux/actions/auth/email";
@@ -6,18 +6,23 @@ import { authRedirect } from "../../../../utils/redirects";
 import { faEnvelope } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { simpleAlert } from "../../../../comps/Alerts";
+import { useRouter } from "next/router";
 
 const EmailVerification = () => {
   const email = useSelector((state) => state.login.email);
   const error = useSelector((state) => state.sendConfirmation.error);
-  const message = useSelector((state) => state.sendConfirmation.message);
   const isLoading = useSelector((state) => state.sendConfirmation.isLoading);
   const dispatch = useDispatch();
 
   authRedirect();
+  const router = useRouter();
 
+  useEffect(() => {
+    (error && error.includes("Your account is already verified")) ||
+      (!email && router.push("/login"));
+  }, [error, email]);
   return (
-    <div style={{ marginTop: "10%", marginBottom: "10%", minHeight: "90vh" }}>
+    <div className="account_verification_container">
       <h2 className="section-title">
         <FontAwesomeIcon icon={faEnvelope} />
       </h2>

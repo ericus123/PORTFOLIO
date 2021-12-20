@@ -107,11 +107,6 @@ const Home = () => {
         </div>
       </div>
       <About />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-        crossorigin="anonymous"
-      ></script>
       <ins
         class="adsbygoogle"
         style={{ display: "block" }}
@@ -120,14 +115,8 @@ const Home = () => {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <Skills />
       <Services />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-        crossorigin="anonymous"
-      ></script>
       <ins
         class="adsbygoogle"
         style={{ display: "block" }}
@@ -136,7 +125,6 @@ const Home = () => {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <Contact />
     </>
   );

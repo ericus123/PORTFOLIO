@@ -34,11 +34,19 @@ export const confirmEmail = (email, token) => async (dispatch) => {
     const res = await http.put(`/api/auth/verify/${email}/${token}`);
     dispatch({ type: types.CONFIRM_EMAIL_SUCCESS, payload: res.data });
   } catch (error) {
-    dispatch({
-      type: types.CONFIRM_EMAIL_ERROR,
-      payload: error.response.data.error
-        ? error.response.data.error
-        : "Error occured",
-    });
+    const err = error.response.data.error;
+    if (err && err === "Invalid Token") {
+      dispatch({
+        type: types.CONFIRM_EMAIL_ERROR,
+        payload: "This verification link has expired",
+      });
+    } else {
+      dispatch({
+        type: types.CONFIRM_EMAIL_ERROR,
+        payload: error.response.data.error
+          ? error.response.data.error
+          : "Error occured",
+      });
+    }
   }
 };
