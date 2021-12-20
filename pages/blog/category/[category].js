@@ -1,25 +1,18 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { Media, Alert } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { getPostsByCat } from "../../../redux/actions/blog/posts";
 import { useSelector, useDispatch } from "react-redux";
-import SideBar from "../../../comps/blog/sidebar/sideBar";
 import Link from "next/link";
 import { Spinner } from "react-bootstrap";
-import Paginate from "../../../comps/blog/Pagination";
-import NotFound from "../../404";
-import ScrollButton from "../../../reusables/ScrollUp";
 import PostsList from "../../../comps/blog/PostsList";
 import BlogLayout from "../../../comps/layouts/BlogLayout";
+import AdBanner from "../../../comps/ads";
 
 const PostsByCategory = () => {
-  const message = useSelector((state) => state.postsByCat.message);
   const isLoading = useSelector((state) => state.postsByCat.isLoading);
   const error = useSelector((state) => state.postsByCat.error);
   const catPosts = useSelector((state) => state.postsByCat.posts);
-  const prevPage = useSelector((state) => state.postsByCat.prevPage);
-  const nextPage = useSelector((state) => state.postsByCat.nextPage);
-  const maxPages = useSelector((state) => state.postsByCat.maxPages);
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -53,27 +46,17 @@ const PostsByCategory = () => {
           </div>
         ) : null}
         {err}
-        {message && !catPosts.length ? <NotFound /> : null}
         {breadCrumb}
         {
           <PostsList
             posts={catPosts.slice().sort((a, b) => (b.date > a.date ? 1 : -1))}
           />
         }
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-          crossorigin="anonymous"
-        ></script>
-        <ins
-          class="adsbygoogle"
-          style={{ display: "block" }}
+        <AdBanner
+          data-ad-layout="in-article"
           data-ad-format="fluid"
-          data-ad-layout-key="-i8+a-18-47+ce"
-          data-ad-client="ca-pub-6149905527184076"
-          data-ad-slot="1682703097"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          data-ad-slot="1965117589"
+        />
       </ul>
     </BlogLayout>
   );

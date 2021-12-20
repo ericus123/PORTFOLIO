@@ -12,16 +12,11 @@ import GetCats from "./getCats";
 import { scrollTop } from "../../../helpers/index";
 import Image from "next/image";
 import styles from "../index.module.scss";
+import AdBanner from "../../ads";
 
 const SideBar = () => {
   const posts = useSelector((state) => state.posts.posts);
   const error = useSelector((state) => state.posts.error);
-  const message = useSelector((state) => state.posts.message);
-  const isLoading = useSelector((state) => state.posts.isLoading);
-  const searchPosts = useSelector((state) => state.searchPosts.posts);
-  const searchError = useSelector((state) => state.searchPosts.error);
-  const searchMessage = useSelector((state) => state.searchPosts.message);
-  const searchIsLoading = useSelector((state) => state.searchPosts.isLoading);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +27,7 @@ const SideBar = () => {
   const recentPosts = posts.length
     ? posts.slice(0, 3).map((post) => {
         return (
-          <div className="recent-posts">
+          <div className="recent-posts" key={Math.random()}>
             <div className={styles.recent_posts_image}>
               <Image
                 src={post.imageUrl}
@@ -80,38 +75,11 @@ const SideBar = () => {
 
   return (
     <div className="side-bar">
-      {posts.length ? <h2 className="recent-title">What's new</h2> : null}
+      {posts.length ? <h2 className="recent-title">What&apos;s new</h2> : null}
       {err}
       <br />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-        crossorigin="anonymous"
-      ></script>
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-format="fluid"
-        data-ad-layout-key="-i8+a-18-47+ce"
-        data-ad-client="ca-pub-6149905527184076"
-        data-ad-slot="1682703097"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       {recentPosts}
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-        crossorigin="anonymous"
-      ></script>
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-format="fluid"
-        data-ad-layout-key="-i8+a-18-47+ce"
-        data-ad-client="ca-pub-6149905527184076"
-        data-ad-slot="1682703097"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
       <br />
       {posts.length ? (
         <form
@@ -140,22 +108,18 @@ const SideBar = () => {
       ) : null}
       <br />
       <GetCats />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6149905527184076"
-        crossorigin="anonymous"
-      ></script>
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6149905527184076"
-        data-ad-slot="7105763628"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <br />
+      <AdBanner
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-slot="1965117589"
+      />
       <br />
+      <AdBanner
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-slot="1965117589"
+      />
     </div>
   );
 };

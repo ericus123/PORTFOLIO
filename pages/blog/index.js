@@ -2,14 +2,12 @@ import { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/actions/blog/posts";
-import ScrollButton from "../../reusables/ScrollUp";
-import SideBar from "../../comps/blog/sidebar/sideBar";
 import Paginate from "../../comps/blog/Pagination";
 import { simpleAlert } from "../../comps/Alerts";
-import PostsSlider from "../../comps/blog/PostsSlider";
 import Head from "next/head";
 import PostsList from "../../comps/blog/PostsList";
 import BlogLayout from "../../comps/layouts/BlogLayout";
+import AdBanner from "../../comps/ads";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -66,7 +64,7 @@ const Blog = () => {
         {/* <meta property="twitter:image" content={pro_image}></meta> */}
       </Head>
       <BlogLayout showSlider>
-        <div className="list-unstyled">
+        <div className="single-post">
           {loader}
           {err}
           {message && !postsPerPage.length && !error ? (
@@ -76,6 +74,11 @@ const Blog = () => {
           ) : null}
           <br />
           <PostsList posts={postsPerPage} />
+          <AdBanner
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-slot="1965117589"
+          />
           {postsPerPage.length ? (
             <div style={{ textAlign: "center" }}>
               <Paginate

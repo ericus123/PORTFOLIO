@@ -6,12 +6,10 @@ import {
   getPosts,
   searchPostsRequest,
 } from "../../../redux/actions/blog/posts";
-import SideBar from "../../../comps/blog/sidebar/sideBar";
-import ScrollTop from "../../../reusables/ScrollUp";
 import Paginate from "../../../comps/blog/Pagination";
 import PostsList from "../../../comps/blog/PostsList";
-import PostsSlider from "../../../comps/blog/PostsSlider";
 import BlogLayout from "../../../comps/layouts/BlogLayout";
+import AdBanner from "../../../comps/ads";
 
 const SearchPosts = () => {
   const dispatch = useDispatch();
@@ -61,7 +59,8 @@ const SearchPosts = () => {
         {postsPerPage.length && searchTerm && !searchIsLoading ? (
           <h2 style={{ fontWeight: "light", textAlign: "center" }}>
             Showing {searchPosts.length}{" "}
-            {searchPosts.length > 1 ? "results" : "result"} for "{searchTerm}"
+            {searchPosts.length > 1 ? "results" : "result"} for &apos;
+            {searchTerm}&apos;
           </h2>
         ) : null}
         {!searchIsLoading &&
@@ -75,7 +74,7 @@ const SearchPosts = () => {
               textAlign: "center",
             }}
           >
-            Ooops! No results found for "{searchTerm}"
+            Ooops! No results found for &apos;{searchTerm}&apos;
             <span style={{ fontWeight: "bold" }}></span>
           </h2>
         ) : null}
@@ -105,6 +104,11 @@ const SearchPosts = () => {
             ) : null}
           </div>
         ) : null}
+        <AdBanner
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-slot="1965117589"
+        />
         <br />
       </ul>
     </BlogLayout>

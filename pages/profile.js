@@ -12,27 +12,20 @@ import {
 } from "../redux/actions/profile/profile";
 import { Upload, message } from "antd";
 import { Spinner, Modal } from "react-bootstrap";
-import { changePassword } from "../redux/actions/auth/password";
 import { simpleAlert } from "../comps/Alerts";
 import { authRequest } from "../redux/actions/auth/checkAuth";
 import ImgCrop from "antd-img-crop";
 import Image from "next/image";
+import AdBanner from "../comps/ads";
 
 const Profile = () => {
   const [active, setActive] = useState("about");
   const [show, setShow] = useState(true);
   const profile = useSelector((state) => state.getProfile.profile);
   const error = useSelector((state) => state.getProfile.error);
-  const isLoading = useSelector((state) => state.getProfile.isLoading);
   const [modalShow, setModalShow] = React.useState(false);
   const changePasswordError = useSelector(
     (state) => state.changePassword.error
-  );
-  const changePasswordMessage = useSelector(
-    (state) => state.changePassword.message
-  );
-  const changePasswordIsLoading = useSelector(
-    (state) => state.changePassword.isLoading
   );
   const changeAvatarError = useSelector((state) => state.changeAvatar.error);
   const changeAvatarMessage = useSelector(
@@ -100,7 +93,7 @@ const Profile = () => {
   }, [changeAvatarMessage]);
   const uploadAvatar = async (file) => {
     if (file.type !== "image") {
-      message.error(`File is not an image`);
+      message.error("File is not an image");
     }
     setLoadingImg("avatar");
     const base64 = await convertBase64(file);
@@ -118,18 +111,10 @@ const Profile = () => {
 
       fileReader.onerror = (error) => {
         reject(error);
-        setIsUploading(false);
       };
     });
   };
 
-  const handlePasswordChangeSubmit = (e) => {
-    e.preventDefault();
-    const password = e.target.password.value;
-    const passwordConf = e.target.passwordConf.value;
-    dispatch(changePassword(password, passwordConf));
-    e.target.reset();
-  };
   const complete_Profile = (e) => {
     e.preventDefault();
     const occupation = e.target.occupation.value;
@@ -161,7 +146,7 @@ const Profile = () => {
           <p>
             Are you sure you want to delete your account?
             <br />
-            This action can't be undone{" "}
+            This action can&apos;t be undone{" "}
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -461,42 +446,49 @@ const Profile = () => {
     <div className="profile">
       {profile ? (
         <>
-          <div className="profile_picture">
-            <Image
-              width={50}
-              height={100}
-              priority
-              quality={25}
-              src={profile.avatar || avatar}
-              layout="responsive"
-              className="profile_img"
-            />
-            <div className="file">
-              <ImgCrop>
-                <Upload beforeUpload={uploadAvatar}>
-                  <form>
-                    {" "}
-                    {loadingImg == "avatar" ||
-                    (changeAvatarIsLoading && !changeAvatarError) ? (
-                      <div style={{ textAlign: "center" }}>
-                        <Spinner
-                          animation="border"
-                          size="md"
-                          role="status"
-                        ></Spinner>
-                      </div>
-                    ) : (
-                      <span style={{ color: "white" }}>
-                        {profile.isComplete ? "Change photo" : "Add Photo"}
-                      </span>
-                    )}
-                    {changeAvatarError
-                      ? simpleAlert("danger", changeAvatarError)
-                      : null}
-                  </form>
-                </Upload>
-              </ImgCrop>
+          <div>
+            <div className="profile_picture">
+              <Image
+                width={50}
+                height={100}
+                priority
+                quality={25}
+                src={profile.avatar || avatar}
+                layout="responsive"
+                className="profile_img"
+              />
+              <div className="file">
+                <ImgCrop>
+                  <Upload beforeUpload={uploadAvatar}>
+                    <form>
+                      {" "}
+                      {loadingImg == "avatar" ||
+                      (changeAvatarIsLoading && !changeAvatarError) ? (
+                        <div style={{ textAlign: "center" }}>
+                          <Spinner
+                            animation="border"
+                            size="md"
+                            role="status"
+                          ></Spinner>
+                        </div>
+                      ) : (
+                        <span style={{ color: "white" }}>
+                          {profile.isComplete ? "Change photo" : "Add Photo"}
+                        </span>
+                      )}
+                      {changeAvatarError
+                        ? simpleAlert("danger", changeAvatarError)
+                        : null}
+                    </form>
+                  </Upload>
+                </ImgCrop>
+              </div>
             </div>
+            <AdBanner
+              data-ad-slot="7105763628"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            />
           </div>
           <div className="profile_details">
             <br />

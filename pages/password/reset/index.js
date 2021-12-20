@@ -44,7 +44,7 @@ const ResetPassword = () => {
             <Alert style={{ textAlign: "center" }} variant="success">
               A password reset link has been sent to <b>{email}</b>
               <br />
-              didn't receive the email?{" "}
+              didn&apos;t receive the email?{" "}
               <span
                 style={{ color: "#007bff", cursor: "pointer" }}
                 onClick={() => {

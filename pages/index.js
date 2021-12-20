@@ -8,6 +8,7 @@ import Contact from "../comps/home/Contact";
 import Services from "../comps/home/Services";
 import Head from "next/head";
 import HomeImage from "../comps/home/HomeImage";
+import AdBanner from "../comps/ads";
 
 const Home = () => {
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
@@ -57,7 +58,7 @@ const Home = () => {
           <h1 className="home__title">
             Hi,
             <br />
-            I'am <span className="home__title-color">Amani</span>
+            I&apos;m <span className="home__title-color">Amani</span>
             <br />
             Web Developer
           </h1>
@@ -86,6 +87,7 @@ const Home = () => {
             target="_blank"
             href="https://www.linkedin.com/in/amani-eric-b45986172/"
             className="footer__icon"
+            rel="noreferrer"
           >
             <i>
               <Linkedin color="#000" />
@@ -96,6 +98,7 @@ const Home = () => {
             target="_blank"
             href="https://github.com/ericus123"
             className="footer__icon"
+            rel="noreferrer"
           >
             <i>
               <Github color="#000" />
@@ -107,25 +110,20 @@ const Home = () => {
         </div>
       </div>
       <About />
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6149905527184076"
-        data-ad-slot="7105763628"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
       <Skills />
-      <Services />
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6149905527184076"
+      <AdBanner
         data-ad-slot="7105763628"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      />
+      <Services />
       <Contact />
+      <AdBanner
+        data-ad-slot="7105763628"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+      <br />
     </>
   );
 };

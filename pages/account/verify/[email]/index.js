@@ -31,7 +31,7 @@ const EmailVerification = () => {
           <Alert style={{ textAlign: "center" }} variant="success">
             An account verification email has been sent to <b>{email}</b>
             <br />
-            didn't receive the email?{" "}
+            didn&apos;t receive the email?{" "}
             <span
               style={{ color: "#007bff", cursor: "pointer" }}
               onClick={() => {

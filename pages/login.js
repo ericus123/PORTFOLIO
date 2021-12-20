@@ -1,11 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Spinner, Row, Col } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 import { loginRequest } from "../redux/actions/auth/login";
 import { authRedirect } from "../utils/redirects";
 import { simpleAlert } from "../comps/Alerts";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import GoogleAuth from "../comps/auth/GoogleAuth";
@@ -17,7 +15,6 @@ const Login = () => {
   const message = useSelector((state) => state.login.message);
   const email = useSelector((state) => state.login.email);
   const isLoading = useSelector((state) => state.login.isLoading);
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
 
   const dispatch = useDispatch();
 

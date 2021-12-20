@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner, Alert } from "react-bootstrap";
 import { messageRequest } from "../../redux/actions/contact/index";
-import Head from "next/head";
 
 const Contact = () => {
   const error = useSelector((state) => state.sendMessage.error);

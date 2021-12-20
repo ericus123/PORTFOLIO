@@ -9,7 +9,7 @@ const Projects = () => {
       <Carousel>
         <Image src={image} style={{ borderRadius: "1%" }} />
         {[1, 2, 3, 4, 5].map(() => (
-          <Carousel.Item>
+          <Carousel.Item key={Math.random()}>
             <Row>
               <Col className="project-desc">
                 <h3>Project title</h3>

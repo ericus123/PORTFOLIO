@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
-import { Alert } from "react-bootstrap";
 import http from "../../utils/axios/axios";
-import SideBar from "../../comps/blog/sidebar/sideBar";
-import ScrolButton from "../../reusables/ScrollUp";
 import Head from "next/head";
 import PostsDetails from "../../comps/blog/PostDetails";
 import BlogLayout from "../../comps/layouts/BlogLayout";
+import AdBanner from "../../comps/ads";
 
 export const getStaticPaths = async () => {
   const res = await http.get("/api/posts");
@@ -33,31 +30,6 @@ export const getStaticProps = async (context) => {
 };
 const SinglePost = ({ post }) => {
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
-
-  const message = useSelector((state) => state.post.message);
-  const error = useSelector((state) => state.post.error);
-  const user = useSelector((state) => state.checkAuth.user);
-
-  const CommentReply = useSelector((state) => state.postCommentReply.reply);
-  const CommentReplyError = useSelector(
-    (state) => state.postCommentReply.error
-  );
-  const CommentReplyMessage = useSelector(
-    (state) => state.postCommentReply.msg
-  );
-  const CommentReplyisLoading = useSelector(
-    (state) => state.postCommentReply.isLoading
-  );
-  const reactionUser = useSelector((state) => state.postReaction.reactionUser);
-  const reactionMsg = useSelector((state) => state.postReaction.reactionMsg);
-  const reactionError = useSelector(
-    (state) => state.postReaction.reactionError
-  );
-  const reactionisLoading = useSelector(
-    (state) => state.postReaction.reactionisLoading
-  );
-
-  const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
     <>
       <Head>
@@ -101,6 +73,12 @@ const SinglePost = ({ post }) => {
       <BlogLayout showSlider={false}>
         <div className="single-post">
           <PostsDetails post={post} />
+          <br />
+          <AdBanner
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-slot="1965117589"
+          />
         </div>
       </BlogLayout>
     </>

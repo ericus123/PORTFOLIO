@@ -16,7 +16,10 @@ const GetCats = () => {
   const allCats = cats.length
     ? cats.map((cat) => {
         return (
-          <ListGroup style={{ border: "none", textDecoration: "none" }}>
+          <ListGroup
+            style={{ border: "none", textDecoration: "none" }}
+            key={Math.random()}
+          >
             <Link
               style={{ textDecoration: "none", border: "none" }}
               href={"/blog/category/" + cat.name}

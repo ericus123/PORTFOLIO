@@ -14,13 +14,15 @@ import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
-    var ads = document.getElementsByClassName("adsbygoogle").length;
+    var ads = document?.getElementsByClassName("adsbygoogle").length;
     for (var i = 0; i < ads; i++) {
       try {
+        // eslint-disable-next-line no-undef
         (adsbygoogle = window.adsbygoogle || []).push({});
+        // eslint-disable-next-line no-empty
       } catch (e) {}
     }
-  }, [router]);
+  }, [router.asPath]);
   return (
     <>
       <Head>
