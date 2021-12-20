@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         (adsbygoogle = window.adsbygoogle || []).push({});
       } catch (e) {}
     }
-  }, [router]);
+  }, [router.asPath]);
   return (
     <>
       <Head>
