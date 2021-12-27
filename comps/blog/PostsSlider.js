@@ -1,6 +1,6 @@
 import React from "react";
 import { Alert, Carousel } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./index.module.scss";
@@ -12,11 +12,14 @@ const PostsSlider = () => {
   const postsSlider = posts.length
     ? posts.slice(0, 5).map((post) => {
         return (
-          <Carousel.Item className="slider" interval={10000}>
+          <Carousel.Item
+            className="slider"
+            interval={10000}
+            key={Math.random()}
+          >
             <div className={styles.image_slider_item}>
               <Image
-                className="slider_image"
-                className="d-block w-100 img-border-radius"
+                className="slider_image d-block w-100 img-border-radius"
                 src={post.imageUrl}
                 width={400}
                 height={300}
@@ -26,7 +29,7 @@ const PostsSlider = () => {
               />
             </div>
             <Carousel.Caption>
-              <Link href={`/blog/${post._id}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <span className={styles.slider_caption}>{post.title}</span>
               </Link>
             </Carousel.Caption>

@@ -5,6 +5,7 @@ import readingTime from "reading-time";
 import { PostShares } from "./shares/Shares";
 import { BigLike } from "./Likes/likes";
 import Comments from "./comments/Comments";
+import unknown_avatar from "../../public/images/avatar.png";
 
 const PostsDetails = ({ post }) => {
   const id = post._id;
@@ -23,7 +24,7 @@ const PostsDetails = ({ post }) => {
               <Col xs="1" sm="1" className="mb-1 mr-1 ">
                 <div className="author-img-container">
                   <Image
-                    src={post.author ? post.author.avatar : unknown_avatar}
+                    src={post.author.avatar || unknown_avatar}
                     width={60}
                     height={60}
                     layout="responsive"
@@ -37,7 +38,7 @@ const PostsDetails = ({ post }) => {
                 {" "}
                 <p className="more_details">
                   {post.user ? (
-                    <span classname="authors_name">
+                    <span className="authors_name">
                       {post.author ? (
                         <b>{`${post.author.firstName} ${post.author.lastName}`}</b>
                       ) : (
@@ -56,7 +57,7 @@ const PostsDetails = ({ post }) => {
                 </p>
               </Col>
               <Col className="mt-1">
-                <PostShares id={id} />
+                <PostShares slug={post.slug} />
               </Col>
             </Row>
             <div className={styles.article_img}>

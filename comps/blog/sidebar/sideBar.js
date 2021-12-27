@@ -40,7 +40,7 @@ const SideBar = () => {
             </div>
 
             <div>
-              <Link href={`/blog/${post._id}`} onClick={scrollTop}>
+              <Link href={`/blog/${post.slug}`} onClick={scrollTop}>
                 <h6
                   className="recent-post-title title"
                   style={{
