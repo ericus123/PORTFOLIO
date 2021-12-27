@@ -9,7 +9,7 @@ export const getStaticPaths = async () => {
   const data = await res.data?.posts;
   const paths = data?.map((post) => {
     return {
-      params: { id: post._id },
+      params: { slug: post.slug },
     };
   });
   return {
@@ -19,13 +19,13 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id;
+  const slug = context.params.slug;
 
-  const res = await http.get(`/api/posts/${id}`);
-  const post = await res.data.post;
+  const res = await http.get(`/api/posts/${slug}`);
+  const post = await res.data.post[0];
 
   return {
-    props: { post: post, id: id },
+    props: {post,slug },
   };
 };
 const SinglePost = ({ post }) => {
@@ -39,7 +39,7 @@ const SinglePost = ({ post }) => {
         <meta
           name="description"
           content={
-            post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
           }
         />
 
@@ -50,7 +50,7 @@ const SinglePost = ({ post }) => {
         <meta
           property="og:description"
           content={
-            post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
           }
         />
         <meta property="og:image" content={post.imageUrl} />
@@ -65,14 +65,14 @@ const SinglePost = ({ post }) => {
         <meta
           property="twitter:description"
           content={
-            post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
           }
         />
         <meta property="twitter:image" content={`${post.imageUrl}`} />
       </Head>
       <BlogLayout showSlider={false}>
         <div className="single-post">
-          <PostsDetails post={post} />
+        {post &&   <PostsDetails post={post} />} 
           <br />
           <AdBanner
             data-ad-layout="in-article"

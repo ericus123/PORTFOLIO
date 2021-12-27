@@ -10,13 +10,14 @@ const PostsList = ({ posts }) => {
     posts.map((post) => {
       return (
         <Link
-          href={`/blog/${post._id}`}
+        key={Math.random()}
+          href={`/blog/${post.slug}`}
           className="text-decoration-none"
           onClick={scrollTop}
         >
           <Media
             as="li"
-            key={post._id}
+            key={post.slug}
             className={`media ${styles.post_container}`}
           >
             <div className="image_wrapper" style={{ minWidth: "40%" }}>
@@ -27,7 +28,6 @@ const PostsList = ({ posts }) => {
                 dpr="auto"
                 layout="responsive"
                 className={styles.post_img}
-                layout="responsive"
                 priority
                 quality={25}
               />
@@ -36,7 +36,7 @@ const PostsList = ({ posts }) => {
             &nbsp; &nbsp;&nbsp;
             <Media.Body className="media-body">
               <Link
-                href={`/blog/${post._id}`}
+                href={`/blog/${post.slug}`}
                 onClick={scrollTop}
                 className={styles.post_title}
               >
@@ -49,7 +49,7 @@ const PostsList = ({ posts }) => {
                 )}
               </p>
               <h6 style={{ marginTop: "10px" }}>
-                <Link href={`/blog/${post._id}`} onClick={scrollTop}>
+                <Link href={`/blog/${post.slug}`} onClick={scrollTop}>
                   <span className={styles.readmore_txt}>Read More</span>
                 </Link>
               </h6>

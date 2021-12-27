@@ -587,7 +587,6 @@ img {
 
 /* Side Bar */
 .side-bar {
-  margin: 1.25%;
 }
 .cat-item {
   border: none;
@@ -1570,7 +1569,7 @@ footer li:hover {
   margin-bottom: 10rem;
 }
 .login-btn {
-  color: var(--first-color) !important;
+  color: #ccc !important;
   font-weight: bold;
 }
 .signup-btn {
@@ -1729,4 +1728,12 @@ footer li:hover {
   height: 60vh;
   min-height: 60vh;
   position: static;
+}
+
+//SIDE NAV
+
+.side-nav {
+  position: sticky;
+  top: 0;
+  height: 180vh;
 }

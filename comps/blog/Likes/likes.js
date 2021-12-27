@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { faHandHoldingHeart } from "@fortawesome/fontawesome-free-solid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaHandHoldingHeart } from "react-icons/fa";
 import {
   ReactOnPost,
   getPostReactions,
@@ -20,7 +19,6 @@ export const BigLike = ({ id }) => {
   const dispatch = useDispatch();
   const postReactions = useSelector((state) => state.postReactions.likes);
   const error = useSelector((state) => state.postReaction.error);
-  const postReaction = useSelector((state) => state.postReaction.msg);
   const isLoading = useSelector((state) => state.postReaction.isLoading);
   const isLoggedIn = useSelector((state) => state.checkAuth.isLoggedIn);
   const user = useSelector((state) => state.checkAuth.user);
@@ -58,15 +56,15 @@ export const BigLike = ({ id }) => {
       {postReactions ? (
         !isLoading ? (
           <span>
-            <FontAwesomeIcon
+            <FaHandHoldingHeart
               className={liked}
-              icon={faHandHoldingHeart}
               onClick={() => {
                 setClicked(!btn);
                 dispatch(ReactOnPost(id));
               }}
-              size={40}
+              size="m"
             />
+
             <span className="n">{likesLen}</span>
           </span>
         ) : null
