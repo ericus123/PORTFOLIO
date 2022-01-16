@@ -1,0 +1,20 @@
+.author_container {
+  height: 35vh;
+  width: 100%;
+  box-shadow: 0 10px 36px rgb(220, 220, 220);
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  overflow: hidden;
+  .left_side {
+  }
+  .right_side {
+    padding: 5%;
+    h1 {
+      font-size: 1.6em;
+    }
+    p {
+      font-size: 0.8em;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { PostShares } from "./shares/Shares";
 import { BigLike } from "./Likes/likes";
 import Comments from "./comments/Comments";
 import unknown_avatar from "../../public/images/avatar.png";
+import AuthorDetails from "./author";
 
 const PostsDetails = ({ post }) => {
   const id = post._id;
@@ -78,6 +79,8 @@ const PostsDetails = ({ post }) => {
             <BigLike id={id} />
             <br />
             <br />
+            <br />
+            <AuthorDetails author={post.author} />
             <br />
             <br />
             <Comments comment={post.comments} id={id} post={post} />
