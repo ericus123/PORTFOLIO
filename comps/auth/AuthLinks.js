@@ -1,4 +1,3 @@
-import { Row, Col } from "react-bootstrap";
 import styles from "./index.module.scss";
 import Link from "next/link";
 

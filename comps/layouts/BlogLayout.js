@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 
 const BlogLayout = ({ children, showSlider }) => {
   return (
-    <div className="Blog">
+    <div className={`Blog ${styles.blog_layout}`}>
       <br />
       <ScrollButton />
       <div className="blog-wrapper">

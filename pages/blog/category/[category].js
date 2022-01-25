@@ -4,10 +4,10 @@ import { Alert } from "react-bootstrap";
 import { getPostsByCat } from "../../../redux/actions/blog/posts";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
-import { Spinner } from "react-bootstrap";
 import PostsList from "../../../comps/blog/PostsList";
 import BlogLayout from "../../../comps/layouts/BlogLayout";
 import AdBanner from "../../../comps/ads";
+import { SpinningLoader } from "../../../comps/loaders";
 
 const PostsByCategory = () => {
   const isLoading = useSelector((state) => state.postsByCat.isLoading);
@@ -38,13 +38,7 @@ const PostsByCategory = () => {
   return (
     <BlogLayout showSlider={false}>
       <ul className="list-unstyled">
-        {isLoading ? (
-          <div style={{ textAlign: "center" }}>
-            <br />
-            <br />
-            <Spinner animation="border" size="lg" role="status" />
-          </div>
-        ) : null}
+        <SpinningLoader isLoading={isLoading} />
         {err}
         {breadCrumb}
         {

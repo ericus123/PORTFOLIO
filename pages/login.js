@@ -9,6 +9,7 @@ import Head from "next/head";
 import GoogleAuth from "../comps/auth/GoogleAuth";
 import AuthButton from "../comps/auth/AuthButton";
 import AuthLinks from "../comps/auth/AuthLinks";
+import errors from "../utils/errors.json";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
@@ -28,7 +29,7 @@ const Login = () => {
     dispatch(loginRequest(Email, Password));
   };
   let router = useRouter();
-  if (error === "Your account has not been verified") {
+  if (error === errors.unverified_account) {
     setTimeout(() => {
       router.push(`/account/verify/${email}`);
     }, 2000);

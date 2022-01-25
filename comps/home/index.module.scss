@@ -25,7 +25,7 @@
   transition: 0.3s;
   &:hover {
     transform: scale(1.05);
-    transition: 0.5s;
+    transition: 0.75s;
   }
 }
 
@@ -37,6 +37,12 @@
   margin-left: 5%;
 }
 
+
+.services__container{
+  max-width: 1050px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
 .our_services {
   margin-top: 75px;
   padding-bottom: 60px;
@@ -51,6 +57,7 @@
   transition: all 1 ease-in-out;
   box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17);
   width: 100%;
+  max-width: 1000px;
   h6 {
     font-weight: bold;
   }
@@ -62,7 +69,12 @@
 .icon {
   margin-bottom: -21px;
   transform: translateY(-50%);
+  width: 4rem;
+  display: flex;
+  justify-content: center;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .our_services:hover h6,
@@ -71,61 +83,61 @@
 }
 .speedup {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #d40c54;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }
 .settings {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #5d3fd4;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }
 .privacy {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #2b69a3;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }
 .backups {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #e58a38;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }
 .ssl {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #5d4395;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }
 .database {
   background-color: white;
-  transition: 1s;
+  transition: .75s;
   &:hover {
     cursor: pointer;
     background-color: #25b478;
-    transition: 1s;
+    transition: .75s;
     color: white;
   }
 }

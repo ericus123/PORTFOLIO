@@ -10,7 +10,7 @@ import styles from "./index.module.scss";
 
 const Services = () => {
   return (
-    <div className="services__container" id="services">
+    <div className={styles.services__container} id="services">
       <br />
       <h2 className="section-title">Services</h2>
 

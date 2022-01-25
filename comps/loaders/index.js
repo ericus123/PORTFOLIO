@@ -4,10 +4,12 @@ import styles from "./index.module.scss";
 
 const antIcon = <LoadingOutlined className={styles.spinner} spin />;
 
-export const SpinningLoader = () => {
+export const SpinningLoader = ({ isLoading }) => {
   return (
-    <div className={styles.spinner_container}>
-      <Spin size="large" indicator={antIcon} />
-    </div>
+    isLoading && (
+      <div className={styles.spinner_container}>
+        <Spin size="large" indicator={antIcon} />
+      </div>
+    )
   );
 };

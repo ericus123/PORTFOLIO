@@ -8,7 +8,6 @@ import Contact from "../comps/home/Contact";
 import Services from "../comps/home/Services";
 import Head from "next/head";
 import HomeImage from "../comps/home/HomeImage";
-import AdBanner from "../comps/ads";
 
 const Home = () => {
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
@@ -111,18 +110,8 @@ const Home = () => {
       </div>
       <About />
       <Skills />
-      <AdBanner
-        data-ad-slot="7105763628"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
       <Services />
       <Contact />
-      <AdBanner
-        data-ad-slot="7105763628"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
       <br />
     </>
   );
