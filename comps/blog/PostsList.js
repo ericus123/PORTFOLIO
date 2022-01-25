@@ -1,7 +1,6 @@
 import { Media } from "react-bootstrap";
 import Link from "next/link";
 import { decodeHtml, scrollTop } from "../../helpers";
-import Image from "next/image";
 import styles from "./index.module.scss";
 
 const PostsList = ({ posts }) => {
@@ -10,7 +9,7 @@ const PostsList = ({ posts }) => {
     posts.map((post) => {
       return (
         <Link
-        key={Math.random()}
+          key={Math.random()}
           href={`/blog/${post.slug}`}
           className="text-decoration-none"
           onClick={scrollTop}
@@ -20,20 +19,6 @@ const PostsList = ({ posts }) => {
             key={post.slug}
             className={`media ${styles.post_container}`}
           >
-            <div className="image_wrapper" style={{ minWidth: "40%" }}>
-              <Image
-                width={350}
-                height={200}
-                src={post.imageUrl}
-                dpr="auto"
-                layout="responsive"
-                className={styles.post_img}
-                priority
-                quality={25}
-              />
-            </div>
-            <br />
-            &nbsp; &nbsp;&nbsp;
             <Media.Body className="media-body">
               <Link
                 href={`/blog/${post.slug}`}
@@ -44,7 +29,7 @@ const PostsList = ({ posts }) => {
               </Link>
               <p className="description">
                 {decodeHtml(
-                  post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 250) +
+                  post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 150) +
                     "..."
                 )}
               </p>

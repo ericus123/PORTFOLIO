@@ -6,9 +6,14 @@ import { PostShares } from "./shares/Shares";
 import { BigLike } from "./Likes/likes";
 import Comments from "./comments/Comments";
 import unknown_avatar from "../../public/images/avatar.png";
+import Prism from "prismjs";
+import { useEffect } from "react";
 
 const PostsDetails = ({ post }) => {
   const id = post._id;
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [post.description]);
   return (
     post && (
       <>

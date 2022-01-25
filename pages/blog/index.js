@@ -24,8 +24,6 @@ const Blog = () => {
     dispatch(getPosts(page, 10));
   }, [page]);
 
-  const loader = isLoading && <SpinningLoader />;
-
   const err = error ? <>{simpleAlert("danger", error)}</> : null;
 
   return (
@@ -60,7 +58,7 @@ const Blog = () => {
       </Head>
       <BlogLayout showSlider>
         <div className="single-post">
-          {loader}
+          <SpinningLoader isLoading={isLoading} />
           {err}
           {message && !postsPerPage.length && !error ? (
             <>

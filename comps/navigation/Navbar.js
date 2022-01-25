@@ -1,25 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authRequest } from "../../redux/actions/auth/checkAuth";
-import { useRouter } from "next/router";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import unknown_avatar from "../../public/images/avatar.png";
-import {
-  ArrowRightCircleFill,
-  ArrowLeftCircleFill,
-  PersonPlusFill,
-  PersonCircle,
-} from "react-bootstrap-icons";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaBars } from "react-icons/fa";
-import Image from "next/image";
+import NavAuthLinks from "./NavAuthLinks";
 
 const Navigation = () => {
-  const logout = () => {
-    process.browser ? localStorage.clear() : null;
-    process.browser ? window.location.reload() : null;
-  };
-  const router = useRouter();
-  const user = useSelector((state) => state.checkAuth.user);
   const error = useSelector((state) => state.checkAuth.error);
 
   const dispatch = useDispatch();
@@ -65,48 +51,7 @@ const Navigation = () => {
               Blog
             </Nav.Link>
           </Nav>
-          <Nav>
-            {user ? (
-              <NavDropdown
-                title={
-                  <>
-                    <div className="profile-picture">
-                      <Image
-                        src={user?.avatar || unknown_avatar}
-                        width={40}
-                        height={40}
-                        quality={25}
-                        priority
-                      />
-                    </div>
-                  </>
-                }
-                id="navbarScrollingDropdown"
-              >
-                <NavDropdown.Item href="/profile">
-                  {" "}
-                  <PersonCircle />
-                  &nbsp;Profile
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => logout()}>
-                  <ArrowLeftCircleFill />
-                  &nbsp;Signout
-                </NavDropdown.Item>
-              </NavDropdown>
-            ) : (
-              <>
-                <Nav.Link href="/login" className="login-btn">
-                  <ArrowRightCircleFill />
-                  &nbsp;Login
-                </Nav.Link>
-                <Nav.Link href="/signup" className="signup-btn">
-                  <PersonPlusFill />
-                  &nbsp;Register
-                </Nav.Link>
-              </>
-            )}
-          </Nav>
+          <NavAuthLinks />
         </Navbar.Collapse>
       </Container>
     </Navbar>

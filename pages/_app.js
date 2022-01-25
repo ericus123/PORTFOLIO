@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import "../public/nprogress.scss";
 import NProgress from "nprogress";
+import Prism from "prismjs";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -45,6 +46,9 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeError", handleStop);
     };
   }, [router]);
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
   return (
     <>
       <Head>
