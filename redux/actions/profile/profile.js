@@ -11,7 +11,10 @@ export const getProfileRequest = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.GET_PROFILE_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
   }
 };
@@ -27,7 +30,10 @@ export const changePassword = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.CHANGE_PASSWORD_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_CHANGE_PASSWORD_ERROR });
@@ -45,7 +51,10 @@ export const changeAvatar = (image) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.CHANGE_AVATAR_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error?.response?.data?.error
+          ? error.response.data.error
+          :`Something went wrong, 
+          check your network and try again`,
     });
     NotificationManager.error("Something Went Wrong", "ERROR");
     setTimeout(() => {
@@ -73,7 +82,10 @@ export const completeProfile =
       NotificationManager.error("Something Went Wrong", "ERROR");
       dispatch({
         type: types.COMPLETE_PROFILE_ERROR,
-        payload: error.response.data.error || "Error occured",
+        payload: error?.response?.data?.error
+          ? error.response.data.error
+          :`Something went wrong, 
+          check your network and try again`,
       });
       setTimeout(() => {
         dispatch({
@@ -103,7 +115,10 @@ export const updateProfile =
     } catch (error) {
       dispatch({
         type: types.UPDATE_PROFILE_ERROR,
-        payload: error.response.data.error || "Error occured",
+        payload: error?.response?.data?.error
+        ? error.response.data.error
+        :`Something went wrong, 
+        check your network and try again`,
       });
       NotificationManager.error("Something Went Wrong", "ERROR");
       setTimeout(() => {
@@ -127,7 +142,10 @@ export const deleteAccountToken = (token) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.DELETE_ACCOUNT_TOKEN_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_DELETE_ACCOUNT_TOKEN_ERROR });
@@ -143,7 +161,7 @@ export const deleteAccount = (token) => async (dispatch) => {
         dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: res.data });
 
         const msg = res.data.message || "Account Deleted Successfully";
-        NotificationManager.success(`${msg}`,"SUCCESS")
+        NotificationManager.success(`${msg}`,"SUCCESS");
         setTimeout(() => {
        process.browser ? localStorage.clear() : null;
        process.browser ? window.location.assign("/login") : null;
@@ -152,7 +170,10 @@ export const deleteAccount = (token) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.DELETE_ACCOUNT_ERROR,
-      payload: error.response.data.error || "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
   }
 };

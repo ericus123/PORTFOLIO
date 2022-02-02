@@ -18,9 +18,10 @@ export const signupRequest = (formData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.SIGNUP_ERROR,
-      payload: error.response.data.error
+      payload: error?.response?.data?.error
         ? error.response.data.error
-        : "Error occured",
+        :`Something went wrong, 
+        check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_SIGNUP_ERROR });
@@ -43,9 +44,10 @@ export const confirmEmail = (email, token) => async (dispatch) => {
     } else {
       dispatch({
         type: types.CONFIRM_EMAIL_ERROR,
-        payload: error.response.data.error
-          ? error.response.data.error
-          : "Error occured",
+        payload: error?.response?.data?.error
+        ? error.response.data.error
+        :`Something went wrong, 
+        check your network and try again`,
       });
     }
   }

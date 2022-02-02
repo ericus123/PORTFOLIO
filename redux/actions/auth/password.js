@@ -11,9 +11,10 @@ export const passResetRequest = (Email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.PASSWORD_RESET_ERROR,
-      payload: error.response.data.error
+      payload: error?.response?.data?.error
         ? error.response.data.error
-        : "Error occured",
+        :`Something went wrong, 
+        check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_PASSWORD_RESET_ERROR });
@@ -35,7 +36,11 @@ export const resetPassword = (Token, Password, PasswordConf) => async (
     console.log(error);
     dispatch({
       type: types.PASSWORD_RESET_ERROR,
-      payload: error.response.data.error,
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
+     
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_PASSWORD_RESET_ERROR });
@@ -46,7 +51,7 @@ export const resetPassword = (Token, Password, PasswordConf) => async (
 export const changePassword = (password, passwordConf) => async (dispatch) => {
   try {
     dispatch({ type: types.PASSWORD_CHANGE_CLICKED });
-    const res = await http.patch(`/api/auth/password/change`, {
+    const res = await http.patch("/api/auth/password/change", {
       password: password,
       passwordConf: passwordConf,
     });
@@ -55,7 +60,10 @@ export const changePassword = (password, passwordConf) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: types.PASSWORD_CHANGE_ERROR,
-      payload: error.response.data.error,
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_PASSWORD_CHANGE_ERROR });

@@ -9,9 +9,10 @@ export const sendConfirmation = (Email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.SEND_CONFIRM_ERROR,
-      payload: error.response.data.error
-        ? error.response.data.error
-        : "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_SEND_CONFIRM_ERROR });

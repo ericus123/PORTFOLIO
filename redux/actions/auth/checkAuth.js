@@ -8,7 +8,10 @@ export const authRequest = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.CHECK_AUTH_ERROR,
-      payload: error.response?.data.error || "Error occured",
+      payload: error?.response?.data?.error
+      ? error.response.data.error
+      :`Something went wrong, 
+      check your network and try again`,
     });
     setTimeout(() => {
       dispatch({

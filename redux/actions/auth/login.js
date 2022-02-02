@@ -7,7 +7,7 @@ export const loginRequest = (Email, Password) => async (dispatch) => {
     const res = await http.post("/api/auth/login/", {
       email: Email,
       password: Password,
-    });
+    },{timeout: 5000});
     localStorage.setItem("auth-token", res.data.token);
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
    
@@ -15,9 +15,10 @@ export const loginRequest = (Email, Password) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: types.LOGIN_ERROR,
-      payload: error.response.data.error
+      payload: error?.response?.data?.error
         ? error.response.data.error
-        : "Error occured",
+        :`Something went wrong, 
+        check your network and try again`,
     });
     setTimeout(() => {
       dispatch({ type: types.REMOVE_LOGIN_ERROR });
