@@ -4,7 +4,6 @@ import PostsDetails from "../../comps/blog/PostDetails";
 import BlogLayout from "../../comps/layouts/BlogLayout";
 import AdBanner from "../../comps/ads";
 
-
 export const getServerSideProps = async (context) => {
   const slug = context.params.slug;
 
@@ -19,7 +18,7 @@ export const getServerSideProps = async (context) => {
     };
   }
   return {
-    props: {post,slug },
+    props: { post, slug },
   };
 };
 const SinglePost = ({ post }) => {
@@ -33,7 +32,8 @@ const SinglePost = ({ post }) => {
         <meta
           name="description"
           content={
-            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) +
+            "..."
           }
         />
 
@@ -44,7 +44,8 @@ const SinglePost = ({ post }) => {
         <meta
           property="og:description"
           content={
-            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) +
+            "..."
           }
         />
         <meta property="og:image" content={post.imageUrl} />
@@ -59,14 +60,15 @@ const SinglePost = ({ post }) => {
         <meta
           property="twitter:description"
           content={
-            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) + "..."
+            post?.description?.replace(/(<([^>]+)>)/gi, "").substr(0, 250) +
+            "..."
           }
         />
         <meta property="twitter:image" content={`${post.imageUrl}`} />
       </Head>
       <BlogLayout showSlider={false}>
         <div className="single-post">
-        {post &&   <PostsDetails post={post} />} 
+          {post && <PostsDetails post={post} />}
           <br />
           <AdBanner
             data-ad-layout="in-article"

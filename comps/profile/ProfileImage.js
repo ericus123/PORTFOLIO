@@ -42,8 +42,8 @@ const ProfileImage = ({
   return (
     <div className="profile_picture">
       <Image
-        width={100}
-        height={100}
+        width={50}
+        height={50}
         priority
         quality={25}
         src={profile.avatar || avatar}

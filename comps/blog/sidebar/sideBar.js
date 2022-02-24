@@ -13,6 +13,7 @@ import { scrollTop } from "../../../helpers/index";
 import Image from "next/image";
 import styles from "../index.module.scss";
 import AdBanner from "../../ads";
+import RandomQuote from "./quotes";
 
 const SideBar = () => {
   const posts = useSelector((state) => state.posts.posts);
@@ -120,6 +121,7 @@ const SideBar = () => {
         data-ad-format="fluid"
         data-ad-slot="1965117589"
       />
+    {posts && <RandomQuote/>}
     </div>
   );
 };

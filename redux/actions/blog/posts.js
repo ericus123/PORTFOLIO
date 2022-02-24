@@ -4,7 +4,9 @@ import { errorMessage } from "../../../comps/popups/popupMessages";
 
 export const getPosts = (page, limit) => async (dispatch) => {
   try {
-    const res = await http.get(`/api/posts/all/active?page=${page}&limit=${limit}`);
+    const res = await http.get(
+      `/api/posts/all/active?page=${page}&limit=${limit}`
+    );
     dispatch({ type: types.GET_POSTS_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({
@@ -32,7 +34,6 @@ export const ReactOnPost = (id) => async (dispatch) => {
     const res = await http.post(`/api/posts/reactions/${id}`);
     dispatch({ type: types.POST_REACTION_SUCCESS, payload: res.data });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: types.POST_REACTION_ERROR,
       payload: error.response.data.error || "Error occured",
@@ -63,7 +64,6 @@ export const getPostsByCat = (cat, p) => async (dispatch) => {
   try {
     const res = await http.get(`/api/posts/categories/${cat}?page=${p}`);
     dispatch({ type: types.GET_POSTS_BY_CAT_SUCCESS, payload: res.data });
-    console.log(res.data);
   } catch (error) {
     dispatch({
       type: types.GET_POSTS_BY_CAT_ERROR,

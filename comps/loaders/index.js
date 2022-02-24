@@ -13,3 +13,13 @@ export const SpinningLoader = ({ isLoading }) => {
     )
   );
 };
+
+
+
+export const SearchLoader = () => {
+  return (
+      <div className={styles.search_spinner_container}>
+        <Spin size="large" indicator={antIcon} />
+      </div>
+    );
+};

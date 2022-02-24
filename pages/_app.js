@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import "../public/nprogress.scss";
 import NProgress from "nprogress";
 import Prism from "prismjs";
+import "../styles/prism.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

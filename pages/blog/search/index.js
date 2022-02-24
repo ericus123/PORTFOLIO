@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Alert, Spinner } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import {
@@ -10,6 +10,7 @@ import Paginate from "../../../comps/blog/Pagination";
 import PostsList from "../../../comps/blog/PostsList";
 import BlogLayout from "../../../comps/layouts/BlogLayout";
 import AdBanner from "../../../comps/ads";
+import { SearchLoader } from "../../../comps/loaders";
 
 const SearchPosts = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,7 @@ const SearchPosts = () => {
 
   const loader =
     isLoading || (searchIsLoading && !searchError) ? (
-      <div style={{ textAlign: "center" }}>
-        <Spinner animation="border" size="lg" role="status" />
-      </div>
+     <SearchLoader />
     ) : null;
 
   const err = error ? (

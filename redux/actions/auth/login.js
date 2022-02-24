@@ -10,9 +10,7 @@ export const loginRequest = (Email, Password) => async (dispatch) => {
     });
     localStorage.setItem("auth-token", res.data.token);
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
-   
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.LOGIN_ERROR,
       payload: error.response.data.error

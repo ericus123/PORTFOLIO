@@ -27,7 +27,7 @@ const PostsList = ({ posts }) => {
               >
                 <h4 className={`title ${styles.post_title}`}>{post.title}</h4>
               </Link>
-              <p className="description">
+              <p className={styles.blog_description}>
                 {decodeHtml(
                   post.description.replace(/(<([^>]+)>)/gi, "").substr(0, 150) +
                     "..."

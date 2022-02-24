@@ -3,6 +3,11 @@
   top: 50%;
   left: 50%;
 }
+.search_spinner_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
 
 @media screen and (min-width: 740px) {
   .spinner {

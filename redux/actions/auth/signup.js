@@ -4,7 +4,6 @@ import http from "../../../utils/axios/axios";
 export const signupRequest = (formData) => async (dispatch) => {
   try {
     dispatch({ type: types.SIGNUP_CLICKED, payload: formData.Email });
-    console.log(formData);
     const res = await http.post("/api/auth/register/", {
       firstName: formData.FirstName,
       lastName: formData.LastName,
