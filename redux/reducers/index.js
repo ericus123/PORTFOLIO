@@ -32,7 +32,10 @@ import {
   deleteAccountToken,
   deleteAccount,
 } from "./profile/profile";
-import { subscribeNewsletter } from "./subscriptions/newsLetter";
+import {
+  subscribeNewsletter,
+  unsubscribeNewsletter,
+} from "./subscriptions/newsLetter";
 // function that contains all reducer objects.
 const allReducers = combineReducers({
   signup,
@@ -48,6 +51,7 @@ const allReducers = combineReducers({
   postReaction,
   confirmEmail,
   subscribeNewsletter,
+  unsubscribeNewsletter,
   resetPassword,
   changePassword,
   sendConfirmation,
