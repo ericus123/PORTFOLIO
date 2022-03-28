@@ -46,3 +46,32 @@ export const subscribeNewsletter = (
       return state;
   }
 };
+
+export const unsubscribeNewsletter = (
+  state = { ...subscribenewsLetterInitialState },
+  action
+) => {
+  switch (action.type) {
+    case types.UNSUBSCRIBE_NEWSLETTER_CLICKED:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.UNSUBSCRIBE_NEWSLETTER_SUCCESS:
+      return {
+        ...state,
+        msg: action.payload.msg,
+        email: action.payload.email,
+        isLoading: false,
+      };
+    case types.UNSUBSCRIBE_NEWSLETTER_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+        msg: null,
+      };
+    default:
+      return state;
+  }
+};

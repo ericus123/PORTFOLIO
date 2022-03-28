@@ -1,0 +1,9 @@
+.unsubscribe_container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20vh;
+  .unsubscribe_title.section-title::after {
+    border-width: 100px !important;
+  }
+}
