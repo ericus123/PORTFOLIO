@@ -38,3 +38,30 @@
     }
   }
 }
+
+//Author 
+
+.author_badge {
+  display: flex;
+  color: white;
+  background: rgb(148, 148, 148);
+  width: fit-content;
+  font-weight: 500;
+  border-radius: 5%;
+  padding: 0.5%;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6em;
+  gap: 5%;
+  align-items: center;
+  align-content: center;
+
+  .crown_icon {
+    height: 0.6rem !important;
+    width: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6em;
+  }
+}

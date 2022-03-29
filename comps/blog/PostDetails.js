@@ -20,7 +20,7 @@ const PostsDetails = ({ post }) => {
         <Media as="li" className="single" style={{ listStyle: "none" }}>
           <Media.Body className="body">
             <h3
-              className="title"
+              className={`title ${styles.post_title}`}
               style={{ marginTop: "10px", marginBottom: "10px" }}
             >
               {post.title}
@@ -55,7 +55,7 @@ const PostsDetails = ({ post }) => {
                   )}
 
                   <span className="post_det">
-                    Created at {new Date(post.createdAt).toLocaleString()}
+                    On {new Date(post.createdAt).toLocaleString()}
                     {post.updatedAt ? post.updatedAt : null} |&nbsp;
                     {readingTime(post.description).text}
                   </span>

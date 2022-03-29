@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 import Link from "next/link";
 import { scrollTop } from "../../../helpers/index";
+import {MdOutlineBookmark} from "react-icons/md";
+import styles from "../index.module.scss";
 
 const GetCats = () => {
   const cats = useSelector((state) => state.getPostCats.cats);
@@ -45,7 +47,7 @@ const GetCats = () => {
   return (
     <div>
       <br />
-      {cats.length ? <h2 className="cat-title">Categories</h2> : null}
+      {cats.length ? <h2 className={`cat-title ${styles.post_title}`}><MdOutlineBookmark/>Categories</h2> : null}
       {allCats}
     </div>
   );

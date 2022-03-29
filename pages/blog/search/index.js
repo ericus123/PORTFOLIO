@@ -55,13 +55,13 @@ const SearchPosts = () => {
         {err}
         {loader}
         <br />
-        {postsPerPage.length && searchTerm && !searchIsLoading ? (
-          <h2 style={{ fontWeight: "light", textAlign: "center" }}>
+        {postsPerPage.length && searchTerm && !searchIsLoading && (
+          <h2 style={{ fontWeight: 300, fontStyle:"italic", textAlign: "center" }}>
             Showing {searchPosts.length}{" "}
             {searchPosts.length > 1 ? "results" : "result"} for &apos;
-            {searchTerm}&apos;
+            <span style={{fontStyle:"italic"}}>{searchTerm}</span>&apos;
           </h2>
-        ) : null}
+        ) }
         {!searchIsLoading &&
         !postsPerPage.length &&
         !searchError &&

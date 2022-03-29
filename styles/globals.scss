@@ -944,6 +944,9 @@ img {
 .recent-posts div .recent-post-title {
   font-size: 1em;
   font-weight: 300;
+  color: black !important;
+  font-weight: 400;
+  font-family: 'Poppins';
 }
 .buy-me-coffee a img:hover {
   transform: scale(1.02);
@@ -1119,16 +1122,21 @@ body {
 .comments .comment-wrapper .comment {
   display: grid;
   grid-template-columns: 10% auto;
-  gap: 2.5%;
-  font-size: 0.8em;
+  gap: .5%;
+  font-size: 1em;
   margin-bottom: 2.5%;
+}
+.comments .comment-wrapper .comment .desc .replies {
+  border-left: 4px solid rgb(241, 239, 239);
+  padding-left: 2%;
+  margin-left: -4%;
 }
 .comments .comment-wrapper .comment .desc .replies .reply {
   display: grid;
   grid-template-columns: 10% auto;
   gap: 2.5%;
-  font-size: 0.8em;
-  margin-top: 3%;
+  font-size: 0.9em;
+  margin-top: .5%;
 }
 .reply_avatar img {
   max-width: 40px;
@@ -1214,26 +1222,6 @@ body {
   font-weight: 500;
   width: 8rem;
   border: 1px solid gray;
-}
-
-/*Author*/
-
-.author-badge {
-  display: flex;
-  color: white;
-  background: rgb(148, 148, 148);
-  width: fit-content;
-  font-weight: 500;
-  border-radius: 5%;
-  padding: 0.5%;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.6em;
-  gap: 2.5%;
-  .crown_icon {
-    height: 0.6rem !important;
-    width: 0.6rem;
-  }
 }
 
 /* Models*/

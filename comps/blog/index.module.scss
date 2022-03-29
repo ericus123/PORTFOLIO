@@ -49,6 +49,14 @@
 .blog_description{
   font-weight: 350;
 }
+.post_title {
+  font-weight: 600;
+}
+
+.blog_description {
+  font-weight: 300;
+  font-size: 1rem;
+}
 
 @media only screen and (max-width: 600px) {
   .article_img {

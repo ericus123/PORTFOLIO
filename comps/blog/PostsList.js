@@ -35,7 +35,9 @@ const PostsList = ({ posts }) => {
               </p>
               <h6 style={{ marginTop: "10px" }}>
                 <Link href={`/blog/${post.slug}`} onClick={scrollTop}>
+                  <div>
                   <span className={styles.readmore_txt}>Read More</span>
+                  </div>
                 </Link>
               </h6>
             </Media.Body>

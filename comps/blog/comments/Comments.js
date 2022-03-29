@@ -300,7 +300,7 @@ const Comments = ({ id, post }) => {
             &nbsp;
             {comment.updatedAt ? (
               <span style={{ color: "gray" }}>
-                <i style={{ fontSize: "smaller" }}>updated</i>
+                <i style={{ fontSize: "smaller" }}>edited</i>
               </span>
             ) : null}
           </p>
@@ -320,7 +320,8 @@ const Comments = ({ id, post }) => {
               }}
               user={user}
             />
-            <span
+           
+           {user && <span 
               className="com-reply"
               onClick={() => {
                 if (reply == comment._id) {
@@ -331,7 +332,7 @@ const Comments = ({ id, post }) => {
               }}
             >
               Reply
-            </span>
+            </span>} 
             &nbsp;&nbsp;&nbsp;
             {user && user.id == comment.user?._id ? (
               <>
@@ -391,7 +392,7 @@ const Comments = ({ id, post }) => {
                           &nbsp;
                           {reply.updatedAt ? (
                             <span style={{ color: "gray" }}>
-                              <i style={{ fontSize: "smaller" }}>updated</i>
+                              <i style={{ fontSize: "smaller" }}>edited</i>
                             </span>
                           ) : null}
                         </p>

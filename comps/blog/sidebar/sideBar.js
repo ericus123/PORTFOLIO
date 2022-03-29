@@ -43,7 +43,7 @@ const SideBar = () => {
             <div>
               <Link href={`/blog/${post.slug}`} onClick={scrollTop}>
                 <h6
-                  className="recent-post-title title"
+                  className={`recent-post-title title ${styles.post_title}`}
                   style={{
                     color: "#007bff",
                     cursor: "pointer",
@@ -76,7 +76,7 @@ const SideBar = () => {
 
   return (
     <div className="side-bar">
-      {posts.length ? <h2 className="recent-title">What&apos;s new</h2> : null}
+      {posts.length ? <h2 className={`recent-title ${styles.post_title}`}>What&apos;s new</h2> : null}
       {err}
       <br />
       {recentPosts}
