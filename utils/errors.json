@@ -1,3 +1,4 @@
 {
-    "unverified_account":"Your account has not been verified"
+  "unverified_account": "Your account has not been verified",
+  "reset_unverified": "Your account is not verified"
 }

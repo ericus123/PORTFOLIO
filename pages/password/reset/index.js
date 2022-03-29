@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, Spinner } from "react-bootstrap";
 import { passResetRequest } from "../../../redux/actions/auth/password";
-// import "../scss/styles.scss";
 import { authRedirect } from "../../../utils/redirects";
 import { faLock } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { simpleAlert } from "../../../comps/Alerts";
+import { useRouter } from "next/router";
+import { types } from "../../../redux/actions/types";
+
+import errors from "../../../utils/errors.json";
 
 const ResetPassword = () => {
-  const error = useSelector((state) => state.resetPassword.error);
-  const message = useSelector((state) => state.resetPassword.message);
-  const email = useSelector((state) => state.resetPassword.email);
-  const isLoading = useSelector((state) => state.resetPassword.isLoading);
-
+  const { error, message, email, isLoading } = useSelector(
+    (state) => state.resetPassword
+  );
   const dispatch = useDispatch();
+
+  let router = useRouter();
+
+  const [_email, setEmail] = useState("");
 
   authRedirect();
   const handleSubmit = (e) => {
     e.preventDefault();
     const Email = e.target.email.value;
+    setEmail(Email);
     dispatch(passResetRequest(Email));
     e.target.reset();
   };
+
+  useEffect(() => {
+    error?.length &&
+      error === errors.reset_unverified &&
+      dispatch({ type: types.LOGIN_CLICKED, payload: _email }) &&
+      router.push(`/account/verify/${_email}`);
+  }, [error]);
 
   return (
     <div className="account_verification_container">
