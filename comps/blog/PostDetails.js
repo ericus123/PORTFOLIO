@@ -16,8 +16,13 @@ const PostsDetails = ({ post }) => {
   }, [post.description]);
   return (
     post && (
-      <>
-        <Media as="li" className="single" style={{ listStyle: "none" }}>
+      <div className={`${styles.single_post_details}`}>
+        <div className={styles.left_ads}></div>
+        <Media
+          as="li"
+          className={`single ${styles.content}`}
+          style={{ listStyle: "none" }}
+        >
           <Media.Body className="body">
             <h3
               className="title"
@@ -88,7 +93,8 @@ const PostsDetails = ({ post }) => {
             <Comments comment={post.comments} id={id} post={post} />
           </Media.Body>
         </Media>
-      </>
+        <div className={styles.right_ads}></div>
+      </div>
     )
   );
 };

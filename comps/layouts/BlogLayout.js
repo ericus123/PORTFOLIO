@@ -1,26 +1,25 @@
+import { useState } from "react";
 import ScrollButton from "../../reusables/ScrollUp";
-import PostsSlider from "../blog/PostsSlider";
-import SideBar from "../blog/sidebar/sideBar";
+import BlogHeader from "../blog/BlogHeader";
+import SearchDialog from "../blog/search/SearchDialog";
 import styles from "./index.module.scss";
 
-const BlogLayout = ({ children, showSlider }) => {
+const BlogLayout = ({ children, showHeader }) => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const handleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
   return (
-    <div className={`Blog ${styles.blog_layout}`}>
+    <div className={`Blog ${styles.blog_layout} container`}>
       <br />
       <ScrollButton />
-      <div className="blog-wrapper">
-        <div className="content-wrapper col-md-auto">
-          {showSlider && <PostsSlider />}
-          {children}
-        </div>
-
-        <div className={styles.side_nav}>
-          <ul className="list-unstyled">
-            <br />
-
-            <SideBar />
-          </ul>
-        </div>
+      {showHeader && <BlogHeader onSearchClick={handleSearch} />}
+      <SearchDialog open={isSearchOpen} handleSearch={handleSearch} />
+      <div className={styles.blog_wrapper}>
+        {/* <BlogIntro /> */}
+        {children}
       </div>
     </div>
   );

@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import { Alert } from "react-bootstrap";
 import { getPostsByCat } from "../../../redux/actions/blog/posts";
 import { useSelector, useDispatch } from "react-redux";
-import Link from "next/link";
 import PostsList from "../../../comps/blog/PostsList";
 import BlogLayout from "../../../comps/layouts/BlogLayout";
 import AdBanner from "../../../comps/ads";
 import { SpinningLoader } from "../../../comps/loaders";
+// import { CategoryHeader } from "../../../comps/blog/category";
 
 const PostsByCategory = () => {
   const isLoading = useSelector((state) => state.postsByCat.isLoading);
@@ -21,18 +21,10 @@ const PostsByCategory = () => {
     dispatch(getPostsByCat(router.query.category));
   }, [page, router.query.category]);
 
-  const breadCrumb =
-    catPosts && !isLoading ? (
-      <>
-        <br />
-        <div>
-          <Link href={"/blog"}>Blog</Link>
-          &nbsp;&gt;&nbsp; Category &nbsp;&gt;&nbsp;
-          {router.query.category}
-        </div>
-        <br />
-      </>
-    ) : null;
+  // const breadCrumb =
+  //   catPosts && !isLoading ? (
+  //     <CategoryHeader category={router.query.category} />
+  //   ) : null;
 
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
@@ -40,7 +32,7 @@ const PostsByCategory = () => {
       <ul className="list-unstyled">
         <SpinningLoader isLoading={isLoading} />
         {err}
-        {breadCrumb}
+        {/* {breadCrumb} */}
         {
           <PostsList
             posts={catPosts.slice().sort((a, b) => (b.date > a.date ? 1 : -1))}

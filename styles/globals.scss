@@ -8,15 +8,23 @@
   --header-height: 3rem;
   --font-semi: 600;
 }
+// Colors
+$bg-color: rgb(255, 255, 255);
+$dot-color: hsl(256, 79%, 9%);
 
+// Dimensions
+$dot-size: 5px;
+$dot-space: 22px;
 :root {
   --first-color: #4070f4;
+  --newest-blog-tag: #f0e5db;
   --second-color: #0e2431;
   --third-color: #fd7e14;
   --danger-color: #dc3545;
   --info-color: #17a2b8;
   --success-color: #28a745;
   --primary-color: #c2c7cc;
+  --tags-color: rgb(68, 68, 68);
 }
 
 :root {
@@ -86,6 +94,11 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: var(--normal-font-size);
   color: var(--second-color);
+  background:
+  linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+  linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+  $dot-color;
+background-size: $dot-space $dot-space;
 }
 h1,
 h2,
@@ -590,8 +603,7 @@ img {
 }
 
 /* Side Bar */
-.side-bar {
-}
+
 .cat-item {
   border: none;
   text-decoration: none;

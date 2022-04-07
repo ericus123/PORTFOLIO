@@ -1,0 +1,57 @@
+.search_diallog {
+  width: 100vw;
+  background-color: black;
+  position: fixed;
+  z-index: 9999;
+  height: 100vh;
+  top: 0;
+  left: 0;
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  .search_close {
+    display: flex;
+    justify-content: right;
+    .close_icon {
+      cursor: pointer;
+      color: white;
+    }
+  }
+  .search_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 80vh;
+    flex-direction: column;
+    .search_title {
+      color: white !important;
+    }
+    .search_box {
+      .search_input {
+        width: 60vw;
+        height: 5rem;
+        font-size: 1.6em;
+        border: none;
+        border-bottom: 3px solid white;
+        background-color: none;
+        fill: none;
+        background-color: transparent;
+        outline: none;
+        color: white;
+        &::placeholder {
+          font-size: 1.4em;
+          text-align: center;
+          color: black;
+          font-weight: 600;
+        }
+      }
+      .search_icon {
+        width: 5rem;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+}

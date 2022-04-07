@@ -58,6 +58,10 @@ function MyApp({ Component, pageProps }) {
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
+        <meta
+          name="propeller"
+          content="7260680f136ad498ae0767c2c9a4ca3c"
+        ></meta>
       </Head>
       <Layout>
         <Provider store={store}>

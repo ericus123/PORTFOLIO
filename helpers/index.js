@@ -20,3 +20,7 @@ export const downloadFile = (url) => {
   a.click();
   document.body.removeChild(a);
 };
+
+export const LinkTo = (link) => {
+  window.location.replace(link);
+};
