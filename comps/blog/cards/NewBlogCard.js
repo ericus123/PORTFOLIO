@@ -1,0 +1,35 @@
+import TimeAgo from "react-timeago";
+import styles from "./index.module.scss";
+
+const NewBlog = ({ post }) => {
+  const { imageUrl, title, description, createdAt } = post;
+  return (
+    <div className={`${styles.newblog_container} ${styles.card_container}`}>
+      <div className={styles.newblog_card_image}>
+        <img src={imageUrl} />
+      </div>
+      <div className={styles.newblog_content_container}>
+        <div className={styles.card_tags}>
+          <span>Newest blog</span>
+        </div>
+        <div className={styles.card_body}>
+          <h1>{title}</h1>
+          <p>
+            {description.replace(/(<([^>]+)>)/gi, "").substr(0, 160) + "..."}
+          </p>
+        </div>
+        <div className={styles.card_footer}>
+          <img src="/images/avatar.png" />
+          <div>
+            <h1>By: Amani</h1>
+            <span>
+              <TimeAgo date={createdAt} />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default NewBlog;

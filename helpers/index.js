@@ -20,3 +20,5 @@ export const downloadFile = (url) => {
   a.click();
   document.body.removeChild(a);
 };
+
+export const LinkTo = () => null;

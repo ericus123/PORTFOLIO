@@ -1,0 +1,111 @@
+.card_container {
+  border-radius: 15px;
+  transition: ease-in-out 0.7s;
+  &:hover {
+    transition: ease-in-out 0.7s;
+    transform: scale(1.01);
+  }
+  .card_image {
+    img {
+      border-radius: 15px;
+      max-height: 225px;
+      min-height: 225px;
+      object-fit: cover;
+      min-width: 100%;
+    }
+  }
+  .card_tags {
+    display: flex;
+    gap: 5%;
+    padding-top: 1rem;
+    span {
+      padding: 1.5%;
+      border-radius: 5px;
+      color: white;
+      font-weight: 600;
+      background-color: var(--tags-color);
+      &::before {
+        content: "#";
+      }
+    }
+  }
+  .card_body {
+    padding-top: 1rem;
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: black !important;
+    }
+    p {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: rgb(187, 187, 187);
+      line-height: 1.8rem;
+    }
+  }
+  .card_footer {
+    display: flex;
+    column-gap: 2.5%;
+    img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 10px 13px 12px 8px;
+    }
+    div {
+      align-content: center;
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+      h1 {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 5px;
+      }
+      span {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: rgb(165, 165, 165);
+      }
+    }
+  }
+}
+
+//NEW BLOG
+
+.newblog_container.card_container {
+  &:hover {
+    transform: none;
+  }
+  padding-bottom: 10%;
+  display: grid;
+  gap: 5%;
+  grid-template-columns: repeat(2, 1fr);
+  .newblog_card_image {
+    img {
+      border-radius: 15px;
+      height: 400px;
+    }
+  }
+  .newblog_content_container {
+    .card_tags {
+      span {
+        background-color: var(--newest-blog-tag);
+        color: #fd7e14;
+        font-weight: 700 !important;
+        &::before {
+          content: "" !important;
+        }
+      }
+    }
+  }
+}
+
+//NEWSLETTER
+
+.news_card_container {
+  height: 7.5rem;
+  box-shadow: 5px 5px 5px gray;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
