@@ -1,14 +1,19 @@
 import NewsletterUnsubscribe from "../../../comps/newsletter/unsubscribe";
+import { decipher } from "../../../helpers";
 
 export const getServerSideProps = async (context) => {
   const email = context.params.email;
+
   return {
     props: { email },
   };
 };
 
 const NewsLetterPage = ({ email }) => {
-  return <NewsletterUnsubscribe email={email} />;
+  const hashedEmail = decipher();
+
+  console.log(hashedEmail(email));
+  return <NewsletterUnsubscribe email={hashedEmail(email)} />;
 };
 
 export default NewsLetterPage;
