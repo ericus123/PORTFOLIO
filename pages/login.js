@@ -10,6 +10,7 @@ import GoogleAuth from "../comps/auth/GoogleAuth";
 import AuthButton from "../comps/auth/AuthButton";
 import AuthLinks from "../comps/auth/AuthLinks";
 import errors from "../utils/errors.json";
+import { cipher } from "../helpers";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
@@ -29,9 +30,12 @@ const Login = () => {
     dispatch(loginRequest(Email, Password));
   };
   let router = useRouter();
+
+  const hashedEmail = cipher();
+
   if (error === errors.unverified_account) {
     setTimeout(() => {
-      router.push(`/account/verify/${email}`);
+      router.push(`/account/verify/${hashedEmail(email)}`);
     }, 2000);
   }
   return (
