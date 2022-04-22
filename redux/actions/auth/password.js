@@ -31,7 +31,6 @@ export const resetPassword =
       });
       dispatch({ type: types.PASSWORD_RESET_SUCCESS, payload: res.data });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: types.PASSWORD_RESET_ERROR,
         payload: error.response.data.error,

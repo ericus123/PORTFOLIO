@@ -137,18 +137,16 @@ export const deleteAccountToken = (token) => async (dispatch) => {
 
 export const deleteAccount = (token) => async (dispatch) => {
   try {
-    console.log(token);
     dispatch({ type: types.DELETE_ACCOUNT_ISLOADING });
     const res = await http.delete(`/api/profile/${token}`);
-        dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: res.data });
+    dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: res.data });
 
-        const msg = res.data.message || "Account Deleted Successfully";
-        NotificationManager.success(`${msg}`,"SUCCESS")
-        setTimeout(() => {
-       process.browser ? localStorage.clear() : null;
-       process.browser ? window.location.assign("/login") : null;
-        }, 5000);
-         
+    const msg = res.data.message || "Account Deleted Successfully";
+    NotificationManager.success(`${msg}`, "SUCCESS");
+    setTimeout(() => {
+      process.browser ? localStorage.clear() : null;
+      process.browser ? window.location.assign("/login") : null;
+    }, 5000);
   } catch (error) {
     dispatch({
       type: types.DELETE_ACCOUNT_ERROR,

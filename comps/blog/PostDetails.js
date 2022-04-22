@@ -16,7 +16,6 @@ const PostsDetails = ({ post }) => {
     Prism.highlightAll();
   }, [post.description]);
 
-  console.log(post.author);
   return (
     post && (
       <>
