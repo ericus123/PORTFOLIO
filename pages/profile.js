@@ -16,11 +16,12 @@ import ProfileHeader from "../comps/profile/ProfileHeader";
 import ProfileNav from "../comps/profile/ProfileNav";
 import ProfileImage from "../comps/profile/ProfileImage";
 import { SpinningLoader } from "../comps/loaders";
+import useProtectedRoute from "../comps/hoc/hooks";
 
 const Profile = () => {
   const [active, setActive] = useState("about");
   const [show, setShow] = useState(true);
-  const{ profile, isLoading} = useSelector((state) => state.getProfile);
+  const { profile, isLoading } = useSelector((state) => state.getProfile);
   const error = useSelector((state) => state.getProfile.error);
   const [modalShow, setModalShow] = React.useState(false);
   const changePasswordError = useSelector(
@@ -97,69 +98,70 @@ const Profile = () => {
     }, 1000);
   }
 
-
-return  <div className={`profile ${styles.profile_page}`}>
-
-  { isLoading &&  <SpinningLoader isLoading={isLoading}/> || (profile &&
-    <>
-      <div>
-        <ProfileImage
-          changeAvatarError={changeAvatarError}
-          changeAvatarIsLoading={changeAvatarIsLoading}
-          loadingImg={loadingImg}
-          setLoadingImg={setLoadingImg}
-          profile={profile}
-
-        />
-        <AdBanner
-          data-ad-slot="7105763628"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </div>
-      <div className="profile_details">
-        <br />
-        <ProfileHeader
-          profile={profile}
-          show={show}
-          setActive={setActive}
-          setShow={setShow}
-        />
-        <br />
-        <br />
-        <ProfileNav
-          active={active}
-          setActive={setActive}
-          profile={profile}
-        />
-        <br />
-        <br />
-        <br />
-        {active == "about" ? (
-          <AboutData profile={profile} />
-        ) : active == "update" ? (
-          <UpdateForm
-            updateProfileError={updateProfileError}
-            updateProfileIsLoading={updateProfileIsLoading}
-            profile={profile}
-          />
-        ) : active == "complete" ? (
-          <CompleteForm
-            completeProfileError={completeProfileError}
-            completeProfileIsLoading={completeProfileIsLoading}
-          />
-        ) : active == "settings" ? (
-          <ShowSettings
-            modalShow={modalShow}
-            setModalShow={setModalShow}
-            deleteTokenError={deleteTokenError}
-            deleteTokenIsLoading={deleteTokenIsLoading}
-            deleteAccountToken={deleteAccountToken}
-          />
-        ) : null}
-      </div>
-    </>) }
-  </div>;
+  return (
+    <div className={`profile ${styles.profile_page}`}>
+      {(isLoading && <SpinningLoader isLoading={isLoading} />) ||
+        (profile && (
+          <>
+            <div>
+              <ProfileImage
+                changeAvatarError={changeAvatarError}
+                changeAvatarIsLoading={changeAvatarIsLoading}
+                loadingImg={loadingImg}
+                setLoadingImg={setLoadingImg}
+                profile={profile}
+              />
+              <AdBanner
+                data-ad-slot="7105763628"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              />
+            </div>
+            <div className="profile_details">
+              <br />
+              <ProfileHeader
+                profile={profile}
+                show={show}
+                setActive={setActive}
+                setShow={setShow}
+              />
+              <br />
+              <br />
+              <ProfileNav
+                active={active}
+                setActive={setActive}
+                profile={profile}
+              />
+              <br />
+              <br />
+              <br />
+              {active == "about" ? (
+                <AboutData profile={profile} />
+              ) : active == "update" ? (
+                <UpdateForm
+                  updateProfileError={updateProfileError}
+                  updateProfileIsLoading={updateProfileIsLoading}
+                  profile={profile}
+                />
+              ) : active == "complete" ? (
+                <CompleteForm
+                  completeProfileError={completeProfileError}
+                  completeProfileIsLoading={completeProfileIsLoading}
+                />
+              ) : active == "settings" ? (
+                <ShowSettings
+                  modalShow={modalShow}
+                  setModalShow={setModalShow}
+                  deleteTokenError={deleteTokenError}
+                  deleteTokenIsLoading={deleteTokenIsLoading}
+                  deleteAccountToken={deleteAccountToken}
+                />
+              ) : null}
+            </div>
+          </>
+        ))}
+    </div>
+  );
 };
 
-export default Profile;
+export default useProtectedRoute(Profile);
