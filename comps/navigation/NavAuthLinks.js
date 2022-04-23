@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 const NavAuthLinks = () => {
   const router = useRouter();
   const user = useSelector((state) => state.checkAuth.user);
+
   const logout = () => {
     localStorage.clear();
     router.push("/login");

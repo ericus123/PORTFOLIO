@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import { loginRequest } from "../redux/actions/auth/login";
-import { authRedirect } from "../utils/redirects";
 import { simpleAlert } from "../comps/Alerts";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -11,6 +10,7 @@ import AuthButton from "../comps/auth/AuthButton";
 import AuthLinks from "../comps/auth/AuthLinks";
 import errors from "../utils/errors.json";
 import { cipher } from "../helpers";
+import { authRedirect } from "../utils/redirects";
 
 const Login = () => {
   const error = useSelector((state) => state.login.error);
