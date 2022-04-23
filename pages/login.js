@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import { loginRequest } from "../redux/actions/auth/login";
@@ -20,7 +20,9 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  authRedirect();
+  useEffect(() => {
+    return authRedirect();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +32,9 @@ const Login = () => {
     dispatch(loginRequest(Email, Password));
   };
   let router = useRouter();
+  const { back } = router.query;
 
+  (message && back && window.history.back()) || authRedirect();
   const hashedEmail = cipher();
 
   if (error === errors.unverified_account) {
