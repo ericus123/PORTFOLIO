@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import unknown_avatar from "../../../public/images/avatar.png";
 import { useRouter } from "next/router";
-import { simpleAlert } from "../../Alerts";
-import { Spinner, Form, Button, Modal, Col } from "react-bootstrap";
 import styles from "./index.module.scss";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import {
@@ -32,72 +30,55 @@ const Comments = ({ id, post }) => {
   const [edRepShow, setEdRepShow] = useState(false);
   const [comId, setComId] = useState(null);
   const [repId, setRepId] = useState(null);
-  const [com, setCom] = useState("");
-  const [rep, setRep] = useState("");
-  const postCommentError = useSelector((state) => state.postComment.error);
-  const postCommentMessage = useSelector((state) => state.postComment.message);
-  const postCommentIsLoading = useSelector(
-    (state) => state.postComment.isLoading
-  );
-  const editCommentError = useSelector((state) => state.editComment.error);
-  const editCommentMessage = useSelector((state) => state.editComment.message);
-  const editCommentIsLoading = useSelector(
-    (state) => state.editComment.isLoading
-  );
 
-  const comments = useSelector((state) => state.getComments.comments);
+  const {
+    isLoading: postCommentIsLoading,
+    error: postCommentError,
+    message: postCommentMessage,
+  } = useSelector((state) => state.postComment);
+  const {
+    error: editCommentError,
+    message: editCommentMessage,
+    isLoading: editCommentIsLoading,
+  } = useSelector((state) => state.editComment);
 
-  const editReplyError = useSelector((state) => state.editCommentReply.error);
-  const editReplyMessage = useSelector(
-    (state) => state.editCommentReply.message
-  );
-  const editReplyIsLoading = useSelector(
-    (state) => state.editCommentReply.isLoading
-  );
+  const { comments } = useSelector((state) => state.getComments);
 
-  const deleteReplyError = useSelector(
-    (state) => state.deleteCommentReply.error
-  );
-  const deleteReplyMessage = useSelector(
-    (state) => state.deleteCommentReply.message
-  );
-  const deleteReplyIsLoading = useSelector(
-    (state) => state.deleteCommentReply.isLoading
-  );
+  const {
+    error: editReplyError,
+    message: editReplyMessage,
+    isLoading: editReplyIsLoading,
+  } = useSelector((state) => state.editCommentReply);
 
-  const deleteCommentError = useSelector((state) => state.deleteComment.error);
-  const deleteCommentMessage = useSelector(
-    (state) => state.deleteComment.message
-  );
-  const deleteCommentIsLoading = useSelector(
-    (state) => state.deleteComment.isLoading
-  );
+  const {
+    error: deleteReplyError,
+    mesage: deleteReplyMessage,
+    isLoading: deleteReplyIsLoading,
+  } = useSelector((state) => state.deleteCommentReply);
 
-  const postCommentReplyError = useSelector(
-    (state) => state.postCommentReply.error
-  );
+  const {
+    error: deleteCommentError,
+    mesage: deleteCommentMessage,
+    isLoading: deleteCommentIsLoading,
+  } = useSelector((state) => state.deleteComment);
 
-  const postCommentReply = useSelector((state) => state.postCommentReply.reply);
-  const postCommentReplyIsLoading = useSelector(
-    (state) => state.postCommentReply.isLoading
-  );
+  const {
+    error: postCommentReplyError,
+    reply: postCommentReply,
+    isLoading: postCommentReplyIsLoading,
+  } = useSelector((state) => state.postCommentReply);
 
-  const commentReactionError = useSelector(
-    (state) => state.commentReaction.error
-  );
+  const { error: commentReactionError, message: commentReactionMessage } =
+    useSelector((state) => state.commentReaction);
 
-  const commentReactionMessage = useSelector(
-    (state) => state.commentReaction.message
-  );
+  const {
+    error: replyReactionError,
+    isLoading: replyReactionIsLoading,
+    message: replyReactionMessage,
+  } = useSelector((state) => state.replyReaction);
 
-  const replyReactionError = useSelector((state) => state.replyReaction.error);
-  const replyReactionIsLoading = useSelector(
-    (state) => state.replyReaction.isLoading
-  );
-  const replyReactionMessage = useSelector(
-    (state) => state.replyReaction.message
-  );
-  const user = useSelector((state) => state.checkAuth.user);
+  const { user } = useSelector((state) => state.checkAuth);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetComments(id));
@@ -110,6 +91,7 @@ const Comments = ({ id, post }) => {
     deleteCommentIsLoading,
     editCommentMessage,
     deleteReplyMessage,
+    editReplyMessage,
     deleteReplyIsLoading,
     commentReactionMessage,
     replyReactionMessage,
@@ -118,12 +100,15 @@ const Comments = ({ id, post }) => {
 
   useEffect(() => {
     setEdComShow(false);
+    setComId(null);
   }, [editCommentMessage]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setEdRepShow(false);
-    }, 1000);
+    setReply(null);
+  }, [postCommentReply]);
+  useEffect(() => {
+    setEdRepShow(false);
+    setRepId(null);
   }, [editReplyMessage]);
 
   let errors_arr = [
@@ -144,7 +129,7 @@ const Comments = ({ id, post }) => {
     errors_arr.map((error) => {
       if (error === "Invalid Token") {
         localStorage.clear();
-        router.push("/login");
+        router.push("/login?back=true");
       }
     });
   }, errors_arr);
@@ -155,124 +140,15 @@ const Comments = ({ id, post }) => {
     e.target.reset();
   };
 
-  const EditReplyModal = (props) => {
-    return (
-      <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            dispatch(EditCommentReply(repId, e.target.desc.value));
-          }}
-        >
-          <Modal.Body style={{ marginBottom: "-1%" }}>
-            <h4>Edit reply</h4>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  controlId="exampleForm.ControlTextarea1"
-                  name="desc"
-                  disabled={editReplyIsLoading}
-                  defaultValue={rep}
-                />
-              </Form.Group>
-            </Form.Row>
-          </Modal.Body>
-          <div className="mod-footer">
-            {editReplyError ? simpleAlert("danger", editReplyError) : null}
-          </div>
-
-          {!editReplyError ? (
-            <div className="mod-footer">
-              <Button
-                disabled={editReplyIsLoading}
-                style={{ margin: "1% 1% 1% 0%" }}
-                type="submit"
-              >
-                {editReplyIsLoading ? (
-                  <Spinner animation="border" size="sm" role="status" />
-                ) : (
-                  "Save"
-                )}
-              </Button>
-              <Button
-                style={{ margin: "1% 1% 1% 0%" }}
-                onClick={props.onHide}
-                variant="danger"
-                disabled={editReplyIsLoading}
-              >
-                Cancel
-              </Button>{" "}
-            </div>
-          ) : null}
-        </Form>
-      </Modal>
-    );
+  const handleEdReplyShow = () => {
+    setEdRepShow(!edRepShow);
+    setRepId(null);
   };
-  const EditCommentModal = (props) => {
-    return (
-      <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            dispatch(EditPostComment(comId, e.target.desc.value));
-          }}
-        >
-          <Modal.Body style={{ marginBottom: "-1%" }}>
-            <h4>Edit comment</h4>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  controlId="exampleForm.ControlTextarea1"
-                  name="desc"
-                  disabled={editCommentIsLoading}
-                  defaultValue={com}
-                />
-              </Form.Group>
-            </Form.Row>
-          </Modal.Body>
-          <div className="mod-footer">
-            {editCommentError ? simpleAlert("danger", editCommentError) : null}
-          </div>
-
-          {!editCommentError ? (
-            <div className="mod-footer">
-              <Button
-                disabled={editCommentIsLoading}
-                style={{ margin: "1% 1% 1% 0%" }}
-                type="submit"
-              >
-                {editCommentIsLoading ? (
-                  <Spinner animation="border" size="sm" role="status" />
-                ) : (
-                  "Save"
-                )}
-              </Button>
-              <Button
-                disabled={editCommentIsLoading}
-                style={{ margin: "1% 1% 1% 0%" }}
-                onClick={props.onHide}
-                variant="danger"
-              >
-                Cancel
-              </Button>{" "}
-            </div>
-          ) : null}
-        </Form>
-      </Modal>
-    );
+  const handleEdCommentShow = () => {
+    setEdComShow(!edComShow);
+    setComId(null);
   };
+
   const all_comments = comments?.map((comment) => {
     return (
       <div className="comment" key={comment._id}>
@@ -304,60 +180,73 @@ const Comments = ({ id, post }) => {
               </span>
             ) : null}
           </p>
-
           <HighLightAuthor
             postAuthor={post?.author._id}
             dataAuthor={comment?.user?._id}
           />
-
-          <p className="text">{comment.description}</p>
-
-          <p>
-            <CommentReactions
-              data={comment}
-              onClick={() => {
-                dispatch(ReactOnPostComment(comment._id));
+          {(comId == comment._id && (
+            <CommentBox
+              show={edComShow}
+              content={comment.description}
+              onSubmit={(e) => {
+                e.preventDefault();
+                dispatch(EditPostComment(comId, e.target.desc.value));
               }}
-              user={user}
+              error={null}
+              button="Update"
+              onCancel={handleEdCommentShow}
+              isLoading={editCommentIsLoading}
             />
-           
-           {user && <span 
-              className="com-reply"
-              onClick={() => {
-                if (reply == comment._id) {
-                  setReply(null);
-                } else {
-                  setReply(comment._id);
-                }
-              }}
-            >
-              Reply
-            </span>} 
-            &nbsp;&nbsp;&nbsp;
-            {user && user.id == comment.user?._id ? (
-              <>
-                {" "}
+          )) || <p className="text">{comment.description}</p>}
+          {!comId && comId !== comment._id && !edComShow && (
+            <p>
+              <CommentReactions
+                data={comment}
+                onClick={() => {
+                  dispatch(ReactOnPostComment(comment._id));
+                }}
+                user={user}
+              />
+              {user && (
                 <span
-                  style={{ color: "#17a2b8", cursor: "pointer" }}
+                  className="com-reply"
                   onClick={() => {
-                    setCom(comment.description);
-                    setEdComShow(true);
-                    setComId(comment._id);
+                    if (reply == comment._id) {
+                      setReply(null);
+                    } else {
+                      setReply(comment._id);
+                    }
                   }}
                 >
-                  Edit
+                  Reply
                 </span>
-                &nbsp;
-                <PopConfirm
-                  title="Are You Sure?"
-                  text="Delete"
-                  style={{ color: "#dc3545" }}
-                  icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-                  action={() => dispatch(DeletePostComment(comment._id))}
-                />
-              </>
-            ) : null}
-          </p>
+              )}
+              &nbsp;&nbsp;&nbsp;
+              {user && user.id == comment.user?._id ? (
+                <>
+                  {" "}
+                  <span
+                    style={{ color: "#17a2b8", cursor: "pointer" }}
+                    onClick={() => {
+                      handleEdCommentShow();
+                      setComId(comment._id);
+                    }}
+                  >
+                    {/* {comId !== comment._id && !reply && !edComShow & null} */}
+                    {reply !== comment._id && "Edit"}
+                  </span>
+                  &nbsp;
+                  <PopConfirm
+                    title="Are You Sure?"
+                    text="Delete"
+                    style={{ color: "#dc3545" }}
+                    icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                    action={() => dispatch(DeletePostComment(comment._id))}
+                  />
+                </>
+              ) : null}
+            </p>
+          )}
           <div className="replies">
             {comment.replies
               ? comment.replies.map((reply) => {
@@ -401,78 +290,83 @@ const Comments = ({ id, post }) => {
                           postAuthor={post?.author._id}
                           dataAuthor={reply?.user?._id}
                         />
-                        <p className="text">{reply.description}</p>
-                        <p>
-                          <CommentReactions
-                            data={reply}
-                            onClick={() => {
-                              dispatch(ReactOnCommentReply(reply._id));
+                        {(repId == reply._id && (
+                          <CommentBox
+                            show={edRepShow}
+                            content={reply.description}
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              dispatch(
+                                EditCommentReply(repId, e.target.desc.value)
+                              );
                             }}
-                            user={user}
-                            isLoading={replyReactionIsLoading}
+                            error={editReplyError || ""}
+                            button="Update"
+                            onCancel={handleEdReplyShow}
+                            isLoading={editReplyIsLoading}
                           />
-                          {user && user.id == reply.user._id ? (
-                            <>
-                              {" "}
-                              <span
-                                style={{
-                                  color: "#17a2b8",
-                                  cursor: "pointer",
-                                }}
-                                onClick={() => {
-                                  setRep(reply.description);
-                                  setEdRepShow(true);
-                                  setRepId(reply._id);
-                                }}
-                              >
-                                Edit
-                              </span>
-                              &nbsp;
-                              <PopConfirm
-                                title="Are You Sure?"
-                                text="Delete"
-                                style={{ color: "#dc3545" }}
-                                icon={
-                                  <QuestionCircleOutlined
-                                    style={{ color: "red" }}
-                                  />
-                                }
-                                action={() =>
-                                  dispatch(DeleteCommentReply(reply._id))
-                                }
-                              />
-                            </>
-                          ) : null}
-                        </p>
+                        )) || <p className="text">{reply.description}</p>}
+
+                        {repId !== reply._id && !edRepShow && (
+                          <p>
+                            <CommentReactions
+                              data={reply}
+                              onClick={() => {
+                                dispatch(ReactOnCommentReply(reply._id));
+                              }}
+                              user={user}
+                              isLoading={replyReactionIsLoading}
+                            />
+                            {user && user.id == reply.user._id ? (
+                              <>
+                                {" "}
+                                <span
+                                  style={{
+                                    color: "#17a2b8",
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => {
+                                    handleEdReplyShow();
+                                    setRepId(reply._id);
+                                  }}
+                                >
+                                  {repId !== reply._id && !edRepShow && "Edit"}
+                                </span>
+                                &nbsp;
+                                <PopConfirm
+                                  title="Are You Sure?"
+                                  text="Delete"
+                                  style={{ color: "#dc3545" }}
+                                  icon={
+                                    <QuestionCircleOutlined
+                                      style={{ color: "red" }}
+                                    />
+                                  }
+                                  action={() =>
+                                    dispatch(DeleteCommentReply(reply._id))
+                                  }
+                                />
+                              </>
+                            ) : null}
+                          </p>
+                        )}
                       </div>
                     </div>
                   );
                 })
               : null}
-            <form
-              className={reply == comment._id ? "form-on" : "form-off"}
+
+            <CommentBox
+              show={reply == comment._id}
               onSubmit={(e) => {
                 e.preventDefault();
                 dispatch(PostCommentReply(comment._id, e.target.desc.value));
-                e.target.reset();
               }}
-            >
-              <textarea name="desc" placeholder="Reply here..." />
-
-              {postCommentReplyError
-                ? simpleAlert("danger", postCommentReplyError)
-                : null}
-              {!postCommentReplyError ? (
-                <button type="submit" className="px-2">
-                  {" "}
-                  {postCommentReplyIsLoading ? (
-                    <Spinner animation="border" size="sm" role="status" />
-                  ) : (
-                    "Reply"
-                  )}
-                </button>
-              ) : null}
-            </form>
+              button="Reply"
+              onCancel={() => setReply(null)}
+              isLoading={postCommentReplyIsLoading}
+              error={postCommentReplyError}
+            />
           </div>
         </div>
       </div>
@@ -492,18 +386,16 @@ const Comments = ({ id, post }) => {
           Be the first to comment
         </p>
       )}
-      <div className="comment-wrapper">
-        {all_comments}
-        <EditCommentModal show={edComShow} onHide={() => setEdComShow(false)} />
-        <EditReplyModal show={edRepShow} onHide={() => setEdRepShow(false)} />
-      </div>
+      <div className="comment-wrapper">{all_comments}</div>
       {/* <CommentsSort comments={comments} /> */}
 
       {(user && (
         <CommentBox
           onSubmit={handleSubmit}
-          postCommentError={postCommentError}
-          postCommentIsLoading={postCommentIsLoading}
+          error={postCommentError}
+          IsLoading={postCommentIsLoading}
+          show={true}
+          button="Comment"
         />
       )) || <CommentsBlocked />}
     </div>
