@@ -133,7 +133,7 @@ export const EditPostComment = (commentId, desc) => async (dispatch) => {
       dispatch({
         type: types.REMOVE_EDIT_POST_COMMENT_SUCCESS,
       });
-    }, 5000);
+    }, 1000);
   } catch (error) {
     dispatch({
       type: types.EDIT_POST_COMMENT_ERROR,
@@ -255,7 +255,7 @@ export const EditCommentReply = (replyId, desc) => async (dispatch) => {
       dispatch({
         type: types.REMOVE_EDIT_COMMENT_REPLY_SUCCESS,
       });
-    }, 5000);
+    }, 1000);
   } catch (error) {
     dispatch({
       type: types.EDIT_COMMENT_REPLY_ERROR,

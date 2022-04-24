@@ -47,7 +47,7 @@ export const BigLike = ({ id }) => {
     dispatch(authRequest(token));
     if (error === "Invalid Token") {
       localStorage.clear();
-      router.push("/login");
+      router.push("/login?back=true");
     }
   }, [error]);
 

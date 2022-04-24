@@ -1,19 +1,75 @@
 .profile_page {
-  max-width: 1550px !important;
-  width: 90%;
+  max-width: 1050px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   min-height: 100vh;
+  padding-left: 10px;
 }
 
+.profile_picture{
+  max-width: 350px !important;
+  min-width: 300px !important;
+}
 .profile_img{
- border-radius: 10px;
+  border-radius: 10px;
 }
 
-// form designs 
+.img_uploading{
+  width: 275px;
+  background-color: rgb(235, 235, 235);
+  height: 250px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.form_label{
-  padding-top: 1% !important;
-  font-weight: bolder;
-  font-size: 1rem;
+.settings_under_construction{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes image-loader-animation {
+  0% {
+    opacity: .4;
+    transform: scale(1, 1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+
+  100% {
+    opacity: .4;
+    transform: scale(1, 1);
+  }
+}
+
+.loading_dots {
+  text-align: center;
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  div {
+    animation: image-loader-animation 1.5s infinite ease-in-out;
+    background-color: #0dcaf0;
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    
+    &:nth-child(2) {
+      animation-delay: .5s;
+    }
+    
+    &:nth-child(3) {
+      animation-delay: 1s;
+    }
+  }
 }
