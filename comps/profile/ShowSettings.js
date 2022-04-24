@@ -1,6 +1,7 @@
 import { Button, Row } from "react-bootstrap";
 import { simpleAlert } from "../Alerts";
 import DeleteAccountModal from "./DeleteAccountModal";
+import styles from "./index.module.scss";
 
 const ShowSettings = ({
   deleteTokenError,
@@ -10,7 +11,13 @@ const ShowSettings = ({
   setModalShow,
 }) => {
   return (
-    <Row className="row_6">
+  <div>
+<div className={styles.settings_under_construction}>
+   <h1>Comming soon</h1>
+   <p>This section is still under construction</p>
+</div>
+
+      {/* <Row className="row_6">
       <div>
         <h4 style={{ color: "red" }}>Danger Zone</h4>
         <h4>Delete Account</h4>
@@ -49,7 +56,8 @@ const ShowSettings = ({
       <br />
       <br />
       <DeleteAccountModal show={modalShow} onHide={() => setModalShow(false)} />
-    </Row>
+    </Row> */}
+  </div>
   );
 };
 
