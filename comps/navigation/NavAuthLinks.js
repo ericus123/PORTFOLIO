@@ -21,7 +21,7 @@ const NavAuthLinks = () => {
   return (
     (user || router.route !== "/") && (
       <Nav>
-        {user ? (
+        {user && router.route !== "/login" ? (
           <NavDropdown
             title={
               <>

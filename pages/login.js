@@ -11,7 +11,6 @@ import AuthLinks from "../comps/auth/AuthLinks";
 import errors from "../utils/errors.json";
 import { cipher } from "../helpers";
 import { authRedirect } from "../utils/redirects";
-
 const Login = () => {
   const error = useSelector((state) => state.login.error);
   const message = useSelector((state) => state.login.message);
