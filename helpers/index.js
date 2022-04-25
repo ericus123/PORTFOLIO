@@ -42,3 +42,8 @@ export const decipher = () => {
       .map((charCode) => String.fromCharCode(charCode))
       .join("");
 };
+
+export const slicedString = (str, len, dots) => {
+   const sliced = str.substr(0,len);
+  return dots && sliced.concat(" ...") || sliced;
+};

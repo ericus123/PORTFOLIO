@@ -6,7 +6,7 @@ const CommentsBlocked = () => {
     <div className={styles.comments_blocked}>
       <h1>
         {" "}
-        <a href="/login">
+        <a href="/login?back=true">
           Login to comment <FaLongArrowAltRight />
         </a>
       </h1>

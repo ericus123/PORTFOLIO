@@ -13,8 +13,8 @@ const NewsletterUnsubscribe = ({ email }) => {
     (state) => state.unsubscribeNewsletter
   );
   const dispatch = useDispatch();
-  console.log(msg);
   useEffect(() => dispatch(unsubscribeNewsletter(email)), []);
+
   return (
     <NewsLetter>
       <div className={styles.unsubscribe_container}>

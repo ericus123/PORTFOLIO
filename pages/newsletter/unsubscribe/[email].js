@@ -11,8 +11,6 @@ export const getServerSideProps = async (context) => {
 
 const NewsLetterPage = ({ email }) => {
   const hashedEmail = decipher();
-
-  console.log(hashedEmail(email));
   return <NewsletterUnsubscribe email={hashedEmail(email)} />;
 };
 
