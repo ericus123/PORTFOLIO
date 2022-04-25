@@ -8,12 +8,14 @@ import Comments from "./comments/Comments";
 import unknown_avatar from "../../public/images/avatar.png";
 import Prism from "prismjs";
 import { useEffect } from "react";
+// import AuthorCard from "../author/AuthorCard";
 
 const PostsDetails = ({ post }) => {
   const id = post._id;
   useEffect(() => {
     Prism.highlightAll();
   }, [post.description]);
+
   return (
     post && (
       <>
@@ -79,7 +81,9 @@ const PostsDetails = ({ post }) => {
             <br />
             <br />
             <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
-            <br />
+            {/* <br /> */}
+            {/* <AuthorCard image={post.author.avatar || unknown_avatar} bio={post.author.bio} last_name={post?.author?.lastName} first_name={post?.author?.last_name}/> */}
+            {/* <br /> */}
             <BigLike id={id} />
             <br />
             <br />

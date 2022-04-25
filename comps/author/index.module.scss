@@ -1,0 +1,29 @@
+.author_card_container {
+    margin-top: 5%;
+    .author_card {
+        display: flex;
+        width: 100%;
+        border-top: 2px solid rgb(243, 242, 242);
+        border-bottom: 2px solid rgb(243, 242, 242);
+        padding: 5%;
+        gap: 5%;
+        .author_right {
+            h1 {
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+.author_image {
+    border-radius: 5px;
+}
+
+.follow_btn {
+    padding: 1% 4% 1% 4%;
+    background-color: #4f9cee;
+    border: none;
+    color: white;
+    border-radius: 15px;
+}

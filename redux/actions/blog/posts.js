@@ -21,7 +21,6 @@ export const getPost = (id) => async (dispatch) => {
     const res = await http.get(`/api/posts/${id}`);
     dispatch({ type: types.GET_POST_SUCCESS, payload: res.data });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.GET_POST_ERROR,
       payload: error.response.data.error || "Error occured",
@@ -52,7 +51,6 @@ export const getPostReactions = (id) => async (dispatch) => {
     const res = await http.get(`/api/posts/reactions/${id}`);
     dispatch({ type: types.GET_POST_REACTIONS_SUCCESS, payload: res.data });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: types.GET_POST_REACTIONS_ERROR,
       payload: error.response.data.error || "Error occured",
@@ -135,7 +133,7 @@ export const EditPostComment = (commentId, desc) => async (dispatch) => {
       dispatch({
         type: types.REMOVE_EDIT_POST_COMMENT_SUCCESS,
       });
-    }, 5000);
+    }, 1000);
   } catch (error) {
     dispatch({
       type: types.EDIT_POST_COMMENT_ERROR,
@@ -257,7 +255,7 @@ export const EditCommentReply = (replyId, desc) => async (dispatch) => {
       dispatch({
         type: types.REMOVE_EDIT_COMMENT_REPLY_SUCCESS,
       });
-    }, 5000);
+    }, 1000);
   } catch (error) {
     dispatch({
       type: types.EDIT_COMMENT_REPLY_ERROR,
