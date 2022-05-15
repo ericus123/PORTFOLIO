@@ -56,7 +56,7 @@ const Blog = () => {
         />
         {/* <meta property="twitter:image" content={pro_image}></meta> */}
       </Head>
-      <BlogLayout showSlider>
+      <BlogLayout showSlider isLoading={!postsPerPage.length}>
         <div className="single-post">
           <SpinningLoader isLoading={isLoading} />
           {err}

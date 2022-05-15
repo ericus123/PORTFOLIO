@@ -39,9 +39,7 @@ const SearchPosts = () => {
   }, [term, page]);
 
   const loader =
-    isLoading || (searchIsLoading && !searchError) ? (
-     <SearchLoader />
-    ) : null;
+    isLoading || (searchIsLoading && !searchError) ? <SearchLoader /> : null;
 
   const err = error ? (
     <Alert variant="danger" style={{ textAlign: "center" }}>
@@ -50,39 +48,50 @@ const SearchPosts = () => {
   ) : null;
 
   return (
-    <BlogLayout showSlider>
+    <BlogLayout showSlider isLoading={isLoading}>
       <ul className="list-unstyled">
         {err}
         {loader}
         <br />
-        {postsPerPage.length && searchTerm && !searchIsLoading && (
-          <h2 style={{ fontWeight: 300, fontStyle:"italic", textAlign: "center" }}>
-            Showing {searchPosts.length}{" "}
-            {searchPosts.length > 1 ? "results" : "result"} for &apos;
-            <span style={{fontStyle:"italic"}}>{searchTerm}</span>&apos;
-          </h2>
-        ) }
-        {!searchIsLoading &&
-        !postsPerPage.length &&
-        !searchError &&
-        searchTerm ? (
+        {(postsPerPage.length && searchTerm && !searchIsLoading && (
           <h2
             style={{
-              fontWeight: "light",
-              color: "#dc3545",
+              fontWeight: 300,
+              fontStyle: "italic",
               textAlign: "center",
             }}
           >
-            Ooops! No results found for &apos;{searchTerm}&apos;
-            <span style={{ fontWeight: "bold" }}></span>
+            Showing {searchPosts.length}{" "}
+            {searchPosts.length > 1 ? "results" : "result"} for &apos;
+            <span style={{ fontStyle: "italic" }}>{searchTerm}</span>&apos;
           </h2>
-        ) : null}
+        )) ||
+          null}
+        {(!searchIsLoading && !postsPerPage.length && !searchError && (
+          <div>
+            {(searchTerm && (
+              <h2
+                style={{
+                  fontWeight: "light",
+                  color: "#dc3545",
+                  textAlign: "center",
+                }}
+              >
+                Ooops! No results found for &apos;{searchTerm}&apos;
+                <span style={{ fontWeight: "bold" }}></span>
+              </h2>
+            )) ||
+              null}{" "}
+          </div>
+        )) ||
+          null}
 
-        {searchError ? (
+        {searchError && (
           <Alert variant="danger" style={{ textAlign: "center" }}>
             {searchError}
           </Alert>
-        ) : null}
+        )}
+
         <br />
         {!searchIsLoading && <PostsList posts={postsPerPage} />}
         <br />
