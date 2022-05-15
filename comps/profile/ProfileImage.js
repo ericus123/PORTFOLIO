@@ -1,18 +1,17 @@
 import { message, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import Image from "next/image";
-import { Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { changeAvatar } from "../../redux/actions/profile/profile";
 import { simpleAlert } from "../Alerts";
 import avatar from "/public/images/avatar.png";
 import styles from "./index.module.scss";
+import { Tooltip } from "antd";
 
 const ProfileImage = ({
   profile,
   changeAvatarError,
   changeAvatarIsLoading,
-  loadingImg,
   setLoadingImg,
 }) => {
   const dispatch = useDispatch();
@@ -39,39 +38,42 @@ const ProfileImage = ({
       };
     });
   };
+  changeAvatarError && simpleAlert("danger", changeAvatarError);
+
+  const Uploading = () => {
+    return (
+      <div className={styles.img_uploading}>
+        <div className={styles.loading_dots}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  };
   return (
-    <div className="profile_picture">
-      <Image
-        width={50}
-        height={50}
-        priority
-        quality={25}
-        src={profile.avatar || avatar}
-        layout="responsive"
-        className={styles.profile_img}
-      />
-      <div className="file">
+    <div>
+      {(changeAvatarIsLoading && !changeAvatarError && <Uploading />) || (
         <ImgCrop>
           <Upload beforeUpload={uploadAvatar}>
-            <form>
-              {" "}
-              {loadingImg == "avatar" ||
-              (changeAvatarIsLoading && !changeAvatarError) ? (
-                <div style={{ textAlign: "center" }}>
-                  <Spinner animation="border" size="md" role="status"></Spinner>
-                </div>
-              ) : (
-                <span style={{ color: "white" }}>
-                  {profile.isComplete ? "Change photo" : "Add Photo"}
-                </span>
-              )}
-              {changeAvatarError
-                ? simpleAlert("danger", changeAvatarError)
-                : null}
-            </form>
+            <div className={styles.profile_picture}>
+              <Tooltip placement="bottom" title={"Change avatar"}>
+                <form>
+                  <Image
+                    width={50}
+                    height={50}
+                    priority
+                    quality={25}
+                    src={profile.avatar || avatar}
+                    layout="responsive"
+                    className={styles.profile_img}
+                  />{" "}
+                </form>
+              </Tooltip>
+            </div>
           </Upload>
         </ImgCrop>
-      </div>
+      )}
     </div>
   );
 };
