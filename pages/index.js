@@ -11,7 +11,7 @@ import HomeImage from "../comps/home/HomeImage";
 
 const Home = () => {
   const frontendURL = process.env.NEXT_PUBLIC_FRONTEND_URL;
-  const pro_image = "https://i2.paste.pics/CGCQ7.png";
+  const pro_image = "https://res.cloudinary.com/amanis/image/upload/v1654693153/SEO/IMG_9592-2-min_6_1_zkyl9e.jpg";
   const scrolToSection = (id) => {
     const anchor = process.browser ? document.querySelector(id) : null;
     anchor.scrollIntoView({

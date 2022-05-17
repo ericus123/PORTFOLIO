@@ -36,7 +36,7 @@ const PostsByCategory = () => {
 
   const err = error ? <Alert variant="danger">{error}</Alert> : null;
   return (
-    <BlogLayout showSlider={false}>
+    <BlogLayout showSlider={false} isLoading={isLoading}>
       <ul className="list-unstyled">
         <SpinningLoader isLoading={isLoading} />
         {err}

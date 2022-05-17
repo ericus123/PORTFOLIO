@@ -66,7 +66,7 @@ const SinglePost = ({ post }) => {
         />
         <meta property="twitter:image" content={`${post.imageUrl}`} />
       </Head>
-      <BlogLayout showSlider={false}>
+      <BlogLayout showSlider={false} isLoading={!post}>
         <div className="single-post">
           {post && <PostsDetails post={post} />}
           <br />
