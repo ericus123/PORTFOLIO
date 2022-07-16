@@ -1,13 +1,14 @@
-import styles from "./index.module.scss";
-import { Media, Row, Col } from "react-bootstrap";
 import Image from "next/image";
-import readingTime from "reading-time";
-import { PostShares } from "./shares/Shares";
-import { BigLike } from "./Likes/likes";
-import Comments from "./comments/Comments";
-import unknown_avatar from "../../public/images/avatar.png";
 import Prism from "prismjs";
 import { useEffect } from "react";
+import { Col, Media, Row } from "react-bootstrap";
+import readingTime from "reading-time";
+import unknown_avatar from "../../public/images/avatar.png";
+import { SupportBlog } from "../buymecoffee";
+import Comments from "./comments/Comments";
+import styles from "./index.module.scss";
+import { BigLike } from "./Likes/likes";
+import { PostShares } from "./shares/Shares";
 // import AuthorCard from "../author/AuthorCard";
 
 const PostsDetails = ({ post }) => {
@@ -84,6 +85,7 @@ const PostsDetails = ({ post }) => {
             {/* <br /> */}
             {/* <AuthorCard image={post.author.avatar || unknown_avatar} bio={post.author.bio} last_name={post?.author?.lastName} first_name={post?.author?.last_name}/> */}
             {/* <br /> */}
+            <SupportBlog />
             <BigLike id={id} />
             <br />
             <br />

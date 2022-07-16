@@ -15,7 +15,7 @@ import {
   PostComment,
   PostCommentReply,
   ReactOnCommentReply,
-  ReactOnPostComment,
+  ReactOnPostComment
 } from "../../../redux/actions/blog/posts";
 import PopConfirm from "../../popups/popComfirm";
 import CommentBox from "./CommentBox";
@@ -169,7 +169,6 @@ const Comments = ({ id, post }) => {
                 ? `${comment.user.firstName} ${comment.user.lastName}`
                 : "ANONYMOUS"}{" "}
             </span>
-            &nbsp;
             <span style={{ fontWeight: ".5em", fontSize: "small" }}>
               <TimeAgo date={comment.createdAt} />
             </span>
@@ -221,7 +220,6 @@ const Comments = ({ id, post }) => {
                   Reply
                 </span>
               )}
-              &nbsp;&nbsp;&nbsp;
               {user && user.id == comment.user?._id ? (
                 <>
                   {" "}

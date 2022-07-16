@@ -49,6 +49,10 @@
   }
 }
 
+li.media {
+  list-style: none;
+}
+
 /*===== Margins =====*/
 :root {
   --mb-1: 0.5rem;
@@ -946,7 +950,7 @@ img {
   font-weight: 300;
   color: black !important;
   font-weight: 400;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 .buy-me-coffee a img:hover {
   transform: scale(1.02);
@@ -1122,7 +1126,7 @@ body {
 .comments .comment-wrapper .comment {
   display: grid;
   grid-template-columns: 10% auto;
-  gap: .5%;
+  gap: 0.5%;
   font-size: 1em;
   margin-bottom: 2.5%;
 }
@@ -1136,7 +1140,7 @@ body {
   grid-template-columns: 10% auto;
   gap: 1%;
   font-size: 0.9em;
-  margin-top: .5%;
+  margin-top: 0.5%;
 }
 .reply_avatar img {
   max-width: 40px;
@@ -1251,8 +1255,10 @@ body {
 /*LIKES*/
 
 .big-like {
-  margin-top: 5%;
   text-align: center;
+  width: fit-content;
+  padding: 0%;
+  margin: 7.5% auto;
 }
 .n {
   font-size: 1.2em;
