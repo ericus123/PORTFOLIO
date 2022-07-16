@@ -44,6 +44,14 @@ export const decipher = () => {
 };
 
 export const slicedString = (str, len, dots) => {
-   const sliced = str.substr(0,len);
-  return dots && sliced.concat(" ...") || sliced;
+  const sliced = str.substr(0, len);
+  return (dots && sliced.concat(" ...")) || sliced;
+};
+
+export const openLink = (url, isBlank) => {
+  if (isBlank) {
+    process?.browser?.window?.open(url, "_blank");
+  } else {
+    process?.browser?.window?.open(url);
+  }
 };

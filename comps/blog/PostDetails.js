@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Col, Media, Row } from "react-bootstrap";
 import readingTime from "reading-time";
 import unknown_avatar from "../../public/images/avatar.png";
+import AuthorCard from "../author/AuthorCard";
 import { SupportBlog } from "../buymecoffee";
 import Comments from "./comments/Comments";
 import styles from "./index.module.scss";
@@ -82,9 +83,14 @@ const PostsDetails = ({ post }) => {
             <br />
             <br />
             <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
-            {/* <br /> */}
-            {/* <AuthorCard image={post.author.avatar || unknown_avatar} bio={post.author.bio} last_name={post?.author?.lastName} first_name={post?.author?.last_name}/> */}
-            {/* <br /> */}
+            <br />
+            <AuthorCard
+              image={post.author.avatar || unknown_avatar}
+              bio={post.author.bio}
+              last_name={post?.author?.lastName}
+              first_name={post?.author?.firstName}
+            />{" "}
+            <br />
             <SupportBlog />
             <BigLike id={id} />
             <br />
