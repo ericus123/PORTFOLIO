@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import unknown_avatar from "../../../public/images/avatar.png";
-import { useRouter } from "next/router";
-import styles from "./index.module.scss";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TimeAgo from "react-timeago";
+import unknown_avatar from "../../../public/images/avatar.png";
+import { authRequest } from "../../../redux/actions/auth/checkAuth";
 import {
+  DeleteCommentReply,
+  DeletePostComment,
+  EditCommentReply,
+  EditPostComment,
   GetComments,
   PostComment,
-  EditPostComment,
-  DeletePostComment,
   PostCommentReply,
-  EditCommentReply,
-  DeleteCommentReply,
-  ReactOnPostComment,
   ReactOnCommentReply,
+  ReactOnPostComment,
 } from "../../../redux/actions/blog/posts";
-import TimeAgo from "react-timeago";
-import { authRequest } from "../../../redux/actions/auth/checkAuth";
-import Image from "next/image";
 import PopConfirm from "../../popups/popComfirm";
-import HighLightAuthor from "./HighlightAuthor";
+import CommentBox from "./CommentBox";
 import CommentReactions from "./CommentReactions";
 import CommentsBlocked from "./CommentsBlocked";
-import CommentBox from "./CommentBox";
+import HighLightAuthor from "./HighlightAuthor";
+import styles from "./index.module.scss";
 
 const Comments = ({ id, post }) => {
   const [reply, setReply] = useState(null);
@@ -156,7 +156,7 @@ const Comments = ({ id, post }) => {
           <Image
             width="40px"
             height="40px"
-            src={comment.user ? comment.user.avatar : unknown_avatar}
+            src={comment?.user?.avatar || unknown_avatar}
             priority
             quality={25}
             className={styles.user_img}
@@ -255,7 +255,7 @@ const Comments = ({ id, post }) => {
                       <div className={`profile-p-sm ${styles.user_img}`}>
                         <Image
                           className={`${styles.user_img} b-border`}
-                          src={reply.user ? reply.user.avatar : unknown_avatar}
+                          src={reply?.user?.avatar || unknown_avatar}
                           width="35px"
                           height="35px"
                           priority
