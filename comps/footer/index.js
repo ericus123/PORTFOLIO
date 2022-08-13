@@ -1,5 +1,4 @@
-import React from "react";
-import { Whatsapp, Twitter, Github, Linkedin } from "react-bootstrap-icons";
+import { Github, Linkedin, Twitter, Whatsapp } from "react-bootstrap-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { subscribeNewsletter } from "../../redux/actions/subscriptions/newsLetter";
@@ -19,7 +18,7 @@ const Footer = () => {
       <div className="footer-wrap">
         <div className="container first_class">
           <div className="row">
-            <div className="col-md-4 col-sm-6">
+            <div className="col-md-4 col-sm-5">
               <h3>BE THE FIRST TO KNOW</h3>
               <p>
                 Get access to thousands of exclusive tech news and tutorials
@@ -33,6 +32,7 @@ const Footer = () => {
                   <div>
                     <li className="round-btn">
                       <a
+                        rel="noreferrer"
                         href="https://www.linkedin.com/in/amani-eric/"
                         target="_blank"
                       >

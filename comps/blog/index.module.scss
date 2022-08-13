@@ -46,7 +46,7 @@
   border-radius: 0px 2px 2px 0px !important;
 }
 
-.blog_description{
+.blog_description {
   font-weight: 350;
 }
 .post_title {
@@ -65,5 +65,17 @@
       min-height: 40vh;
       margin-top: 5%;
     }
+  }
+}
+
+//POST LIST STYLES
+
+.post_list_item_footer {
+  display: flex;
+  .left_side {
+    margin-right: auto;
+  }
+  .right_side {
+    margin-left: auto;
   }
 }

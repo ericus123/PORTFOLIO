@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 
 const NewsLetter = ({ isLoading, handleSubmit }) => {
   return (
-    <div className="col-md-4 col-sm-4">
+    <div className="col-md-4 col-sm-7">
       <form className={styles.newsletter} onSubmit={handleSubmit}>
         <div className={styles.input_container}>
           <input

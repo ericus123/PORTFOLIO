@@ -87,7 +87,7 @@ html {
 }
 body {
   margin: var(--header-height) 0 0 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
   font-size: var(--normal-font-size);
   color: var(--second-color);
 }
@@ -102,7 +102,7 @@ ul {
   list-style: none;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 img {
   max-width: 100%;
@@ -950,7 +950,8 @@ img {
   font-weight: 300;
   color: black !important;
   font-weight: 400;
-  font-family: "Poppins";
+  line-height: 22px;
+  font-family: "Poppins", sans-serif !important;
 }
 .buy-me-coffee a img:hover {
   transform: scale(1.02);
@@ -1366,7 +1367,6 @@ body {
 
 .footer-wrap p a {
   color: #fff;
-  text-decoration: underline;
   font-style: italic;
 }
 
@@ -1374,7 +1374,9 @@ body {
   text-decoration: none;
   color: #ff7800;
 }
-
+.footer-links {
+  font-family: "Poppins", sans-serif;
+}
 .footer-links li a {
   font-size: 13px;
   line-height: 30px;

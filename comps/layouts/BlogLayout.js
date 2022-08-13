@@ -1,5 +1,4 @@
 import ScrollButton from "../../reusables/ScrollUp";
-import AdBanner from "../ads";
 import PostsSlider from "../blog/PostsSlider";
 import SideBar from "../blog/sidebar/sideBar";
 import styles from "./index.module.scss";
@@ -8,12 +7,12 @@ const BlogLayout = ({ children, showSlider, isLoading }) => {
   return (
     <div className={styles.blog_wrapper}>
       <div className={styles.blog_container}>
-        <div>
-          <AdBanner
-            data-ad-slot="8942052801"
+        <div className={styles.blog_layout_left}>
+          {/* <AdBanner
+            data-ad-slot="1476080968"
             data-ad-format="auto"
             data-full-width-responsive="true"
-          />
+          /> */}
         </div>
         <div className={styles.blog_container}>
           <div className={`Blog ${styles.blog_layout}`}>
@@ -36,12 +35,13 @@ const BlogLayout = ({ children, showSlider, isLoading }) => {
             </div>
           </div>
         </div>
-        <div>
-          <AdBanner
-            data-ad-slot="8942052801"
+
+        <div className={styles.blog_layout_right}>
+          {/* <AdBanner
+            data-ad-slot="1476080968"
             data-ad-format="auto"
             data-full-width-responsive="true"
-          />
+          /> */}
         </div>
       </div>
     </div>

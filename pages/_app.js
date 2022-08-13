@@ -1,19 +1,20 @@
-import "../styles/globals.scss";
 import Layout from "../comps/Layout";
+import "../styles/globals.scss";
 
-import { Provider } from "react-redux";
-import store from "../redux/store";
-import "react-notifications/lib/notifications.css";
-import { NotificationContainer } from "react-notifications";
-import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import "../public/nprogress.scss";
 import NProgress from "nprogress";
 import Prism from "prismjs";
+import { useEffect } from "react";
+import { NotificationContainer } from "react-notifications";
+import "react-notifications/lib/notifications.css";
+import { Provider } from "react-redux";
+import "../public/nprogress.scss";
+import store from "../redux/store";
 import "../styles/prism.css";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

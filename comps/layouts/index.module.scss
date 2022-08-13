@@ -25,8 +25,34 @@
   height: 180vh;
 }
 
+.blog_layout_left {
+  width: 20% !important;
+  margin-top: 5rem;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 5rem;
+  z-index: 1;
+  height: 60vh;
+}
+.blog_layout_right {
+  width: 20% !important;
+  margin-top: 5rem;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 5rem;
+  z-index: 1;
+  height: 60vh;
+}
+
 @media screen and (max-width: 500px) {
   .side_nav {
     height: 250vh;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .blog_layout_left,
+  .blog_layout_right {
+    display: none;
   }
 }

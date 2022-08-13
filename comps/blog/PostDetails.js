@@ -2,8 +2,10 @@ import Image from "next/image";
 import Prism from "prismjs";
 import { useEffect } from "react";
 import { Col, Media, Row } from "react-bootstrap";
+import Moment from "react-moment";
 import readingTime from "reading-time";
 import unknown_avatar from "../../public/images/avatar.png";
+import AdBanner from "../ads";
 import AuthorCard from "../author/AuthorCard";
 import { SupportBlog } from "../buymecoffee";
 import Comments from "./comments/Comments";
@@ -59,7 +61,7 @@ const PostsDetails = ({ post }) => {
                   )}
 
                   <span className="post_det">
-                    On {new Date(post.createdAt).toLocaleString()}
+                    <Moment format="DD MMM YYYY" date={post?.createdAt} />
                     {post.updatedAt ? post.updatedAt : null} |&nbsp;
                     {readingTime(post.description).text}
                   </span>
@@ -95,7 +97,11 @@ const PostsDetails = ({ post }) => {
             <BigLike id={id} />
             <br />
             <br />
-            <br />
+            <AdBanner
+              data-ad-slot="7105763628"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            />
             <br />
             <Comments comment={post.comments} id={id} post={post} />
           </Media.Body>

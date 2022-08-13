@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import { Button, Alert } from "react-bootstrap";
+import { useEffect } from "react";
+import { Alert, Button } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
+import Moment from "react-moment";
+import { useDispatch, useSelector } from "react-redux";
+import { scrollTop } from "../../../helpers/index";
 import {
   getPosts,
   searchPostsRequest,
 } from "../../../redux/actions/blog/posts";
-import GetCats from "./getCats";
-import { scrollTop } from "../../../helpers/index";
-import Image from "next/image";
-import styles from "../index.module.scss";
 import AdBanner from "../../ads";
+import styles from "../index.module.scss";
+import GetCats from "./getCats";
+import style from "./index.module.scss";
 import RandomQuote from "./quotes";
 
 const SideBar = () => {
@@ -54,14 +56,7 @@ const SideBar = () => {
                 </h6>
               </Link>
               <i className="text-muted " style={{ fontSize: "small" }}>
-                {new Date(post.createdAt).toLocaleDateString("en-US", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                })}
+                <Moment format="DD MMM YYYY" date={post?.createdAt} />
               </i>
             </div>
           </div>
@@ -76,11 +71,14 @@ const SideBar = () => {
 
   return (
     <div className="side-bar">
-      {posts.length ? <h2 className={`recent-title ${styles.post_title}`}>What&apos;s new</h2> : null}
+      {posts.length ? (
+        <h2 className={`${style.side_panel_title} ${styles.post_title}`}>
+          What&apos;s new
+        </h2>
+      ) : null}
       {err}
       <br />
       {recentPosts}
-
       <br />
       {posts.length ? (
         <form
@@ -116,12 +114,9 @@ const SideBar = () => {
         data-ad-slot="1965117589"
       />
       <br />
-      <AdBanner
-        data-ad-layout="in-article"
-        data-ad-format="fluid"
-        data-ad-slot="1965117589"
-      />
-    {posts && <RandomQuote/>}
+      {posts && <RandomQuote />}
+      <br />
+      {/* <AdBanner data-ad-format="autorelaxed" data-ad-slot="7206650297" /> */}
     </div>
   );
 };

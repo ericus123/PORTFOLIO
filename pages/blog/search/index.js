@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { Alert } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { Alert } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import AdBanner from "../../../comps/ads";
+import Paginate from "../../../comps/blog/Pagination";
+import PostsList from "../../../comps/blog/PostsList";
+import BlogLayout from "../../../comps/layouts/BlogLayout";
+import { SearchLoader } from "../../../comps/loaders";
 import {
   getPosts,
   searchPostsRequest,
 } from "../../../redux/actions/blog/posts";
-import Paginate from "../../../comps/blog/Pagination";
-import PostsList from "../../../comps/blog/PostsList";
-import BlogLayout from "../../../comps/layouts/BlogLayout";
-import AdBanner from "../../../comps/ads";
-import { SearchLoader } from "../../../comps/loaders";
 
 const SearchPosts = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,12 @@ const SearchPosts = () => {
   ) : null;
 
   return (
-    <BlogLayout showSlider isLoading={isLoading}>
+    <BlogLayout showSlider={false} isLoading={isLoading}>
+      <AdBanner
+        data-ad-slot="7105763628"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
       <ul className="list-unstyled">
         {err}
         {loader}
@@ -58,33 +63,36 @@ const SearchPosts = () => {
             style={{
               fontWeight: 300,
               fontStyle: "italic",
-              textAlign: "center",
+              fontSize: "1em",
             }}
           >
             Showing {searchPosts.length}{" "}
             {searchPosts.length > 1 ? "results" : "result"} for &apos;
-            <span style={{ fontStyle: "italic" }}>{searchTerm}</span>&apos;
+            <span style={{ fontStyle: "italic", fontWeight: "400" }}>
+              {searchTerm}
+            </span>
+            &apos;
           </h2>
         )) ||
           null}
-        {(!searchIsLoading && !postsPerPage.length && !searchError && (
-          <div>
-            {(searchTerm && (
-              <h2
-                style={{
-                  fontWeight: "light",
-                  color: "#dc3545",
-                  textAlign: "center",
-                }}
-              >
-                Ooops! No results found for &apos;{searchTerm}&apos;
-                <span style={{ fontWeight: "bold" }}></span>
-              </h2>
-            )) ||
-              null}{" "}
-          </div>
-        )) ||
-          null}
+        {!searchIsLoading &&
+          !postsPerPage.length &&
+          !searchError &&
+          searchTerm && (
+            <h2
+              style={{
+                fontWeight: 300,
+                fontStyle: "italic",
+                fontSize: "1em",
+              }}
+            >
+              No results found for &apos;
+              <span style={{ fontStyle: "italic", fontWeight: "400" }}>
+                {searchTerm}
+              </span>
+              &apos;
+            </h2>
+          )}
 
         {searchError && (
           <Alert variant="danger" style={{ textAlign: "center" }}>
@@ -112,11 +120,13 @@ const SearchPosts = () => {
             ) : null}
           </div>
         ) : null}
-        <AdBanner
-          data-ad-layout="in-article"
-          data-ad-format="fluid"
-          data-ad-slot="1965117589"
-        />
+        {searchPosts?.length > 2 ? (
+          <AdBanner
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-slot="1965117589"
+          />
+        ) : null}
         <br />
       </ul>
     </BlogLayout>
