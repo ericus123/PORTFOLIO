@@ -1,54 +1,50 @@
-import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { MdOutlineBookmark } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import { getPostCats } from "../../../redux/actions/blog/posts";
-import { useSelector, useDispatch } from "react-redux";
-import { ListGroup } from "react-bootstrap";
-import Link from "next/link";
-import { scrollTop } from "../../../helpers/index";
-import {MdOutlineBookmark} from "react-icons/md";
 import styles from "../index.module.scss";
+import style from "./index.module.scss";
+import TopicTag from "./TopicTag";
 
 const GetCats = () => {
   const cats = useSelector((state) => state.getPostCats.cats);
+  const [active, setActive] = useState(-1);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPostCats());
   }, []);
 
-  const allCats = cats.length
-    ? cats.map((cat) => {
-        return (
-          <ListGroup
-            style={{ border: "none", textDecoration: "none" }}
-            key={Math.random()}
-          >
-            <Link
-              style={{ textDecoration: "none", border: "none" }}
-              href={"/blog/category/" + cat.name}
-            >
-              <ListGroup.Item
-                className="text-decoration-none cat-item"
-                style={{
-                  color: "#007bff",
-                  cursor: "pointer",
-                  fontSize: "medium",
-                  border: "none",
-                  textDecoration: "none",
-                }}
-                onClick={scrollTop}
-              >
-                &gt; {cat.name}
-              </ListGroup.Item>
-            </Link>
-          </ListGroup>
-        );
-      })
-    : null;
+  const highlight = (id) => {
+    console.log(id);
+    setActive(id);
+    console.log(active);
+  };
+
+  const router = useRouter();
+
   return (
     <div>
       <br />
-      {cats.length ? <h2 className={`cat-title ${styles.post_title}`}><MdOutlineBookmark/>Categories</h2> : null}
-      {allCats}
+      {cats && (
+        <h2 className={`${style.side_panel_title} ${styles.post_title}`}>
+          <MdOutlineBookmark />
+          Topics for you
+        </h2>
+      )}
+
+      <div className={style.topics_container}>
+        {cats &&
+          cats.map((cat, i) => (
+            <TopicTag
+              text={cat?.name}
+              isActive={active === i || cat.name == router?.query?.category}
+              key={Math.random}
+              onClick={() => highlight(i)}
+            />
+          ))}
+      </div>
     </div>
   );
 };

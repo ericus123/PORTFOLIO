@@ -2,6 +2,7 @@ import Image from "next/image";
 import Prism from "prismjs";
 import { useEffect } from "react";
 import { Col, Media, Row } from "react-bootstrap";
+import Moment from "react-moment";
 import readingTime from "reading-time";
 import unknown_avatar from "../../public/images/avatar.png";
 import AuthorCard from "../author/AuthorCard";
@@ -59,7 +60,7 @@ const PostsDetails = ({ post }) => {
                   )}
 
                   <span className="post_det">
-                    On {new Date(post.createdAt).toLocaleString()}
+                    <Moment format="DD MMM YYYY" date={post?.createdAt} />
                     {post.updatedAt ? post.updatedAt : null} |&nbsp;
                     {readingTime(post.description).text}
                   </span>

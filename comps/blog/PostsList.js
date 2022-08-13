@@ -1,5 +1,5 @@
-import { Media } from "react-bootstrap";
 import Link from "next/link";
+import { Media } from "react-bootstrap";
 import { decodeHtml, scrollTop } from "../../helpers";
 import styles from "./index.module.scss";
 
@@ -36,7 +36,7 @@ const PostsList = ({ posts }) => {
               <h6 style={{ marginTop: "10px" }}>
                 <Link href={`/blog/${post.slug}`} onClick={scrollTop}>
                   <div>
-                  <span className={styles.readmore_txt}>Read More</span>
+                    <span className={styles.readmore_txt}>Read More</span>
                   </div>
                 </Link>
               </h6>
